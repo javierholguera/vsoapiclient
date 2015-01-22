@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Contracts", "VsoApi.Contracts\VsoApi.Contracts.csproj", "{CC06FA88-4737-402E-BD28-010A2D35E6B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Client", "VsoApi.Client\VsoApi.Client.csproj", "{F763A629-3981-4C88-A5ED-3900C34E0E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Client.Tests", "VsoApi.Client.Tests\VsoApi.Client.Tests.csproj", "{D906A0DE-D8F0-4227-B7E9-288BA21D0973}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{CC06FA88-4737-402E-BD28-010A2D35E6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC06FA88-4737-402E-BD28-010A2D35E6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC06FA88-4737-402E-BD28-010A2D35E6B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F763A629-3981-4C88-A5ED-3900C34E0E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F763A629-3981-4C88-A5ED-3900C34E0E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F763A629-3981-4C88-A5ED-3900C34E0E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F763A629-3981-4C88-A5ED-3900C34E0E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D906A0DE-D8F0-4227-B7E9-288BA21D0973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D906A0DE-D8F0-4227-B7E9-288BA21D0973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D906A0DE-D8F0-4227-B7E9-288BA21D0973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D906A0DE-D8F0-4227-B7E9-288BA21D0973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

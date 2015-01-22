@@ -1,7 +1,10 @@
 ﻿namespace VsoApi.Contracts.Requests
 {
+    using System;
+
     public abstract class VsoRequest
     {
-        public string api_version { get; set; }
+        // Paramater "api-version"
+        public string ApiVersion { get { return "1.0"; }}
     }
 }
