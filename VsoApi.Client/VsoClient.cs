@@ -8,7 +8,7 @@ namespace VsoApi.Client
     {
         public VsoClient()
         {
-            IRestClient client = new RestClient("https://javierholguera.visualstudio.com/defaultCollection/_apis");
+            RestClient client = new RestClient("https://javierholguera.visualstudio.com/defaultCollection/");
             client.Authenticator = new HttpBasicAuthenticator("jholguerablanco@hotmail.com", "1Cat#nap1");
             WorkitemResources = new WorkitemResource(client);
         }
