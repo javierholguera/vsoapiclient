@@ -57,7 +57,9 @@
     <Compile Include="Requests\WorkitemRequest.cs" />
     <Compile Include="Requests\WorkitemListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
+    <Compile Include="Requests\WqilFlatRequest.cs" />
     <Compile Include="Responses\ListResponse.cs" />
+    <Compile Include="Responses\WiqlFlatQueryResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

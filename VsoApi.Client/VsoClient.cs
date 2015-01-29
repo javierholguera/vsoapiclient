@@ -11,8 +11,10 @@ namespace VsoApi.Client
             RestClient client = new RestClient("https://javierholguera.visualstudio.com/defaultCollection/");
             client.Authenticator = new HttpBasicAuthenticator("jholguerablanco@hotmail.com", "1Cat#nap1");
             WorkitemResources = new WorkitemResource(client);
+            WqilResources = new WqilResource(client);
         }
 
         public IWorkitemResource WorkitemResources { get; set; }
+        public IWqilResource WqilResources { get; set; }
     }
 }

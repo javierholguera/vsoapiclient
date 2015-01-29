@@ -50,6 +50,7 @@
     <Compile Include="Infrastructure\RestSharpJsonDotNetSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\IWorkitemResource.cs" />
+    <Compile Include="Resources\IWQILResource.cs" />
     <Compile Include="Resources\WorkitemResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>

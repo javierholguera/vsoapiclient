@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GetFlatWiqlQueryTests.cs" />
     <Compile Include="UpdateWorkitemTests.cs" />
     <Compile Include="GetWorkitemListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
