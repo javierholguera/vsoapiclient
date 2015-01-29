@@ -9,7 +9,7 @@ namespace VsoApi.Contracts.Requests
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class WorkitemCreateRequest : VsoRequest
+    public class WorkitemUpdateRequest : VsoRequest
     {
         public class FieldEntry
         {
@@ -18,8 +18,8 @@ namespace VsoApi.Contracts.Requests
             public string Value { get; set; }
         }
 
-        public string Project { get; set; }
-        public string WorkItemTypeName { get; set; }
+        public string Id { get; set; }
+
         public IEnumerable<FieldEntry> Body { get; set; } 
 
         public override IRestRequest GetRestRequest(string resourceUri)
@@ -28,27 +28,22 @@ namespace VsoApi.Contracts.Requests
             if (validationResult.Any())
                 throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
 
-            IRestRequest request = new RestRequest(resourceUri + "${workitemtypename}", Method.PATCH);
-            
-            request.AddQueryParameter("api-version", ApiVersion);
-            request.AddUrlSegment("project", Project);
-            request.AddUrlSegment("workitemtypename", WorkItemTypeName);
+            IRestRequest restRequest = new RestRequest(resourceUri, Method.PATCH);
+            restRequest.AddUrlSegment("id", Id);
+            restRequest.AddQueryParameter("api-version", ApiVersion);
             
             // Workaround to set the content type and avoid getting it overriden when setting the body directly
             // http://stackoverflow.com/a/9436436/3086378
-            request.AddParameter(
+            restRequest.AddParameter(
                 "application/json-patch+json", JsonConvert.SerializeObject(Body), ParameterType.RequestBody);
 
-            return request;
+            return restRequest;
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (string.IsNullOrWhiteSpace(Project))
-                yield return new ValidationResult("Unable to process a workitem creation request without project", new[] { "Project" });
-
-            if (string.IsNullOrWhiteSpace(WorkItemTypeName))
-                yield return new ValidationResult("Unable to process a workitem creation request without type name", new[] { "WorkItemTypeName" });
+            if (string.IsNullOrWhiteSpace(Id))
+                yield return new ValidationResult("Unable to process a workitem update request without workitem ID", new[] { "Id" });
         }
     }
 }

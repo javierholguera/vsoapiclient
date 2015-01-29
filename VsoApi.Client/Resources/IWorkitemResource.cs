@@ -10,5 +10,6 @@ namespace VsoApi.Client.Resources
         ListResponse<Workitem> GetAll(WorkitemListRequest request);
         Workitem Get(WorkitemRequest request);
         Workitem Patch(WorkitemCreateRequest request);
+        Workitem Patch(WorkitemUpdateRequest request);
     }
 }

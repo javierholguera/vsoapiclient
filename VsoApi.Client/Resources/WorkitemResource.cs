@@ -2,7 +2,6 @@
 {
     using Newtonsoft.Json;
     using RestSharp;
-    using VsoApi.Contracts;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
@@ -16,14 +15,19 @@
             _client = client;
         }
 
-        private static string QueryResourceUri
+        private string QueryResourceUri
         {
             get { return "_apis/wit/workitems"; }
         }
 
-        private static string ModificationResourceUri
+        private string CreationResourceUri
         {
             get { return "{project}/_apis/wit/workitems/"; }
+        }
+
+        private string ModificationResourceUri
+        {
+            get { return "_apis/wit/workitems/{id}"; }
         }
 
         public ListResponse<Workitem> GetAll(WorkitemListRequest request)
@@ -43,6 +47,14 @@
         }
 
         public Workitem Patch(WorkitemCreateRequest request)
+        {
+            IRestRequest restRequest = request.GetRestRequest(CreationResourceUri);
+            IRestResponse restResponse = _client.Execute(restRequest);
+
+            return JsonConvert.DeserializeObject<Workitem>(restResponse.Content);
+        }
+        
+        public Workitem Patch(WorkitemUpdateRequest request)
         {
             IRestRequest restRequest = request.GetRestRequest(ModificationResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);

@@ -4,6 +4,11 @@
 
     public class WorkitemFields
     {
+        public const string KanbanColumnField = "Kanban.Column";
+        public const string ChangedByField = "System.ChangedBy";
+        public const string EstimatedEffortField = "Microsoft.VSTS.Scheduling.Effort";
+        public const string ChangedDateField = "System.ChangedDate";
+        public const string CreatedByField = "System.CreatedBy";
         public const string AreaPathField = "System.AreaPath";
         public const string TeamProjectField = "System.TeamProject";
         public const string IterationPathField = "System.IterationPath";
@@ -34,22 +39,22 @@
         [JsonProperty(PropertyName = CreatedDateField)]
         public string CreatedDate { get; set; }
 
-        [JsonProperty(PropertyName = "System.CreatedBy")]
+        [JsonProperty(PropertyName = CreatedByField)]
         public string SystemCreatedBy { get; set; }
 
-        [JsonProperty(PropertyName = "System.ChangedDate")]
+        [JsonProperty(PropertyName = ChangedDateField)]
         public string SystemChangedDate { get; set; }
 
-        [JsonProperty(PropertyName = "System.ChangedBy")]
+        [JsonProperty(PropertyName = ChangedByField)]
         public string SystemChangedBy { get; set; }
 
         [JsonProperty(PropertyName = TitleField)]
         public string Title { get; set; }
 
-        [JsonProperty(PropertyName = "Microsoft.VSTS.Scheduling.Effort")]
-        public int MicrosoftVSTSSchedulingEffort { get; set; }
+        [JsonProperty(PropertyName = EstimatedEffortField)]
+        public int EstimatedEffort { get; set; }
 
-        [JsonProperty(PropertyName = "Kanban.Column")]
+        [JsonProperty(PropertyName = KanbanColumnField)]
         public string KanbanColumn { get; set; }
 
         [JsonProperty(PropertyName = "System.Description")]

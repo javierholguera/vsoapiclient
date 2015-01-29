@@ -49,7 +49,7 @@ namespace VsoApi.Client.Infrastructure
         {
             using (var stringWriter = new StringWriter()) {
                 using (var jsonTextWriter = new JsonTextWriter(stringWriter)) {
-                    jsonTextWriter.Formatting = Newtonsoft.Json.Formatting.Indented;
+                    jsonTextWriter.Formatting = Formatting.Indented;
                     jsonTextWriter.QuoteChar = '"';
 
                     _serializer.Serialize(jsonTextWriter, obj);
