@@ -2,7 +2,7 @@
 {
     using Newtonsoft.Json;
 
-    public class WorkitemFields
+    public class WorkItemFields
     {
         public const string KanbanColumnField = "Kanban.Column";
         public const string ChangedByField = "System.ChangedBy";
@@ -12,7 +12,7 @@
         public const string AreaPathField = "System.AreaPath";
         public const string TeamProjectField = "System.TeamProject";
         public const string IterationPathField = "System.IterationPath";
-        public const string WorkitemTypeField = "System.WorkItemType";
+        public const string WorkItemTypeField = "System.WorkItemType";
         public const string StateField = "System.State";
         public const string ReasonField = "System.Reason";
         public const string CreatedDateField = "System.CreatedDate";
@@ -27,8 +27,8 @@
         [JsonProperty(PropertyName = IterationPathField)]
         public string IterationPath { get; set; }
 
-        [JsonProperty(PropertyName = WorkitemTypeField)]
-        public string WorkitemType { get; set; }
+        [JsonProperty(PropertyName = WorkItemTypeField)]
+        public string WorkItemType { get; set; }
 
         [JsonProperty(PropertyName = StateField)]
         public string State { get; set; }

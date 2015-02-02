@@ -22,9 +22,9 @@ namespace VsoApi.Client.Tests
 
             WiqlFlatQueryResponse result = client.WqilResources.Post(request);
             Assert.IsNotNull(result);
-            Assert.IsTrue(result.Workitems.Any());
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.Workitems.First().Id));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.Workitems.First().Url));
+            Assert.IsTrue(result.WorkItems.Any());
+            Assert.IsFalse(string.IsNullOrWhiteSpace(result.WorkItems.First().Id));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(result.WorkItems.First().Url));
         }
     }
 }

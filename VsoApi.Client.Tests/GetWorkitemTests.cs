@@ -4,40 +4,39 @@ namespace VsoApi.Client.Tests
     using System.Globalization;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using VsoApi.Contracts;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
 
     [TestClass]
-    public class GetWorkitemTests
+    public class GetWorkItemTests
     {
         [TestMethod]
-        public void GetWorkitemById()
+        public void GetWorkItemById()
         {
             var client = new VsoClient();
-            var request = new WorkitemRequest { Id = "14" };
-            Workitem result = client.WorkitemResources.Get(request);
+            var request = new WorkItemRequest { Id = "14" };
+            WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void GetWorkitemByNonexistentId()
+        public void GetWorkItemByNonexistentId()
         {
             var client = new VsoClient();
-            var request = new WorkitemRequest { Id = int.MaxValue.ToString(CultureInfo.InvariantCulture) };
-            Workitem result = client.WorkitemResources.Get(request);
+            var request = new WorkItemRequest { Id = int.MaxValue.ToString(CultureInfo.InvariantCulture) };
+            WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void GetWorkitemWithLinksAndAttachments()
+        public void GetWorkItemWithLinksAndAttachments()
         {
             var client = new VsoClient();
-            var request = new WorkitemRequest {
+            var request = new WorkItemRequest {
                 Id = "14",
-                Expand = WorkitemExpandRequest.All
+                Expand = WorkItemExpandRequest.All
             };
-            Workitem result = client.WorkitemResources.Get(request);
+            WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Relations.Any());
             Assert.IsNotNull(result.Relations.First().Attributes);

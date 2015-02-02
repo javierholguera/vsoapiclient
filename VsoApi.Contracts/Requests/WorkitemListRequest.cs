@@ -9,21 +9,21 @@ namespace VsoApi.Contracts.Requests
     using System.Linq;
     using RestSharp;
 
-    public class WorkitemListRequest : VsoRequest
+    public class WorkItemListRequest : VsoRequest
     {
         // Query string: [&ids={string}&Fields={string}&asof={datetime}&$expand={enum{relations}]
 
-        public WorkitemListRequest()
+        public WorkItemListRequest()
         {
             Ids = new Collection<string>();
             Fields = new Collection<string>();
-            Expand = WorkitemExpandRequest.None;
+            Expand = WorkItemExpandRequest.None;
         }
         
         public ICollection<string> Ids { get; private set; }
         public ICollection<string> Fields { get; private set; }
         public DateTime? AsOf { get; set; }
-        public WorkitemExpandRequest Expand { get; set; }
+        public WorkItemExpandRequest Expand { get; set; }
 
         public override IRestRequest GetRestRequest(string resourceUri)
         {
@@ -48,7 +48,7 @@ namespace VsoApi.Contracts.Requests
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Ids.Any() == false)
-                yield return new ValidationResult("Unable to request an empty list of workitem ids", new[] { "Ids" });
+                yield return new ValidationResult("Unable to request an empty list of workItem ids", new[] { "Ids" });
             
             if (AsOf != null && Fields.Any() == false)
                 yield return new ValidationResult("The asOf parameter can only be used with the Fields parameter", new[] { "AsOf" });

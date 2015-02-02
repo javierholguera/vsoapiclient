@@ -6,18 +6,18 @@ namespace VsoApi.Contracts.Models
     using System.Collections.ObjectModel;
     using Newtonsoft.Json;
 
-    public class Workitem : VsoEntity
+    public class WorkItem : VsoEntity
     {
-        public Workitem()
+        public WorkItem()
         {
-            Relations = new Collection<WorkitemRelation>();
+            Relations = new Collection<WorkItemRelation>();
         }
 
         public int Id { get; set; }
         public int Rev { get; set; }
-        public WorkitemFields Fields { get; set; }
+        public WorkItemFields Fields { get; set; }
         public string Url { get; set; }
-        public IEnumerable<WorkitemRelation> Relations { get; set; }
+        public IEnumerable<WorkItemRelation> Relations { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
         public Links Links { get; set; }
@@ -39,14 +39,14 @@ namespace VsoApi.Contracts.Models
         public string Href { get; set; }
     }
 
-    public class WorkitemRelation
+    public class WorkItemRelation
     {
         public string Rel { get; set; }
         public string Url { get; set; }
-        public WorkitemRelationAttribute Attributes { get; set; }
+        public WorkItemRelationAttribute Attributes { get; set; }
     }
 
-    public class WorkitemRelationAttribute
+    public class WorkItemRelationAttribute
     {
         public string Comment { get; set; }
         public bool IsLocked { get; set; }

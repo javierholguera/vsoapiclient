@@ -6,11 +6,11 @@
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public class WorkitemResource : IWorkitemResource
+    public class WorkItemResource : IWorkItemResource
     {
         private readonly IRestClient _client;
 
-        public WorkitemResource(IRestClient client)
+        public WorkItemResource(IRestClient client)
         {
             _client = client;
         }
@@ -30,36 +30,36 @@
             get { return "_apis/wit/workitems/{id}"; }
         }
 
-        public ListResponse<Workitem> GetAll(WorkitemListRequest request)
+        public ListResponse<WorkItem> GetAll(WorkItemListRequest request)
         {
             IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<ListResponse<Workitem>>(restResponse.Content);
+            return JsonConvert.DeserializeObject<ListResponse<WorkItem>>(restResponse.Content);
         }
 
-        public Workitem Get(WorkitemRequest request)
+        public WorkItem Get(WorkItemRequest request)
         {
             IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<Workitem>(restResponse.Content);
+            return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
         }
 
-        public Workitem Patch(WorkitemCreateRequest request)
+        public WorkItem Patch(WorkItemCreateRequest request)
         {
             IRestRequest restRequest = request.GetRestRequest(CreationResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<Workitem>(restResponse.Content);
+            return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
         }
         
-        public Workitem Patch(WorkitemUpdateRequest request)
+        public WorkItem Patch(WorkItemUpdateRequest request)
         {
             IRestRequest restRequest = request.GetRestRequest(ModificationResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<Workitem>(restResponse.Content);
+            return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
         }
     }
 }

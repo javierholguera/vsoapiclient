@@ -5,11 +5,11 @@ namespace VsoApi.Client.Resources
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public interface IWorkitemResource
+    public interface IWorkItemResource
     {
-        ListResponse<Workitem> GetAll(WorkitemListRequest request);
-        Workitem Get(WorkitemRequest request);
-        Workitem Patch(WorkitemCreateRequest request);
-        Workitem Patch(WorkitemUpdateRequest request);
+        ListResponse<WorkItem> GetAll(WorkItemListRequest request);
+        WorkItem Get(WorkItemRequest request);
+        WorkItem Patch(WorkItemCreateRequest request);
+        WorkItem Patch(WorkItemUpdateRequest request);
     }
 }

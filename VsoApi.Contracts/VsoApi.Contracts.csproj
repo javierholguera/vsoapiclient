@@ -47,15 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\WorkitemFields.cs" />
-    <Compile Include="Models\Workitem.cs" />
+    <Compile Include="Models\WorkItemFields.cs" />
+    <Compile Include="Models\WorkItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\VsoEntity.cs" />
-    <Compile Include="Requests\WorkitemExpandRequest.cs" />
-    <Compile Include="Requests\WorkitemUpdateRequest.cs" />
-    <Compile Include="Requests\WorkitemCreateRequest.cs" />
-    <Compile Include="Requests\WorkitemRequest.cs" />
-    <Compile Include="Requests\WorkitemListRequest.cs" />
+    <Compile Include="Requests\WorkItemExpandRequest.cs" />
+    <Compile Include="Requests\WorkItemUpdateRequest.cs" />
+    <Compile Include="Requests\WorkItemCreateRequest.cs" />
+    <Compile Include="Requests\WorkItemRequest.cs" />
+    <Compile Include="Requests\WorkItemListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
     <Compile Include="Requests\WqilFlatRequest.cs" />
     <Compile Include="Responses\ListResponse.cs" />

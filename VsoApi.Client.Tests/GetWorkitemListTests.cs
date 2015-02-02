@@ -9,26 +9,26 @@ namespace VsoApi.Client.Tests
     using VsoApi.Contracts.Responses;
 
     [TestClass]
-    public class GetWorkitemListTests
+    public class GetWorkItemListTests
     {
         [TestMethod]
-        public void GetWorkitemsByIdsOnly()
+        public void GetWorkItemsByIdsOnly()
         {
             VsoClient client = new VsoClient();
-            var request = new WorkitemListRequest();
+            var request = new WorkItemListRequest();
             request.Ids.Add("12");
             request.Ids.Add("13");
             request.Ids.Add("14");
-            ListResponse<Workitem> result = client.WorkitemResources.GetAll(request);
+            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
 
         [TestMethod]
-        public void GetWorkitemsAsOfMonthAgo()
+        public void GetWorkItemsAsOfMonthAgo()
         {
             VsoClient client = new VsoClient();
-            var request = new WorkitemListRequest();
+            var request = new WorkItemListRequest();
             request.Ids.Add("12");
             request.Ids.Add("13");
             request.Ids.Add("14");
@@ -37,28 +37,28 @@ namespace VsoApi.Client.Tests
             request.Fields.Add("System.State");
             request.AsOf = DateTime.Now.AddMonths(-1);
 
-            ListResponse<Workitem> result = client.WorkitemResources.GetAll(request);
+            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
 
 
         [TestMethod]
-        public void GetWorkitemsByIdsWithRelationships()
+        public void GetWorkItemsByIdsWithRelationships()
         {
             VsoClient client = new VsoClient();
-            var request = new WorkitemListRequest {
-                Expand = WorkitemExpandRequest.All
+            var request = new WorkItemListRequest {
+                Expand = WorkItemExpandRequest.All
             };
             request.Ids.Add("12");
             request.Ids.Add("13");
             request.Ids.Add("14");
-            ListResponse<Workitem> result = client.WorkitemResources.GetAll(request);
+            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
-            Assert.IsTrue(result.Value.All(workitem => workitem.Links != null));
-            Assert.IsTrue(result.Value.All(workitem => workitem.Relations != null));
-            Assert.IsTrue(result.Value.Any(workitem => workitem.Relations.Any()));
+            Assert.IsTrue(result.Value.All(workItem => workItem.Links != null));
+            Assert.IsTrue(result.Value.All(workItem => workItem.Relations != null));
+            Assert.IsTrue(result.Value.Any(workItem => workItem.Relations.Any()));
         }
     }
 }

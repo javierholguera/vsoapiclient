@@ -1,6 +1,6 @@
 ﻿namespace VsoApi.Contracts.Requests
 {
-    public enum WorkitemExpandRequest
+    public enum WorkItemExpandRequest
     {
         None,
         All,

@@ -10,7 +10,7 @@ namespace VsoApi.Contracts.Responses
         public DateTime AsOf { get; set; }
         public IEnumerable<ColumnEntry> Columns { get; set; }
         public IEnumerable<SortColumnEntry> SortColumns { get; set; }
-        public IEnumerable<WorkitemEntry> Workitems { get; set; }
+        public IEnumerable<WorkItemEntry> WorkItems { get; set; }
     }
 
     public class SortColumnEntry
@@ -26,7 +26,7 @@ namespace VsoApi.Contracts.Responses
         public string Url { get; set; }
     }
 
-    public class WorkitemEntry
+    public class WorkItemEntry
     {
         public string Id { get; set; }
         public string Url { get; set; }

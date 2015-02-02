@@ -9,7 +9,7 @@ namespace VsoApi.Contracts.Requests
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class WorkitemCreateRequest : VsoRequest
+    public class WorkItemCreateRequest : VsoRequest
     {
         public class FieldEntry
         {
@@ -45,10 +45,10 @@ namespace VsoApi.Contracts.Requests
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (string.IsNullOrWhiteSpace(Project))
-                yield return new ValidationResult("Unable to process a workitem creation request without project", new[] { "Project" });
+                yield return new ValidationResult("Unable to process a workItem creation request without project", new[] { "Project" });
 
             if (string.IsNullOrWhiteSpace(WorkItemTypeName))
-                yield return new ValidationResult("Unable to process a workitem creation request without type name", new[] { "WorkItemTypeName" });
+                yield return new ValidationResult("Unable to process a workItem creation request without type name", new[] { "WorkItemTypeName" });
         }
     }
 }

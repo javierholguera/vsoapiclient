@@ -9,7 +9,7 @@ namespace VsoApi.Contracts.Requests
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class WorkitemUpdateRequest : VsoRequest
+    public class WorkItemUpdateRequest : VsoRequest
     {
         public class FieldEntry
         {
@@ -43,7 +43,7 @@ namespace VsoApi.Contracts.Requests
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (string.IsNullOrWhiteSpace(Id))
-                yield return new ValidationResult("Unable to process a workitem update request without workitem ID", new[] { "Id" });
+                yield return new ValidationResult("Unable to process a workItem update request without workItem ID", new[] { "Id" });
         }
     }
 }

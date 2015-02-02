@@ -52,11 +52,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GetFlatWiqlQueryTests.cs" />
-    <Compile Include="UpdateWorkitemTests.cs" />
-    <Compile Include="GetWorkitemListTests.cs" />
+    <Compile Include="UpdateWorkItemTests.cs" />
+    <Compile Include="GetWorkItemListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GetWorkitemTests.cs" />
-    <Compile Include="CreateWorkitemTests.cs" />
+    <Compile Include="GetWorkItemTests.cs" />
+    <Compile Include="CreateWorkItemTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VsoApi.Client\VsoApi.Client.csproj">

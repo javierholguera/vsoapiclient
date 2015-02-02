@@ -6,26 +6,26 @@ namespace VsoApi.Client.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
-    using Field = VsoApi.Contracts.Requests.WorkitemCreateRequest.FieldEntry;
+    using Field = VsoApi.Contracts.Requests.WorkItemCreateRequest.FieldEntry;
 
     [TestClass]
-    public class CreateWorkitemTests
+    public class CreateWorkItemTests
     {
         [TestMethod]
-        public void CreateWorkitemWithMinimumParameters()
+        public void CreateWorkItemWithMinimumParameters()
         {
             VsoClient client = new VsoClient();
-            var request = new WorkitemCreateRequest {
+            var request = new WorkItemCreateRequest {
                 Project = "TopReformas",
                 WorkItemTypeName = "Task",
                 Body = new List<Field> {
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.AreaPathField, Value = "TopReformas" },
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.IterationPathField, Value = "TopReformas" },
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.TitleField, Value = "Created from API Client" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.AreaPathField, Value = "TopReformas" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.IterationPathField, Value = "TopReformas" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.TitleField, Value = "Created from API Client" },
                 }
             };
 
-            Workitem result = client.WorkitemResources.Patch(request);
+            WorkItem result = client.WorkItemResources.Patch(request);
             Assert.IsNotNull(result);
         }
     }

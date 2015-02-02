@@ -7,17 +7,17 @@ namespace VsoApi.Contracts.Requests
     using System.Linq;
     using RestSharp;
 
-    public class WorkitemRequest : VsoRequest
+    public class WorkItemRequest : VsoRequest
     {
         // Query string: [/{Id}?$expand={enum{relations}]
 
-        public WorkitemRequest()
+        public WorkItemRequest()
         {
-            Expand = WorkitemExpandRequest.None;
+            Expand = WorkItemExpandRequest.None;
         }
 
         public string Id { get; set; }
-        public WorkitemExpandRequest Expand { get; set; }
+        public WorkItemExpandRequest Expand { get; set; }
 
         public override IRestRequest GetRestRequest(string resourceUri)
         {
@@ -36,7 +36,7 @@ namespace VsoApi.Contracts.Requests
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (string.IsNullOrWhiteSpace(Id))
-                yield return new ValidationResult("Unable to request a workitem with an empty Id", new[] { "Id" });
+                yield return new ValidationResult("Unable to request a workItem with an empty Id", new[] { "Id" });
         }
     }
 }

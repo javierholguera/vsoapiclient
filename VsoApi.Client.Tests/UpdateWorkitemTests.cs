@@ -7,50 +7,50 @@ namespace VsoApi.Client.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
-    using Field = VsoApi.Contracts.Requests.WorkitemCreateRequest.FieldEntry;
+    using Field = VsoApi.Contracts.Requests.WorkItemCreateRequest.FieldEntry;
 
     [TestClass]
-    public class UpdateWorkitemTests
+    public class UpdateWorkItemTests
     {
         [TestMethod]
-        public void UpdateWorkitem()
+        public void UpdateWorkItem()
         {
             VsoClient client = new VsoClient();
-            var request = new WorkitemCreateRequest {
+            var request = new WorkItemCreateRequest {
                 Project = "TopReformas",
                 WorkItemTypeName = "Task",
                 Body = new List<Field> {
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.AreaPathField, Value = "TopReformas" },
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.IterationPathField, Value = "TopReformas" },
-                    new Field { Op = "add", Path = "/fields/" + WorkitemFields.TitleField, Value = "Created from API Client" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.AreaPathField, Value = "TopReformas" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.IterationPathField, Value = "TopReformas" },
+                    new Field { Op = "add", Path = "/fields/" + WorkItemFields.TitleField, Value = "Created from API Client" },
                 }
             };
 
-            Workitem result = client.WorkitemResources.Patch(request);
+            WorkItem result = client.WorkItemResources.Patch(request);
             Assert.IsNotNull(result);
 
             int id = result.Id;
-            Workitem createdWorkitem = client.WorkitemResources.Get(
-                new WorkitemRequest { Id = id.ToString(CultureInfo.InvariantCulture) });
-            Assert.AreEqual(createdWorkitem.Fields.Title, "Created from API Client");
+            WorkItem createdWorkItem = client.WorkItemResources.Get(
+                new WorkItemRequest { Id = id.ToString(CultureInfo.InvariantCulture) });
+            Assert.AreEqual(createdWorkItem.Fields.Title, "Created from API Client");
 
-            // Update the workitem
-            WorkitemUpdateRequest updateRequest = new WorkitemUpdateRequest {
+            // Update the workItem
+            WorkItemUpdateRequest updateRequest = new WorkItemUpdateRequest {
                 Id = id.ToString(CultureInfo.InvariantCulture),
-                Body = new List<WorkitemUpdateRequest.FieldEntry> {
-                    new WorkitemUpdateRequest.FieldEntry {
+                Body = new List<WorkItemUpdateRequest.FieldEntry> {
+                    new WorkItemUpdateRequest.FieldEntry {
                         Op = "replace",
-                        Path = "/fields/" + WorkitemFields.TitleField,
+                        Path = "/fields/" + WorkItemFields.TitleField,
                         Value = "Updated title!"
                     }
                 }
             };
 
-            Workitem updateResult = client.WorkitemResources.Patch(updateRequest);
+            WorkItem updateResult = client.WorkItemResources.Patch(updateRequest);
 
-            Workitem updatedWorkitem = client.WorkitemResources.Get(
-                new WorkitemRequest { Id = updateResult.Id.ToString(CultureInfo.InvariantCulture) });
-            Assert.AreEqual("Updated title!", updatedWorkitem.Fields.Title);
+            WorkItem updatedWorkItem = client.WorkItemResources.Get(
+                new WorkItemRequest { Id = updateResult.Id.ToString(CultureInfo.InvariantCulture) });
+            Assert.AreEqual("Updated title!", updatedWorkItem.Fields.Title);
         }
     }
 }
