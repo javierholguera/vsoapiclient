@@ -41,5 +41,24 @@ namespace VsoApi.Client.Tests
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
+
+
+        [TestMethod]
+        public void GetWorkitemsByIdsWithRelationships()
+        {
+            VsoClient client = new VsoClient();
+            var request = new WorkitemListRequest {
+                Expand = WorkitemExpandRequest.All
+            };
+            request.Ids.Add("12");
+            request.Ids.Add("13");
+            request.Ids.Add("14");
+            ListResponse<Workitem> result = client.WorkitemResources.GetAll(request);
+            Assert.AreEqual(result.Count, 3);
+            Assert.IsTrue(result.Value.Any());
+            Assert.IsTrue(result.Value.All(workitem => workitem.Links != null));
+            Assert.IsTrue(result.Value.All(workitem => workitem.Relations != null));
+            Assert.IsTrue(result.Value.Any(workitem => workitem.Relations.Any()));
+        }
     }
 }

@@ -17,15 +17,13 @@ namespace VsoApi.Contracts.Requests
         {
             Ids = new Collection<string>();
             Fields = new Collection<string>();
+            Expand = WorkitemExpandRequest.None;
         }
         
         public ICollection<string> Ids { get; private set; }
         public ICollection<string> Fields { get; private set; }
         public DateTime? AsOf { get; set; }
-
-        // TODO: Not supported yet. Check example here: 
-        // http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-work-items-vsi#GetalistofworkitemsWithlinksandattachments
-        //public WorkitemRelationType Expand { get; set; }
+        public WorkitemExpandRequest Expand { get; set; }
 
         public override IRestRequest GetRestRequest(string resourceUri)
         {
@@ -41,7 +39,8 @@ namespace VsoApi.Contracts.Requests
                 restRequest.AddQueryParameter("Fields", string.Join(",", Fields));
             if (AsOf != null)
                 restRequest.AddQueryParameter("asof", AsOf.Value.ToString(CultureInfo.InvariantCulture));
-            //restRequest.AddQueryParameter("$expand", Expand.ToString());
+            
+            restRequest.AddQueryParameter("$expand", Expand.ToString());
 
             return restRequest;
         }

@@ -11,7 +11,13 @@ namespace VsoApi.Contracts.Requests
     {
         // Query string: [/{Id}?$expand={enum{relations}]
 
+        public WorkitemRequest()
+        {
+            Expand = WorkitemExpandRequest.None;
+        }
+
         public string Id { get; set; }
+        public WorkitemExpandRequest Expand { get; set; }
 
         public override IRestRequest GetRestRequest(string resourceUri)
         {
@@ -22,6 +28,7 @@ namespace VsoApi.Contracts.Requests
             IRestRequest restRequest = new RestRequest(resourceUri + "/{Id}", Method.GET);
             restRequest.AddUrlSegment("Id", Id);
             restRequest.AddQueryParameter("api-version", ApiVersion);
+            restRequest.AddQueryParameter("$expand", Expand.ToString());
         
             return restRequest;
         }

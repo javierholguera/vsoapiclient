@@ -52,6 +52,7 @@
     <Compile Include="Resources\IWorkitemResource.cs" />
     <Compile Include="Resources\IWQILResource.cs" />
     <Compile Include="Resources\WorkitemResource.cs" />
+    <Compile Include="Resources\WqilResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>
   <ItemGroup>
