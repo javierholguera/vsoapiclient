@@ -28,8 +28,8 @@ namespace VsoApi.Contracts.Requests
             if (validationResult.Any())
                 throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
 
-            IRestRequest restRequest = new RestRequest(resourceUri, Method.PATCH);
-            restRequest.AddUrlSegment("id", Id);
+            IRestRequest restRequest = new RestRequest(resourceUri + "/{Id}", Method.PATCH);
+            restRequest.AddUrlSegment("Id", Id);
             restRequest.AddQueryParameter("api-version", ApiVersion);
             
             // Workaround to set the content type and avoid getting it overriden when setting the body directly

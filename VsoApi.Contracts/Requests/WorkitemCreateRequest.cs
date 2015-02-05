@@ -28,7 +28,7 @@ namespace VsoApi.Contracts.Requests
             if (validationResult.Any())
                 throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
 
-            IRestRequest request = new RestRequest(resourceUri + "${workitemtypename}", Method.PATCH);
+            IRestRequest request = new RestRequest(resourceUri + "/${workitemtypename}", Method.PATCH);
             
             request.AddQueryParameter("api-version", ApiVersion);
             request.AddUrlSegment("project", Project);

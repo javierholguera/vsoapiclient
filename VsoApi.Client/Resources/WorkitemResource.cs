@@ -15,24 +15,19 @@
             _client = client;
         }
 
-        private string QueryResourceUri
+        private string BaseResourceUri
         {
             get { return "_apis/wit/workitems"; }
         }
 
         private string CreationResourceUri
         {
-            get { return "{project}/_apis/wit/workitems/"; }
+            get { return "{project}/_apis/wit/workitems"; }
         }
-
-        private string ModificationResourceUri
-        {
-            get { return "_apis/wit/workitems/{id}"; }
-        }
-
+        
         public ListResponse<WorkItem> GetAll(WorkItemListRequest request)
         {
-            IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(BaseResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<ListResponse<WorkItem>>(restResponse.Content);
@@ -40,7 +35,7 @@
 
         public WorkItem Get(WorkItemRequest request)
         {
-            IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(BaseResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
@@ -56,7 +51,7 @@
         
         public WorkItem Patch(WorkItemUpdateRequest request)
         {
-            IRestRequest restRequest = request.GetRestRequest(ModificationResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(BaseResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);

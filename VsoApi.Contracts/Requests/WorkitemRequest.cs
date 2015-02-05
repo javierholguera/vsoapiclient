@@ -26,6 +26,7 @@ namespace VsoApi.Contracts.Requests
                 throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
 
             IRestRequest restRequest = new RestRequest(resourceUri + "/{Id}", Method.GET);
+
             restRequest.AddUrlSegment("Id", Id);
             restRequest.AddQueryParameter("api-version", ApiVersion);
             restRequest.AddQueryParameter("$expand", Expand.ToString());
