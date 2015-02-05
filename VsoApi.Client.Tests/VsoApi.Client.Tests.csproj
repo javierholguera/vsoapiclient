@@ -52,6 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="GetFlatWiqlQueryTests.cs" />
+    <Compile Include="GetWorkItemTypeTests.cs" />
     <Compile Include="UpdateWorkItemTests.cs" />
     <Compile Include="GetWorkItemListTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
