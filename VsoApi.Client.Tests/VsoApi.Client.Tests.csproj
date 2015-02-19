@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GetFieldsTests.cs" />
     <Compile Include="GetFlatWiqlQueryTests.cs" />
     <Compile Include="GetWorkItemTypeTests.cs" />
     <Compile Include="UpdateWorkItemTests.cs" />
