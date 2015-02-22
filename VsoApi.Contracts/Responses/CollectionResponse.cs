@@ -3,9 +3,14 @@ using VsoApi.Contracts.Models;
 
 namespace VsoApi.Contracts.Responses
 {
+    using Newtonsoft.Json;
+
     public class CollectionResponse<T> where T : VsoEntity
     {
-        public int Count { get; set; }
-        public IEnumerable<T> Value { get; set; }
+        [JsonProperty]
+        public int Count { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<T> Value { get; private set; }
     }
 }

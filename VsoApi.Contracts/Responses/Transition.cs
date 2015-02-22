@@ -1,10 +1,14 @@
 ﻿namespace VsoApi.Contracts.Responses
 {
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     public class Transition
     {
-        public string To { get; set; }
-        public IEnumerable<string> Actions { get; set; }
+        [JsonProperty]
+        public string To { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<string> Actions { get; private set; }
     }
 }

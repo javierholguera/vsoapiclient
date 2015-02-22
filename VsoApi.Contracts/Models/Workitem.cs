@@ -13,48 +13,22 @@ namespace VsoApi.Contracts.Models
             Relations = new Collection<WorkItemRelation>();
         }
 
-        public int Id { get; set; }
-        public int Rev { get; set; }
-        public WorkItemFields Fields { get; set; }
-        public Uri Url { get; set; }
-        public IEnumerable<WorkItemRelation> Relations { get; set; }
+        [JsonProperty]
+        public int Id { get; private set; }
+
+        [JsonProperty]
+        public int Rev { get; private set; }
+
+        [JsonProperty]
+        public WorkItemFields Fields { get; private set; }
+
+        [JsonProperty]
+        public Uri Url { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<WorkItemRelation> Relations { get; private set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
-    }
-
-    public class Links
-    {
-        public Address Self { get; set; }
-        public Address WorkItemUpdates { get; set; }
-        public Address WorkItemRevisions { get; set; }
-        public Address WorkItemHistory { get; set; }
-        public Address Html { get; set; }
-        public Address WorkItemType { get; set; }
-        public Address Fields { get; set; }
-    }
-
-    public class Address
-    {
-        public string Href { get; set; }
-    }
-
-    public class WorkItemRelation
-    {
-        public string Rel { get; set; }
-        public Uri Url { get; set; }
-        public WorkItemRelationAttribute Attributes { get; set; }
-    }
-
-    public class WorkItemRelationAttribute
-    {
-        public string Comment { get; set; }
-        public bool IsLocked { get; set; }
-        public DateTime?  AuthorizedDate { get; set; }
-        public int Id { get; set; }
-        public DateTime? ResourceCreatedDate { get; set; }
-        public DateTime? ResourceModifiedDate { get; set; }
-        public DateTime? RevisedDate { get; set; }
-        public string Name { get; set; }
+        public Links Links { get; private set; }
     }
 }

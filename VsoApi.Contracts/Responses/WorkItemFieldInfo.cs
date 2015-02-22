@@ -2,21 +2,36 @@ namespace VsoApi.Contracts.Responses
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
     using VsoApi.Contracts.Models;
 
     public class WorkItemFieldInfo : VsoEntity
     {
-        public string Name { get; set; }
-        public string ReferenceName { get; set; }
-        public string Type { get; set; }
-        public bool ReadOnly { get; set; }
-        public IEnumerable<SupportedOperation> SupportedOperations { get; set; }
-        public Uri Url { get; set; }
+        [JsonProperty]
+        public string Name { get; private set; }
+
+        [JsonProperty]
+        public string ReferenceName { get; private set; }
+
+        [JsonProperty]
+        public string Type { get; private set; }
+
+        [JsonProperty]
+        public bool ReadOnly { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<SupportedOperation> SupportedOperations { get; private set; }
+
+        [JsonProperty]
+        public Uri Url { get; private set; }
     }
 
     public class SupportedOperation
     {
-        public string ReferenceName { get; set; }
-        public string Name { get; set; }
+        [JsonProperty]
+        public string ReferenceName { get;private  set; }
+
+        [JsonProperty]
+        public string Name { get; private set; }
     }
 }

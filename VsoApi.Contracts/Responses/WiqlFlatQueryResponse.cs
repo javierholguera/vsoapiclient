@@ -3,32 +3,53 @@ namespace VsoApi.Contracts.Responses
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     public class WiqlFlatQueryResponse
     {
-        public string QueryType { get; set; }
-        public DateTime AsOf { get; set; }
-        public IEnumerable<ColumnEntry> Columns { get; set; }
-        public IEnumerable<SortColumnEntry> SortColumns { get; set; }
-        public IEnumerable<WorkItemEntry> WorkItems { get; set; }
+        [JsonProperty]
+        public string QueryType { get; private set; }
+
+        [JsonProperty]
+        public DateTime AsOf { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<ColumnEntry> Columns { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<SortColumnEntry> SortColumns { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<WorkItemEntry> WorkItems { get; private set; }
     }
 
     public class SortColumnEntry
     {
-        public ColumnEntry Field { get; set; }
-        public bool Descending { get; set; }
+        [JsonProperty]
+        public ColumnEntry Field { get; private set; }
+
+        [JsonProperty]
+        public bool Descending { get; private set; }
     }
 
     public class ColumnEntry
     {
-        public string ReferenceName { get; set; }
-        public string Name { get; set; }
-        public Uri Url { get; set; }
+        [JsonProperty]
+        public string ReferenceName { get; private set; }
+
+        [JsonProperty]
+        public string Name { get; private set; }
+
+        [JsonProperty]
+        public Uri Url { get; private set; }
     }
 
     public class WorkItemEntry
     {
-        public string Id { get; set; }
-        public Uri Url { get; set; }
+        [JsonProperty]
+        public string Id { get; private set; }
+
+        [JsonProperty]
+        public Uri Url { get; private set; }
     }
 }

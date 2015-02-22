@@ -2,15 +2,27 @@
 {
     using System;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
     using VsoApi.Contracts.Models;
 
     public class WorkItemType : VsoEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string XmlForm { get; set; }
-        public IEnumerable<WorkItemField> FieldInstances { get; set; }
-        public WorkItemWorkflow Transitions { get; set; }
-        public Uri Url { get; set; }
+        [JsonProperty]
+        public string Name { get; private set; }
+
+        [JsonProperty]
+        public string Description { get; private set; }
+
+        [JsonProperty]
+        public string XmlForm { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<WorkItemField> FieldInstances { get; private set; }
+
+        [JsonProperty]
+        public WorkItemWorkflow Transitions { get; private set; }
+
+        [JsonProperty]
+        public Uri Url { get; private set; }
     }
 }

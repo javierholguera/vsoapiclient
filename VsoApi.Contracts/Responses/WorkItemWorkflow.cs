@@ -6,13 +6,18 @@
     public class WorkItemWorkflow
     {
         [JsonProperty(PropertyName = "")]
-        public IEnumerable<Transition> Initial { get; set; }
+        public IEnumerable<Transition> Initial { get; private set; }
 
         [JsonProperty(PropertyName = "To Do")]
-        public IEnumerable<Transition> ToDo { get; set; }
+        public IEnumerable<Transition> ToDo { get; private set; }
 
-        public IEnumerable<Transition> InProgress { get; set; }
-        public IEnumerable<Transition> Done { get; set; }
-        public IEnumerable<Transition> Removed { get; set; }
+        [JsonProperty]
+        public IEnumerable<Transition> InProgress { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<Transition> Done { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<Transition> Removed { get; private set; }
     }
 }
