@@ -16,7 +16,7 @@ namespace VsoApi.Contracts.Models
         public int Id { get; set; }
         public int Rev { get; set; }
         public WorkItemFields Fields { get; set; }
-        public string Url { get; set; }
+        public Uri Url { get; set; }
         public IEnumerable<WorkItemRelation> Relations { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
@@ -42,7 +42,7 @@ namespace VsoApi.Contracts.Models
     public class WorkItemRelation
     {
         public string Rel { get; set; }
-        public string Url { get; set; }
+        public Uri Url { get; set; }
         public WorkItemRelationAttribute Attributes { get; set; }
     }
 

@@ -4,8 +4,8 @@ namespace VsoApi.Client.Resources
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public interface IWqilResource
+    public interface IWiqlResource
     {
-        WiqlFlatQueryResponse Post(WqilFlatRequest request);
+        WiqlFlatQueryResponse Post(WiqlFlatRequest request);
     }
 }

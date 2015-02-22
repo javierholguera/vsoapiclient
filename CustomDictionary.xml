@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Vso</Word>
+      <Word>Api</Word>
+      <Word>Wiql</Word>
+      <Word>Kanban</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>VSTS</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

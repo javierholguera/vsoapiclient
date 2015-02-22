@@ -7,7 +7,7 @@ namespace VsoApi.Client.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
-    using Field = VsoApi.Contracts.Requests.WorkItemCreateRequest.FieldEntry;
+    using Field = VsoApi.Contracts.Requests.FieldEntry;
 
     [TestClass]
     public class UpdateWorkItemTests
@@ -37,8 +37,8 @@ namespace VsoApi.Client.Tests
             // Update the workItem
             WorkItemUpdateRequest updateRequest = new WorkItemUpdateRequest {
                 Id = id.ToString(CultureInfo.InvariantCulture),
-                Body = new List<WorkItemUpdateRequest.FieldEntry> {
-                    new WorkItemUpdateRequest.FieldEntry {
+                Body = new List<FieldEntry> {
+                    new FieldEntry {
                         Op = "replace",
                         Path = "/fields/" + WorkItemFields.TitleField,
                         Value = "Updated title!"

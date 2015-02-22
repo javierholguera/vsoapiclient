@@ -6,7 +6,7 @@ namespace VsoApi.Client.Tests
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests;
-    using Field = VsoApi.Contracts.Requests.WorkItemCreateRequest.FieldEntry;
+    using Field = VsoApi.Contracts.Requests.FieldEntry;
 
     [TestClass]
     public class CreateWorkItemTests

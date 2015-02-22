@@ -1,12 +1,13 @@
 ﻿namespace VsoApi.Contracts.Requests
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using RestSharp;
 
     public class EmptyRequest : VsoRequest
     {
-        public override IRestRequest GetRestRequest(string resourceUri)
+        public override IRestRequest GetRestRequest(Uri resourceUri)
         {
             IRestRequest request = new RestRequest(resourceUri, Method.GET);
             request.AddQueryParameter("api-version", ApiVersion);

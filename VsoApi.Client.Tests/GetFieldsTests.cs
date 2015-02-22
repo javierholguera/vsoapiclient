@@ -18,7 +18,7 @@ namespace VsoApi.Client.Tests
         {
             VsoClient client = new VsoClient();
             EmptyRequest request = new EmptyRequest();
-            ListResponse<WorkItemFieldInfo> result = client.FieldResources.GetAll(request);
+            CollectionResponse<WorkItemFieldInfo> result = client.FieldResources.GetAll(request);
             Assert.IsTrue(result.Value.Any());
         }
 

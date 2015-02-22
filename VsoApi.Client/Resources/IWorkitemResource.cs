@@ -7,7 +7,7 @@ namespace VsoApi.Client.Resources
 
     public interface IWorkItemResource
     {
-        ListResponse<WorkItem> GetAll(WorkItemListRequest request);
+        CollectionResponse<WorkItem> GetAll(WorkItemListRequest request);
         WorkItem Get(WorkItemRequest request);
         WorkItem Patch(WorkItemCreateRequest request);
         WorkItem Patch(WorkItemUpdateRequest request);

@@ -1,6 +1,7 @@
 ﻿
 namespace VsoApi.Contracts.Requests
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using RestSharp;
@@ -9,7 +10,7 @@ namespace VsoApi.Contracts.Requests
     {
         public string Project { get; set; }
 
-        public override IRestRequest GetRestRequest(string resourceUri)
+        public override IRestRequest GetRestRequest(Uri resourceUri)
         {
             IRestRequest restRequest = new RestRequest(resourceUri, Method.GET);
             restRequest.AddUrlSegment("project", Project);

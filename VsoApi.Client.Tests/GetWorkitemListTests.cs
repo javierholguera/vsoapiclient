@@ -19,7 +19,7 @@ namespace VsoApi.Client.Tests
             request.Ids.Add("12");
             request.Ids.Add("13");
             request.Ids.Add("14");
-            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
+            CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
@@ -37,7 +37,7 @@ namespace VsoApi.Client.Tests
             request.Fields.Add("System.State");
             request.AsOf = DateTime.Now.AddMonths(-1);
 
-            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
+            CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
@@ -53,7 +53,7 @@ namespace VsoApi.Client.Tests
             request.Ids.Add("12");
             request.Ids.Add("13");
             request.Ids.Add("14");
-            ListResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
+            CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
             Assert.IsTrue(result.Value.All(workItem => workItem.Links != null));

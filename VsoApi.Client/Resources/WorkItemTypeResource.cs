@@ -1,5 +1,6 @@
 namespace VsoApi.Client.Resources
 {
+    using System;
     using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
@@ -8,28 +9,30 @@ namespace VsoApi.Client.Resources
     public class WorkItemTypeResource : IWorkItemTypeResource
     {
         private readonly IRestClient _client;
+        private readonly Uri _queryResourceUri = new Uri("{project}/_apis/wit/workitemtypes");
 
         public WorkItemTypeResource(IRestClient client)
         {
             _client = client;
         }
 
-        private string QueryResourceUri
+        public CollectionResponse<WorkItemType> GetAll(WorkItemTypeListRequest request)
         {
-            get { return "{project}/_apis/wit/workitemtypes"; }
-        }
+            if (request == null)
+                throw new ArgumentNullException("request");
 
-        public ListResponse<WorkItemType> GetAll(WorkItemTypeListRequest request)
-        {
-            IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
-            return JsonConvert.DeserializeObject<ListResponse<WorkItemType>>(restResponse.Content);
+            return JsonConvert.DeserializeObject<CollectionResponse<WorkItemType>>(restResponse.Content);
         }
 
         public WorkItemType Get(WorkItemTypeRequest request)
         {
-            IRestRequest restRequest = request.GetRestRequest(QueryResourceUri);
+            if (request == null)
+                throw new ArgumentNullException("request");
+
+            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItemType>(restResponse.Content);

@@ -11,18 +11,11 @@ namespace VsoApi.Contracts.Requests
 
     public class WorkItemUpdateRequest : VsoRequest
     {
-        public class FieldEntry
-        {
-            public string Op { get; set; }
-            public string Path { get; set; }
-            public string Value { get; set; }
-        }
-
         public string Id { get; set; }
 
         public IEnumerable<FieldEntry> Body { get; set; } 
 
-        public override IRestRequest GetRestRequest(string resourceUri)
+        public override IRestRequest GetRestRequest(Uri resourceUri)
         {
             List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
             if (validationResult.Any())

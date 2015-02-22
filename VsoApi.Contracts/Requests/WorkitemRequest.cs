@@ -19,7 +19,7 @@ namespace VsoApi.Contracts.Requests
         public string Id { get; set; }
         public WorkItemExpandRequest Expand { get; set; }
 
-        public override IRestRequest GetRestRequest(string resourceUri)
+        public override IRestRequest GetRestRequest(Uri resourceUri)
         {
             List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
             if (validationResult.Any())

@@ -7,16 +7,11 @@
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class WqilFlatRequest : VsoRequest
+    public class WiqlFlatRequest : VsoRequest
     {
-        public class Body
-        {
-            public string Query { get; set; }
-        }
-
         public Body RequestBody { get; set; }
 
-        public override IRestRequest GetRestRequest(string resourceUri)
+        public override IRestRequest GetRestRequest(Uri resourceUri)
         {
             List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
             if (validationResult.Any())
@@ -37,5 +32,10 @@
             if (string.IsNullOrWhiteSpace(RequestBody.Query))
                 yield return new ValidationResult("Unable to execute a WIQL flat query without query value", new[] { "RequestBody.Query" });
         }
+    }
+
+    public class Body
+    {
+        public string Query { get; set; }
     }
 }

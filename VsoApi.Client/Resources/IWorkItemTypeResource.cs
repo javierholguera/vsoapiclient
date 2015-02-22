@@ -10,7 +10,7 @@ namespace VsoApi.Client.Resources
 
     public interface IWorkItemTypeResource
     {
-        ListResponse<WorkItemType> GetAll(WorkItemTypeListRequest request);
+        CollectionResponse<WorkItemType> GetAll(WorkItemTypeListRequest request);
         WorkItemType Get(WorkItemTypeRequest request);
     }
 

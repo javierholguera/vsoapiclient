@@ -14,7 +14,7 @@ namespace VsoApi.Client.Tests
         public void GetAllWorkItemTypes()
         {
             VsoClient client = new VsoClient();
-            ListResponse<WorkItemType> result = client.WorkItemTypeResources.GetAll(new WorkItemTypeListRequest {
+            CollectionResponse<WorkItemType> result = client.WorkItemTypeResources.GetAll(new WorkItemTypeListRequest {
                 Project = "TopReformas"
             });
             Assert.IsTrue(result.Count > 0);

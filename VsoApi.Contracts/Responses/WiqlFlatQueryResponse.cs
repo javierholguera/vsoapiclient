@@ -23,12 +23,12 @@ namespace VsoApi.Contracts.Responses
     {
         public string ReferenceName { get; set; }
         public string Name { get; set; }
-        public string Url { get; set; }
+        public Uri Url { get; set; }
     }
 
     public class WorkItemEntry
     {
         public string Id { get; set; }
-        public string Url { get; set; }
+        public Uri Url { get; set; }
     }
 }
