@@ -10,8 +10,8 @@
     public class WorkItemResource : IWorkItemResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _baseResourceUri = new Uri("_apis/wit/workitems");
-        private readonly Uri _creationResourceUri = new Uri("{project}/_apis/wit/workitems");
+        private readonly Uri _baseResourceUri = new Uri("/_apis/wit/workitems", UriKind.Relative);
+        private readonly Uri _creationResourceUri = new Uri("/{project}/_apis/wit/workitems", UriKind.Relative);
 
         public WorkItemResource(IRestClient client)
         {

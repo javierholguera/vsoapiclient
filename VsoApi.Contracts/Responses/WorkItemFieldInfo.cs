@@ -1,4 +1,4 @@
-namespace VsoApi.Client.Resources
+namespace VsoApi.Contracts.Responses
 {
     using System;
     using System.Collections.Generic;

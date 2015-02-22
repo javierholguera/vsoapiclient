@@ -9,7 +9,7 @@ namespace VsoApi.Client.Resources
     public class WorkItemTypeResource : IWorkItemTypeResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _queryResourceUri = new Uri("{project}/_apis/wit/workitemtypes");
+        private readonly Uri _queryResourceUri = new Uri("/{project}/_apis/wit/workitemtypes", UriKind.Relative);
 
         public WorkItemTypeResource(IRestClient client)
         {

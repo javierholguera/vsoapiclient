@@ -3,7 +3,6 @@ namespace VsoApi.Client.Tests
 {
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using VsoApi.Client.Resources;
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
@@ -13,7 +12,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void GetAllWorkItemTypes()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             CollectionResponse<WorkItemType> result = client.WorkItemTypeResources.GetAll(new WorkItemTypeListRequest {
                 Project = "TopReformas"
             });
@@ -24,7 +23,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void GetWorkItemType()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             WorkItemType result = client.WorkItemTypeResources.Get(new WorkItemTypeRequest {
                 Project = "TopReformas",
                 Name = "Bug"

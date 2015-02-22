@@ -9,7 +9,7 @@ namespace VsoApi.Client.Resources
     public class FieldResource : IFieldResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _queryResourceUri = new Uri("_apis/wit/fields");
+        private readonly Uri _queryResourceUri = new Uri("/_apis/wit/fields", UriKind.Relative);
 
         public FieldResource(IRestClient client)
         {

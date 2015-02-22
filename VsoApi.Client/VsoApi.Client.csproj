@@ -58,7 +58,6 @@
     <Compile Include="Resources\IFieldResource.cs" />
     <Compile Include="Resources\IWorkItemTypeResource.cs" />
     <Compile Include="Resources\IWiqlResource.cs" />
-    <Compile Include="Resources\WorkItemFieldInfo.cs" />
     <Compile Include="Resources\WorkItemResource.cs" />
     <Compile Include="Resources\WorkItemTypeResource.cs" />
     <Compile Include="Resources\WiqlResource.cs" />

@@ -9,7 +9,7 @@ namespace VsoApi.Client.Resources
     public class WiqlResource : IWiqlResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _flatQueryResourceUri = new Uri("_apis/wit/wiql");
+        private readonly Uri _flatQueryResourceUri = new Uri("/_apis/wit/wiql", UriKind.Relative);
 
         public WiqlResource(IRestClient client)
         {

@@ -14,7 +14,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void GetWorkItemsByIdsOnly()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             var request = new WorkItemListRequest();
             request.Ids.Add("12");
             request.Ids.Add("13");
@@ -27,7 +27,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void GetWorkItemsAsOfMonthAgo()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             var request = new WorkItemListRequest();
             request.Ids.Add("12");
             request.Ids.Add("13");
@@ -46,7 +46,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void GetWorkItemsByIdsWithRelationships()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             var request = new WorkItemListRequest {
                 Expand = WorkItemExpandRequest.All
             };

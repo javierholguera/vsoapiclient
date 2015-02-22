@@ -69,7 +69,12 @@
     <Compile Include="Requests\VsoRequest.cs" />
     <Compile Include="Requests\WiqlFlatRequest.cs" />
     <Compile Include="Responses\CollectionResponse.cs" />
+    <Compile Include="Responses\Transition.cs" />
     <Compile Include="Responses\WiqlFlatQueryResponse.cs" />
+    <Compile Include="Responses\WorkItemField.cs" />
+    <Compile Include="Responses\WorkItemFieldInfo.cs" />
+    <Compile Include="Responses\WorkItemType.cs" />
+    <Compile Include="Responses\WorkItemWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

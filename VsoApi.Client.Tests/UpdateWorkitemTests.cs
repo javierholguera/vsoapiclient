@@ -15,7 +15,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void UpdateWorkItem()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             var request = new WorkItemCreateRequest {
                 Project = "TopReformas",
                 WorkItemTypeName = "Task",
@@ -35,7 +35,7 @@ namespace VsoApi.Client.Tests
             Assert.AreEqual(createdWorkItem.Fields.Title, "Created from API Client");
 
             // Update the workItem
-            WorkItemUpdateRequest updateRequest = new WorkItemUpdateRequest {
+            var updateRequest = new WorkItemUpdateRequest {
                 Id = id.ToString(CultureInfo.InvariantCulture),
                 Body = new List<FieldEntry> {
                     new FieldEntry {

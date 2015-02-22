@@ -64,7 +64,7 @@
         public string SystemAssignedTo { get; set; }
 
         [JsonProperty(PropertyName = "Microsoft.VSTS.Scheduling.RemainingWork")]
-        public int? MicrosoftVSTSSchedulingRemainingWork { get; set; }
+        public int? MicrosoftVstsSchedulingRemainingWork { get; set; }
 
         [JsonProperty(PropertyName = "System.Tags")]
         public string SystemTags { get; set; }

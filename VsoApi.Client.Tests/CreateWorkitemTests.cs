@@ -14,7 +14,7 @@ namespace VsoApi.Client.Tests
         [TestMethod]
         public void CreateWorkItemWithMinimumParameters()
         {
-            VsoClient client = new VsoClient();
+            var client = new VsoClient();
             var request = new WorkItemCreateRequest {
                 Project = "TopReformas",
                 WorkItemTypeName = "Task",
