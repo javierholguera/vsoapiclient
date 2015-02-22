@@ -5,7 +5,6 @@ namespace VsoApi.Contracts.Requests
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using Newtonsoft.Json;
     using RestSharp;
 
@@ -15,22 +14,23 @@ namespace VsoApi.Contracts.Requests
 
         public IEnumerable<FieldEntry> Body { get; set; } 
 
-        public override IRestRequest GetRestRequest(Uri resourceUri)
+        protected override Method Method
         {
-            List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
-            if (validationResult.Any())
-                throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
+            get { return Method.PATCH; }
+        }
 
-            IRestRequest restRequest = new RestRequest(resourceUri + "/{Id}", Method.PATCH);
+        protected override void CompleteRequest(IRestRequest restRequest)
+        {
+            if (restRequest == null)
+                throw new ArgumentNullException("restRequest");
+
+            restRequest.Resource += "/{Id}";
             restRequest.AddUrlSegment("Id", Id);
-            restRequest.AddQueryParameter("api-version", ApiVersion);
-            
+
             // Workaround to set the content type and avoid getting it overriden when setting the body directly
             // http://stackoverflow.com/a/9436436/3086378
             restRequest.AddParameter(
                 "application/json-patch+json", JsonConvert.SerializeObject(Body), ParameterType.RequestBody);
-
-            return restRequest;
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

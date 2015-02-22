@@ -4,7 +4,6 @@ namespace VsoApi.Contracts.Requests
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using RestSharp;
 
     public class WorkItemTypeRequest : VsoRequest
@@ -13,20 +12,18 @@ namespace VsoApi.Contracts.Requests
 
         public string Name { get; set; }
 
-        public string Project { get; set; }
-
-        public override IRestRequest GetRestRequest(Uri resourceUri)
+        protected override Method Method
         {
-            List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
-            if (validationResult.Any())
-                throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
+            get { return Method.GET; }
+        }
 
-            IRestRequest restRequest = new RestRequest(resourceUri + "/{name}", Method.GET);
-            restRequest.AddUrlSegment("project", Project);
+        protected override void CompleteRequest(IRestRequest restRequest)
+        {
+            if (restRequest == null)
+                throw new ArgumentNullException("restRequest");
+
+            restRequest.Resource += "/{name}";
             restRequest.AddUrlSegment("name", Name);
-            restRequest.AddQueryParameter("api-version", ApiVersion);
-        
-            return restRequest;
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

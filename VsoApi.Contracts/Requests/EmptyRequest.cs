@@ -1,17 +1,18 @@
 ﻿namespace VsoApi.Contracts.Requests
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using RestSharp;
 
     public class EmptyRequest : VsoRequest
     {
-        public override IRestRequest GetRestRequest(Uri resourceUri)
+        protected override Method Method
         {
-            IRestRequest request = new RestRequest(resourceUri, Method.GET);
-            request.AddQueryParameter("api-version", ApiVersion);
-            return request;
+            get { return Method.GET; }
+        }
+
+        protected override void CompleteRequest(IRestRequest restRequest)
+        {
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

@@ -24,25 +24,25 @@ namespace VsoApi.Contracts.Requests
         public ICollection<string> Fields { get; private set; }
         public DateTime? AsOf { get; set; }
         public WorkItemExpandRequest Expand { get; set; }
-
-        public override IRestRequest GetRestRequest(Uri resourceUri)
+        
+        protected override Method Method
         {
-            List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
-            if (validationResult.Any())
-                throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
+            get { return Method.GET; }
+        }
 
-            IRestRequest restRequest = new RestRequest(resourceUri, Method.GET);
-            restRequest.AddQueryParameter("api-version", ApiVersion);
+        protected override void CompleteRequest(IRestRequest restRequest)
+        {
+            if (restRequest == null)
+                throw new ArgumentNullException("restRequest");
+
             if (Ids.Any())
                 restRequest.AddQueryParameter("ids", string.Join(",", Ids));
             if (Fields.Any())
                 restRequest.AddQueryParameter("Fields", string.Join(",", Fields));
             if (AsOf != null)
                 restRequest.AddQueryParameter("asof", AsOf.Value.ToString(CultureInfo.InvariantCulture));
-            
-            restRequest.AddQueryParameter("$expand", Expand.ToString());
 
-            return restRequest;
+            restRequest.AddQueryParameter("$expand", Expand.ToString());
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

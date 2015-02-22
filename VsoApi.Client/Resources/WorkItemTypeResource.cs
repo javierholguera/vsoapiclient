@@ -9,7 +9,7 @@ namespace VsoApi.Client.Resources
     public class WorkItemTypeResource : IWorkItemTypeResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _queryResourceUri = new Uri("/{project}/_apis/wit/workitemtypes", UriKind.Relative);
+        private readonly Uri _resourceUri = new Uri("/_apis/wit/workitemtypes", UriKind.Relative);
 
         public WorkItemTypeResource(IRestClient client)
         {
@@ -21,7 +21,7 @@ namespace VsoApi.Client.Resources
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<CollectionResponse<WorkItemType>>(restResponse.Content);
@@ -32,7 +32,7 @@ namespace VsoApi.Client.Resources
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItemType>(restResponse.Content);

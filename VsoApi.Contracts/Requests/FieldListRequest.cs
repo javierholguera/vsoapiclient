@@ -3,24 +3,24 @@ namespace VsoApi.Contracts.Requests
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using RestSharp;
 
     public class FieldListRequest : VsoRequest
     {
         public string FieldName { get; set; }
 
-        public override IRestRequest GetRestRequest(Uri resourceUri)
+        protected override Method Method
         {
-            List<ValidationResult> validationResult = Validate(new ValidationContext(this)).ToList();
-            if (validationResult.Any())
-                throw new InvalidOperationException(string.Join(Environment.NewLine, validationResult.Select(r => r.ToString())));
+            get { return Method.GET; }
+        }
 
-            IRestRequest request = new RestRequest(resourceUri + "/{fieldname}", Method.GET);
+        protected override void CompleteRequest(IRestRequest restRequest)
+        {
+            if (restRequest == null)
+                throw new ArgumentNullException("restRequest");
 
-            request.AddQueryParameter("api-version", ApiVersion);
-            request.AddUrlSegment("fieldname", FieldName);
-            return request;
+            restRequest.Resource += "/{fieldname}";
+            restRequest.AddUrlSegment("fieldname", FieldName);
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

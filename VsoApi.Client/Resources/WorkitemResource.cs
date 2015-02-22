@@ -10,8 +10,7 @@
     public class WorkItemResource : IWorkItemResource
     {
         private readonly IRestClient _client;
-        private readonly Uri _baseResourceUri = new Uri("/_apis/wit/workitems", UriKind.Relative);
-        private readonly Uri _creationResourceUri = new Uri("/{project}/_apis/wit/workitems", UriKind.Relative);
+        private readonly Uri _resourceUri = new Uri("/_apis/wit/workitems", UriKind.Relative);
 
         public WorkItemResource(IRestClient client)
         {
@@ -23,7 +22,7 @@
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_baseResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<CollectionResponse<WorkItem>>(restResponse.Content);
@@ -34,7 +33,7 @@
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_baseResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
@@ -45,7 +44,7 @@
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_creationResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
@@ -56,7 +55,7 @@
             if (request == null)
                 throw new ArgumentNullException("request");
 
-            IRestRequest restRequest = request.GetRestRequest(_baseResourceUri);
+            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
 
             return JsonConvert.DeserializeObject<WorkItem>(restResponse.Content);
