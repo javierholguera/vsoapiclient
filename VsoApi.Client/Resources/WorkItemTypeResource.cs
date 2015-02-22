@@ -1,41 +1,29 @@
 namespace VsoApi.Client.Resources
 {
     using System;
-    using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public class WorkItemTypeResource : IWorkItemTypeResource
+    public class WorkItemTypeResource : BaseResource, IWorkItemTypeResource
     {
-        private readonly IRestClient _client;
-        private readonly Uri _resourceUri = new Uri("/_apis/wit/workitemtypes", UriKind.Relative);
-
-        public WorkItemTypeResource(IRestClient client)
+        protected override Uri ResourceUri
         {
-            _client = client;
+            get { return new Uri("/_apis/wit/workitemtypes", UriKind.Relative); }
+        }
+
+        public WorkItemTypeResource(IRestClient client) : base(client)
+        {
         }
 
         public CollectionResponse<WorkItemType> GetAll(WorkItemTypeListRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException("request");
-
-            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
-            IRestResponse restResponse = _client.Execute(restRequest);
-
-            return JsonConvert.DeserializeObject<CollectionResponse<WorkItemType>>(restResponse.Content);
+            return Call<WorkItemTypeListRequest, CollectionResponse<WorkItemType>>(request);
         }
 
         public WorkItemType Get(WorkItemTypeRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException("request");
-
-            IRestRequest restRequest = request.GetRestRequest(_resourceUri);
-            IRestResponse restResponse = _client.Execute(restRequest);
-
-            return JsonConvert.DeserializeObject<WorkItemType>(restResponse.Content);
+            return Call<WorkItemTypeRequest, WorkItemType>(request);
         }
     }
 }

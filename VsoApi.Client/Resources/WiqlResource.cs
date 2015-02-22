@@ -1,30 +1,24 @@
 namespace VsoApi.Client.Resources
 {
     using System;
-    using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public class WiqlResource : IWiqlResource
+    public class WiqlResource : BaseResource, IWiqlResource
     {
-        private readonly IRestClient _client;
-        private readonly Uri _flatQueryResourceUri = new Uri("/_apis/wit/wiql", UriKind.Relative);
-
-        public WiqlResource(IRestClient client)
+        protected override Uri ResourceUri
         {
-            _client = client;
+            get { return new Uri("/_apis/wit/wiql", UriKind.Relative); }
+        }
+
+        public WiqlResource(IRestClient client) : base(client)
+        {
         }
 
         public WiqlFlatQueryResponse Post(WiqlFlatRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException("request");
-
-            IRestRequest restRequest = request.GetRestRequest(_flatQueryResourceUri);
-            IRestResponse restResponse = _client.Execute(restRequest);
-
-            return JsonConvert.DeserializeObject<WiqlFlatQueryResponse>(restResponse.Content);
+            return Call<WiqlFlatRequest, WiqlFlatQueryResponse>(request);
         }
     }
 }

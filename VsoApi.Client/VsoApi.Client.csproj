@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\BaseResource.cs" />
     <Compile Include="Resources\FieldResource.cs" />
     <Compile Include="Resources\IWorkItemResource.cs" />
     <Compile Include="Resources\IFieldResource.cs" />

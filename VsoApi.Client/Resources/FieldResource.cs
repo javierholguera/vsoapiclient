@@ -1,41 +1,29 @@
 namespace VsoApi.Client.Resources
 {
     using System;
-    using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Responses;
 
-    public class FieldResource : IFieldResource
+    public class FieldResource : BaseResource, IFieldResource
     {
-        private readonly IRestClient _client;
-        private readonly Uri _queryResourceUri = new Uri("/_apis/wit/fields", UriKind.Relative);
-
-        public FieldResource(IRestClient client)
+        protected override Uri ResourceUri
         {
-            _client = client;
+            get { return new Uri("/_apis/wit/fields", UriKind.Relative); }
+        }
+
+        public FieldResource(IRestClient client) : base(client)
+        {
         }
 
         public CollectionResponse<WorkItemFieldInfo> GetAll(EmptyRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException("request");
-
-            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
-            IRestResponse restResponse = _client.Execute(restRequest);
-
-            return JsonConvert.DeserializeObject<CollectionResponse<WorkItemFieldInfo>>(restResponse.Content);
+            return Call<EmptyRequest, CollectionResponse<WorkItemFieldInfo>>(request);
         }
 
         public WorkItemFieldInfo Get(FieldListRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException("request");
-
-            IRestRequest restRequest = request.GetRestRequest(_queryResourceUri);
-            IRestResponse restResponse = _client.Execute(restRequest);
-
-            return JsonConvert.DeserializeObject<WorkItemFieldInfo>(restResponse.Content);
+            return Call<FieldListRequest, WorkItemFieldInfo>(request);
         }
     }
 }
