@@ -27,6 +27,8 @@ namespace VsoApi.Contracts.Requests
         {
             if (string.IsNullOrWhiteSpace(FieldName))
                 yield return new ValidationResult("Unable to request field information without field name");
+
+            yield return ValidationResult.Success;
         }
     }
 }

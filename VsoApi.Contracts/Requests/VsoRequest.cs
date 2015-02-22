@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using RestSharp;
 
     public abstract class VsoRequest : IValidatableObject
     {
         // Paramater "api-version"
-        public string ApiVersion { get { return "1.0"; } }
+        private const string ApiVersion  = "1.0";
 
         public string Project { get; set; }
 
@@ -16,6 +17,15 @@
 
         public IRestRequest GetRestRequest(Uri resourceUri)
         {
+            List<ValidationResult> validationResult = Validate(new ValidationContext(this))
+                .Where(v => v != ValidationResult.Success)
+                .ToList();
+
+            if (validationResult.Any()) {
+                string message = string.Join(Environment.NewLine, validationResult.Select(validation => validation.ErrorMessage));
+                throw new ArgumentException(message);
+            }
+
             IRestRequest restRequest;
             if (string.IsNullOrWhiteSpace(Project) == false) {
                 restRequest = new RestRequest(new Uri("/{project}" + resourceUri, UriKind.Relative), Method);

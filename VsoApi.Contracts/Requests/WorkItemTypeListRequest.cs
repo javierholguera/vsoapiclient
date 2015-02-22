@@ -17,6 +17,8 @@ namespace VsoApi.Contracts.Requests
         {
             if (string.IsNullOrWhiteSpace(Project))
                 yield return new ValidationResult("Unable to request a work item type with an empty project", new[] { "Project" });
+
+            yield return ValidationResult.Success;
         }
     }
 }

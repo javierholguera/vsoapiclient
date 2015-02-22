@@ -37,6 +37,8 @@ namespace VsoApi.Contracts.Requests
         {
             if (string.IsNullOrWhiteSpace(Id))
                 yield return new ValidationResult("Unable to process a workItem update request without workItem ID", new[] { "Id" });
+
+            yield return ValidationResult.Success;
         }
     }
 }

@@ -39,6 +39,8 @@ namespace VsoApi.Contracts.Requests
 
             if (string.IsNullOrWhiteSpace(WorkItemTypeName))
                 yield return new ValidationResult("Unable to process a workItem creation request without type name", new[] { "WorkItemTypeName" });
+
+            yield return ValidationResult.Success;
         }
     }
 }

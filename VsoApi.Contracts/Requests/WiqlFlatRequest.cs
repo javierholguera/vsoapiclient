@@ -29,6 +29,8 @@
         {
             if (string.IsNullOrWhiteSpace(RequestBody.Query))
                 yield return new ValidationResult("Unable to execute a WIQL flat query without query value", new[] { "RequestBody.Query" });
+
+            yield return ValidationResult.Success;
         }
     }
 

@@ -38,6 +38,8 @@ namespace VsoApi.Contracts.Requests
         {
             if (string.IsNullOrWhiteSpace(Id))
                 yield return new ValidationResult("Unable to request a workItem with an empty Id", new[] { "Id" });
+
+            yield return ValidationResult.Success;
         }
     }
 }

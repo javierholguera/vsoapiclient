@@ -52,6 +52,8 @@ namespace VsoApi.Contracts.Requests
             
             if (AsOf != null && Fields.Any() == false)
                 yield return new ValidationResult("The asOf parameter can only be used with the Fields parameter", new[] { "AsOf" });
+
+            yield return ValidationResult.Success;
         }
     }
 }
