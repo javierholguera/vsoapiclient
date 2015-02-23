@@ -61,24 +61,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\VsoEntity.cs" />
     <Compile Include="Requests\EmptyRequest.cs" />
-    <Compile Include="Requests\FieldEntry.cs" />
-    <Compile Include="Requests\FieldListRequest.cs" />
-    <Compile Include="Requests\WorkItemExpandRequest.cs" />
-    <Compile Include="Requests\WorkItemTypeRequest.cs" />
-    <Compile Include="Requests\WorkItemTypeListRequest.cs" />
-    <Compile Include="Requests\WorkItemUpdateRequest.cs" />
-    <Compile Include="Requests\WorkItemCreateRequest.cs" />
-    <Compile Include="Requests\WorkItemRequest.cs" />
-    <Compile Include="Requests\WorkItemListRequest.cs" />
+    <Compile Include="Requests\Git\PullRequestListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
-    <Compile Include="Requests\WiqlFlatRequest.cs" />
+    <Compile Include="Requests\WIT\FieldEntry.cs" />
+    <Compile Include="Requests\WIT\FieldListRequest.cs" />
+    <Compile Include="Requests\WIT\WiqlFlatRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemCreateRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemExpandRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemListRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemTypeListRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemTypeRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemUpdateRequest.cs" />
     <Compile Include="Responses\CollectionResponse.cs" />
-    <Compile Include="Responses\Transition.cs" />
-    <Compile Include="Responses\WiqlFlatQueryResponse.cs" />
-    <Compile Include="Responses\WorkItemField.cs" />
-    <Compile Include="Responses\WorkItemFieldInfo.cs" />
-    <Compile Include="Responses\WorkItemType.cs" />
-    <Compile Include="Responses\WorkItemWorkflow.cs" />
+    <Compile Include="Responses\Git\Repository.cs" />
+    <Compile Include="Responses\Git\RepositoryEntry.cs" />
+    <Compile Include="Responses\Git\Commit.cs" />
+    <Compile Include="Responses\Git\RepositoryResponse.cs" />
+    <Compile Include="Responses\Git\User.cs" />
+    <Compile Include="Responses\WIT\Transition.cs" />
+    <Compile Include="Responses\WIT\WiqlFlatQueryResponse.cs" />
+    <Compile Include="Responses\WIT\WorkItemField.cs" />
+    <Compile Include="Responses\WIT\WorkItemFieldInfo.cs" />
+    <Compile Include="Responses\WIT\WorkItemType.cs" />
+    <Compile Include="Responses\WIT\WorkItemWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,6 +94,7 @@
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

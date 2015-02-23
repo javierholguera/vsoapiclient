@@ -9,11 +9,14 @@
     public abstract class VsoRequest : IValidatableObject
     {
         // Paramater "api-version"
-        private const string ApiVersion  = "1.0";
+        protected virtual string ApiVersion
+        {
+            get { return "1.0"; }
+        }
 
         public string Project { get; set; }
 
-        protected abstract Method Method { get;}
+        protected abstract Method Method { get; }
 
         public IRestRequest GetRestRequest(Uri resourceUri)
         {

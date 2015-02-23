@@ -54,14 +54,18 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\BaseResource.cs" />
-    <Compile Include="Resources\FieldResource.cs" />
-    <Compile Include="Resources\IWorkItemResource.cs" />
-    <Compile Include="Resources\IFieldResource.cs" />
-    <Compile Include="Resources\IWorkItemTypeResource.cs" />
-    <Compile Include="Resources\IWiqlResource.cs" />
-    <Compile Include="Resources\WorkItemResource.cs" />
-    <Compile Include="Resources\WorkItemTypeResource.cs" />
-    <Compile Include="Resources\WiqlResource.cs" />
+    <Compile Include="Resources\Git\IPullRequestResource.cs" />
+    <Compile Include="Resources\Git\IRepositoryResource.cs" />
+    <Compile Include="Resources\Git\PullRequestResource.cs" />
+    <Compile Include="Resources\Git\RepositoryResource.cs" />
+    <Compile Include="Resources\WIT\FieldResource.cs" />
+    <Compile Include="Resources\WIT\IFieldResource.cs" />
+    <Compile Include="Resources\WIT\IWiqlResource.cs" />
+    <Compile Include="Resources\WIT\IWorkItemResource.cs" />
+    <Compile Include="Resources\WIT\IWorkItemTypeResource.cs" />
+    <Compile Include="Resources\WIT\WiqlResource.cs" />
+    <Compile Include="Resources\WIT\WorkItemResource.cs" />
+    <Compile Include="Resources\WIT\WorkItemTypeResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +82,7 @@
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -5,6 +5,7 @@ namespace VsoApi.Client.Resources
     using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
+    using VsoApi.Contracts.Requests.WIT;
 
     public abstract class BaseResource
     {
