@@ -67,10 +67,9 @@
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
     <Compile Include="Requests\WIT\WiqlFlatRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemCreateRequest.cs" />
-    <Compile Include="Requests\WIT\WorkItemExpandRequest.cs" />
+    <Compile Include="Requests\WIT\WorkItemExpandType.cs" />
     <Compile Include="Requests\WIT\WorkItemListRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemRequest.cs" />
-    <Compile Include="Requests\WIT\WorkItemTypeListRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemTypeRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemUpdateRequest.cs" />
     <Compile Include="Responses\CollectionResponse.cs" />

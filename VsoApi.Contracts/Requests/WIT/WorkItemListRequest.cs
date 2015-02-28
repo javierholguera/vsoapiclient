@@ -1,10 +1,7 @@
-﻿
-namespace VsoApi.Contracts.Requests.WIT
+﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel.DataAnnotations;
     using System.Globalization;
     using System.Linq;
     using RestSharp;
@@ -13,18 +10,39 @@ namespace VsoApi.Contracts.Requests.WIT
     {
         // Query string: [&ids={string}&Fields={string}&asof={datetime}&$expand={enum{relations}]
 
-        public WorkItemListRequest()
+        public WorkItemListRequest(ICollection<string> ids) :
+            this(ids, null, Enumerable.Empty<string>().ToArray())
         {
-            Ids = new Collection<string>();
-            Fields = new Collection<string>();
-            Expand = WorkItemExpandRequest.None;
         }
-        
-        public ICollection<string> Ids { get; private set; }
-        public ICollection<string> Fields { get; private set; }
-        public DateTime? AsOf { get; set; }
-        public WorkItemExpandRequest Expand { get; set; }
-        
+
+        public WorkItemListRequest(
+            ICollection<string> ids,
+            DateTime? asOf,
+            ICollection<string> fields,
+            WorkItemExpandType expand = WorkItemExpandType.None)
+            : base(string.Empty)
+        {
+            if (ids == null)
+                throw new ArgumentNullException("ids");
+
+            if (ids.Any() == false)
+                throw new ArgumentException("A List of work items cannot be requested without ids", "ids");
+
+            if (asOf != null && fields.Any() == false)
+                throw new ArgumentException("A list of work items cannot be request with As Of date and without fields", "asOf");
+
+            Ids = ids;
+            AsOf = asOf;
+            Fields = fields;
+            Expand = expand;
+        }
+
+        private IEnumerable<string> Ids { get; set; }
+
+        private IEnumerable<string> Fields { get; set; }
+        private DateTime? AsOf { get; set; }
+        private WorkItemExpandType Expand { get; set; }
+
         protected override Method Method
         {
             get { return Method.GET; }
@@ -43,17 +61,6 @@ namespace VsoApi.Contracts.Requests.WIT
                 restRequest.AddQueryParameter("asof", AsOf.Value.ToString(CultureInfo.InvariantCulture));
 
             restRequest.AddQueryParameter("$expand", Expand.ToString());
-        }
-
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (Ids.Any() == false)
-                yield return new ValidationResult("Unable to request an empty list of workItem ids", new[] { "Ids" });
-            
-            if (AsOf != null && Fields.Any() == false)
-                yield return new ValidationResult("The asOf parameter can only be used with the Fields parameter", new[] { "AsOf" });
-
-            yield return ValidationResult.Success;
         }
     }
 }

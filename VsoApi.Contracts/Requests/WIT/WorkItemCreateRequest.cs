@@ -1,5 +1,4 @@
 ﻿
-
 namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
@@ -10,13 +9,27 @@ namespace VsoApi.Contracts.Requests.WIT
 
     public class WorkItemCreateRequest : VsoRequest
     {
+        public WorkItemCreateRequest(string project, string workItemTypeName, IEnumerable<FieldEntry> fieldEntries) : base(project)
+        {
+            if (workItemTypeName == null)
+                throw new ArgumentNullException("workItemTypeName");
+            if (fieldEntries == null)
+                throw new ArgumentNullException("fieldEntries");
+
+            if (string.IsNullOrWhiteSpace(workItemTypeName))
+                throw new ArgumentException("Work Item Type Name is mandatory to create a new work item", "workItemTypeName");
+
+            WorkItemTypeName = workItemTypeName;
+            FieldEntries = fieldEntries;
+        }
+
+        private string WorkItemTypeName { get; set; }
+        private IEnumerable<FieldEntry> FieldEntries { get; set; }
+
         protected override Method Method
         {
             get { return Method.PATCH; }
         }
-
-        public string WorkItemTypeName { get; set; }
-        public IEnumerable<FieldEntry> Body { get; set; }
 
         protected override void CompleteRequest(IRestRequest restRequest)
         {
@@ -29,18 +42,7 @@ namespace VsoApi.Contracts.Requests.WIT
             // Workaround to set the content type and avoid getting it overriden when setting the body directly
             // http://stackoverflow.com/a/9436436/3086378
             restRequest.AddParameter(
-                "application/json-patch+json", JsonConvert.SerializeObject(Body), ParameterType.RequestBody);
-        }
-
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (string.IsNullOrWhiteSpace(Project))
-                yield return new ValidationResult("Unable to process a workItem creation request without project", new[] { "Project" });
-
-            if (string.IsNullOrWhiteSpace(WorkItemTypeName))
-                yield return new ValidationResult("Unable to process a workItem creation request without type name", new[] { "WorkItemTypeName" });
-
-            yield return ValidationResult.Success;
+                "application/json-patch+json", JsonConvert.SerializeObject(FieldEntries), ParameterType.RequestBody);
         }
     }
 }

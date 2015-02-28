@@ -1,6 +1,6 @@
 ﻿namespace VsoApi.Contracts.Requests.WIT
 {
-    public enum WorkItemExpandRequest
+    public enum WorkItemExpandType
     {
         None,
         All,

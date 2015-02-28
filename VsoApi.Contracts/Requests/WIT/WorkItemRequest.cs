@@ -1,23 +1,28 @@
-﻿
-namespace VsoApi.Contracts.Requests.WIT
+﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using RestSharp;
 
     public class WorkItemRequest : VsoRequest
     {
         // Query string: [/{Id}?$expand={enum{relations}]
 
-        public WorkItemRequest()
+        public WorkItemRequest(string workItemId, WorkItemExpandType expand = WorkItemExpandType.None)
+            : base(string.Empty)
         {
-            Expand = WorkItemExpandRequest.None;
+            if (workItemId == null)
+                throw new ArgumentNullException("workItemId");
+
+            if (string.IsNullOrWhiteSpace(workItemId))
+                throw new ArgumentException("Work Item Id is mandatory to request a work item", "workItemId");
+
+            WorkItemId = workItemId;
+            Expand = expand;
         }
 
-        public string Id { get; set; }
-        public WorkItemExpandRequest Expand { get; set; }
-        
+        private string WorkItemId { get; set; }
+        private WorkItemExpandType Expand { get; set; }
+
         protected override Method Method
         {
             get { return Method.GET; }
@@ -30,16 +35,8 @@ namespace VsoApi.Contracts.Requests.WIT
 
             restRequest.Resource += "/{Id}";
 
-            restRequest.AddUrlSegment("Id", Id);
+            restRequest.AddUrlSegment("Id", WorkItemId);
             restRequest.AddQueryParameter("$expand", Expand.ToString());
-        }
-
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (string.IsNullOrWhiteSpace(Id))
-                yield return new ValidationResult("Unable to request a workItem with an empty Id", new[] { "Id" });
-
-            yield return ValidationResult.Success;
         }
     }
 }

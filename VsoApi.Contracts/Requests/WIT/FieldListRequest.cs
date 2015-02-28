@@ -1,13 +1,22 @@
 namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using RestSharp;
 
     public class FieldListRequest : VsoRequest
     {
-        public string FieldName { get; set; }
+        public FieldListRequest(string fieldName) : base(string.Empty)
+        {
+            if (fieldName == null)
+                throw new ArgumentNullException("fieldName");
+
+            if (string.IsNullOrWhiteSpace(fieldName))
+                throw new ArgumentException("Field name is mandatory to request a list of fields", "fieldName");
+
+            FieldName = fieldName;
+        }
+
+        private string FieldName { get; set; }
 
         protected override Method Method
         {
@@ -21,14 +30,6 @@ namespace VsoApi.Contracts.Requests.WIT
 
             restRequest.Resource += "/{fieldname}";
             restRequest.AddUrlSegment("fieldname", FieldName);
-        }
-
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (string.IsNullOrWhiteSpace(FieldName))
-                yield return new ValidationResult("Unable to request field information without field name");
-
-            yield return ValidationResult.Success;
         }
     }
 }

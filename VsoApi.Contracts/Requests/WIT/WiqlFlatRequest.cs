@@ -1,14 +1,24 @@
 ﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
     using RestSharp;
 
     public class WiqlFlatRequest : VsoRequest
     {
-        public Body RequestBody { get; set; }
+        public WiqlFlatRequest(string query)
+            : base(string.Empty)
+        {
+            if (query == null)
+                throw new ArgumentNullException("query");
+
+            if (string.IsNullOrWhiteSpace(query))
+                throw new ArgumentException("Query content is mandatory to request a flat WIQL", "query");
+
+            RequestBody = new QueryBody {Query = query};
+        }
+
+        private QueryBody RequestBody { get; set; }
 
         protected override Method Method
         {
@@ -25,17 +35,9 @@
             restRequest.AddParameter("application/json", JsonConvert.SerializeObject(RequestBody), ParameterType.RequestBody);
         }
 
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        private class QueryBody
         {
-            if (string.IsNullOrWhiteSpace(RequestBody.Query))
-                yield return new ValidationResult("Unable to execute a WIQL flat query without query value", new[] { "RequestBody.Query" });
-
-            yield return ValidationResult.Success;
+            public string Query { get; set; }
         }
-    }
-
-    public class Body
-    {
-        public string Query { get; set; }
     }
 }

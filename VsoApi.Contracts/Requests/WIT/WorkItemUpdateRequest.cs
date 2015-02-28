@@ -4,15 +4,28 @@ namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;
     using RestSharp;
 
     public class WorkItemUpdateRequest : VsoRequest
     {
-        public string Id { get; set; }
+        public WorkItemUpdateRequest(string workItemId, IEnumerable<FieldEntry> fieldEntries)
+            : base(string.Empty)
+        {
+            if (workItemId == null)
+                throw new ArgumentNullException("workItemId");
+            if (fieldEntries == null)
+                throw new ArgumentNullException("fieldEntries");
 
-        public IEnumerable<FieldEntry> Body { get; set; } 
+            if (string.IsNullOrWhiteSpace(workItemId))
+                throw new ArgumentException("Work Item Id is mandatory to update a new work item", "workItemId");
+
+            Id = workItemId;
+            FieldEntries = fieldEntries;
+        }
+
+        private string Id { get; set; }
+        private IEnumerable<FieldEntry> FieldEntries { get; set; } 
 
         protected override Method Method
         {
@@ -30,15 +43,7 @@ namespace VsoApi.Contracts.Requests.WIT
             // Workaround to set the content type and avoid getting it overriden when setting the body directly
             // http://stackoverflow.com/a/9436436/3086378
             restRequest.AddParameter(
-                "application/json-patch+json", JsonConvert.SerializeObject(Body), ParameterType.RequestBody);
-        }
-
-        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (string.IsNullOrWhiteSpace(Id))
-                yield return new ValidationResult("Unable to process a workItem update request without workItem ID", new[] { "Id" });
-
-            yield return ValidationResult.Success;
+                "application/json-patch+json", JsonConvert.SerializeObject(FieldEntries), ParameterType.RequestBody);
         }
     }
 }

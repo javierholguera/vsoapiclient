@@ -1,34 +1,33 @@
 ﻿namespace VsoApi.Contracts.Requests
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
     using RestSharp;
 
-    public abstract class VsoRequest : IValidatableObject
+    public abstract class VsoRequest
     {
+        protected VsoRequest(string project)
+        {
+            if (project == null)
+                throw new ArgumentNullException("project");
+
+            if (string.IsNullOrWhiteSpace(project))
+                throw new ArgumentException("Project parameter is mandatory for any request to VS Online API", "project");
+
+            Project = project;
+        }
+
+        private string Project { set; get; }
+
         // Paramater "api-version"
         protected virtual string ApiVersion
         {
             get { return "1.0"; }
         }
 
-        public string Project { get; set; }
-
         protected abstract Method Method { get; }
 
         public IRestRequest GetRestRequest(Uri resourceUri)
         {
-            List<ValidationResult> validationResult = Validate(new ValidationContext(this))
-                .Where(v => v != ValidationResult.Success)
-                .ToList();
-
-            if (validationResult.Any()) {
-                string message = string.Join(Environment.NewLine, validationResult.Select(validation => validation.ErrorMessage));
-                throw new ArgumentException(message);
-            }
-
             IRestRequest restRequest;
             if (string.IsNullOrWhiteSpace(Project) == false) {
                 restRequest = new RestRequest(new Uri("/{project}" + resourceUri, UriKind.Relative), Method);
@@ -43,7 +42,5 @@
         }
 
         protected abstract void CompleteRequest(IRestRequest restRequest);
-
-        public abstract IEnumerable<ValidationResult> Validate(ValidationContext validationContext);
     }
 }
