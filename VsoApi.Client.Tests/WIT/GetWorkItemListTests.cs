@@ -1,5 +1,4 @@
-﻿
-namespace VsoApi.Client.Tests.WIT
+﻿namespace VsoApi.Client.Tests.WIT
 {
     using System;
     using System.Linq;
@@ -15,10 +14,7 @@ namespace VsoApi.Client.Tests.WIT
         public void GetWorkItemsByIdsOnly()
         {
             var client = new VsoClient();
-            var request = new WorkItemListRequest();
-            request.Ids.Add("12");
-            request.Ids.Add("13");
-            request.Ids.Add("14");
+            var request = new WorkItemListRequest(new[] {"12", "13", "14"});
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
@@ -28,31 +24,26 @@ namespace VsoApi.Client.Tests.WIT
         public void GetWorkItemsAsOfMonthAgo()
         {
             var client = new VsoClient();
-            var request = new WorkItemListRequest();
-            request.Ids.Add("12");
-            request.Ids.Add("13");
-            request.Ids.Add("14");
-            request.Fields.Add("System.Title");
-            request.Fields.Add("System.CreatedDate");
-            request.Fields.Add("System.State");
-            request.AsOf = DateTime.Now.AddMonths(-1);
+            var request = new WorkItemListRequest(
+                new[] { "12", "13", "14" },
+                DateTime.Now.AddMonths(-1),
+                new[] { "System.Title", "System.CreatedDate", "System.State" });
 
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
 
-
         [TestMethod]
         public void GetWorkItemsByIdsWithRelationships()
         {
             var client = new VsoClient();
-            var request = new WorkItemListRequest {
-                Expand = WorkItemExpandRequest.All
-            };
-            request.Ids.Add("12");
-            request.Ids.Add("13");
-            request.Ids.Add("14");
+            var request = new WorkItemListRequest(
+                new[] { "12", "13", "14" },
+                null,
+                Enumerable.Empty<string>().ToList(), 
+                WorkItemExpandType.All);
+
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());

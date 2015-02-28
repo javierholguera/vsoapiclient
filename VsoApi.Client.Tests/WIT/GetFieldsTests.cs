@@ -8,9 +8,6 @@ namespace VsoApi.Client.Tests.WIT
     using VsoApi.Contracts.Responses;
     using VsoApi.Contracts.Responses.WIT;
 
-    /// <summary>
-    /// Summary description for GetFieldsTests
-    /// </summary>
     [TestClass]
     public class GetFieldsTests
     {
@@ -28,7 +25,7 @@ namespace VsoApi.Client.Tests.WIT
         {
             var client = new VsoClient();
 
-            var request = new FieldListRequest { FieldName = "State" };
+            var request = new FieldListRequest("State");
             WorkItemFieldInfo result = client.FieldResources.Get(request);
             Assert.IsNotNull(result);
         }

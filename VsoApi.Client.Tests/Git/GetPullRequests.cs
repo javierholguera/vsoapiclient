@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿
 namespace VsoApi.Client.Tests.Git
 {
+    using System;
     using System.Linq;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Requests.Git;
     using VsoApi.Contracts.Responses;
     using VsoApi.Contracts.Responses.Git;
@@ -22,7 +22,7 @@ namespace VsoApi.Client.Tests.Git
 
             // Id for the platform repository 
             CollectionResponse<RepositoryResponse> result = client.PullRequestResources.Get(
-                new PullRequestListRequest { Repository = "ba91c08c-cbcc-4d55-83fe-0da8e63bc9e1" });
+                new PullRequestListRequest("ba91c08c-cbcc-4d55-83fe-0da8e63bc9e1"));
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Value.Any());

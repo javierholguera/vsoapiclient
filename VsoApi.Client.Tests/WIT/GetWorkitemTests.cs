@@ -14,7 +14,7 @@ namespace VsoApi.Client.Tests.WIT
         public void GetWorkItemById()
         {
             var client = new VsoClient();
-            var request = new WorkItemRequest { Id = "14" };
+            var request = new WorkItemRequest("14");
             WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
         }
@@ -23,7 +23,7 @@ namespace VsoApi.Client.Tests.WIT
         public void GetWorkItemByNonexistentId()
         {
             var client = new VsoClient();
-            var request = new WorkItemRequest { Id = int.MaxValue.ToString(CultureInfo.InvariantCulture) };
+            var request = new WorkItemRequest(int.MaxValue.ToString(CultureInfo.InvariantCulture));
             WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
         }
@@ -32,10 +32,7 @@ namespace VsoApi.Client.Tests.WIT
         public void GetWorkItemWithLinksAndAttachments()
         {
             var client = new VsoClient();
-            var request = new WorkItemRequest {
-                Id = "14",
-                Expand = WorkItemExpandRequest.All
-            };
+            var request = new WorkItemRequest("14", WorkItemExpandType.All);
             WorkItem result = client.WorkItemResources.Get(request);
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Relations.Any());

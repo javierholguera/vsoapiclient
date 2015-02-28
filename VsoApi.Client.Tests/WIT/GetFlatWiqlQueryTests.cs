@@ -5,7 +5,6 @@ namespace VsoApi.Client.Tests.WIT
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Requests.WIT;
-    using VsoApi.Contracts.Responses;
     using VsoApi.Contracts.Responses.WIT;
 
     [TestClass]
@@ -15,11 +14,8 @@ namespace VsoApi.Client.Tests.WIT
         public void GetFlatWiqlQuery()
         {
             var client = new VsoClient();
-            var request = new WiqlFlatRequest {
-                RequestBody = new Body {
-                    Query = @"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.WorkItemType] = 'Task' AND [State] <> 'Closed' AND [State] <> 'Removed' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc"
-                }
-            };
+            var request = new WiqlFlatRequest(
+@"Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.WorkItemType] = 'Task' AND [State] <> 'Closed' AND [State] <> 'Removed' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
 
             WiqlFlatQueryResponse result = client.WiqlResources.Post(request);
             Assert.IsNotNull(result);

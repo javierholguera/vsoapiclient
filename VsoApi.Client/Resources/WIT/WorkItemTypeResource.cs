@@ -2,6 +2,7 @@ namespace VsoApi.Client.Resources.WIT
 {
     using System;
     using RestSharp;
+    using VsoApi.Contracts.Requests;
     using VsoApi.Contracts.Requests.WIT;
     using VsoApi.Contracts.Responses;
     using VsoApi.Contracts.Responses.WIT;
@@ -17,9 +18,9 @@ namespace VsoApi.Client.Resources.WIT
         {
         }
 
-        public CollectionResponse<WorkItemType> GetAll(WorkItemTypeListRequest request)
+        public CollectionResponse<WorkItemType> GetAll(EmptyRequest request)
         {
-            return Call<WorkItemTypeListRequest, CollectionResponse<WorkItemType>>(request);
+            return Call<EmptyRequest, CollectionResponse<WorkItemType>>(request);
         }
 
         public WorkItemType Get(WorkItemTypeRequest request)
