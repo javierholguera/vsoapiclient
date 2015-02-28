@@ -7,7 +7,11 @@ namespace VsoApi.Contracts.Requests.Git
 
     public class PullRequestListRequest : VsoRequest
     {
-        public PullRequestListRequest(string repository) : base(string.Empty)
+        public PullRequestListRequest(string repository) : this(repository, PullRequestStatus.Active)
+        {
+        }
+
+        public PullRequestListRequest(string repository, PullRequestStatus status) : base(string.Empty)
         {
             if (repository == null)
                 throw new ArgumentNullException("repository");
@@ -16,9 +20,12 @@ namespace VsoApi.Contracts.Requests.Git
                 throw new ArgumentException("Repository name is mandatory to request a list of pull requests", "repository");
 
             Repository = repository;
+            Status = status;
         }
 
         private string Repository { get; set; }
+
+        private PullRequestStatus Status { get; set; }
 
         protected override string ApiVersion
         {
@@ -37,6 +44,14 @@ namespace VsoApi.Contracts.Requests.Git
 
             restRequest.Resource += "/{repository}/pullrequests";
             restRequest.AddUrlSegment("repository", Repository);
+            restRequest.AddQueryParameter("status", Status.ToString());
         }
+    }
+
+    public enum PullRequestStatus
+    {
+        Active,
+        Abandoned,
+        Completed
     }
 }

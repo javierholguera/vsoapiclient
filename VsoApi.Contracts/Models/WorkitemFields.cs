@@ -56,7 +56,7 @@
         public string Title { get; private set; }
 
         [JsonProperty(PropertyName = EstimatedEffortField)]
-        public int EstimatedEffort { get; private set; }
+        public decimal EstimatedEffort { get; private set; }
 
         [JsonProperty(PropertyName = KanbanColumnField)]
         public string KanbanColumn { get; private set; }
@@ -68,7 +68,7 @@
         public string SystemAssignedTo { get; private set; }
 
         [JsonProperty(PropertyName = RemainingWorkField)]
-        public int? MicrosoftVstsSchedulingRemainingWork { get; private set; }
+        public decimal? MicrosoftVstsSchedulingRemainingWork { get; private set; }
 
         [JsonProperty(PropertyName = SystemTagsField)]
         public string SystemTags { get; private set; }

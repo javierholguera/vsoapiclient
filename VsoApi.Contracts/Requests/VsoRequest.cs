@@ -10,9 +10,6 @@
             if (project == null)
                 throw new ArgumentNullException("project");
 
-            if (string.IsNullOrWhiteSpace(project))
-                throw new ArgumentException("Project parameter is mandatory for any request to VS Online API", "project");
-
             Project = project;
         }
 

@@ -12,7 +12,6 @@ namespace VsoApi.Client.Tests.Git
     [TestClass]
     public class GetRepositories
     {
-        [Ignore]
         [TestMethod]
         public void GetListOfRepositories()
         {

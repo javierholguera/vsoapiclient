@@ -11,7 +11,6 @@ namespace VsoApi.Client.Tests.Git
     [TestClass]
     public class GetPullRequests
     {
-        [Ignore]
         [TestMethod]
         public void GetListOfPullRequests()
         {
@@ -22,7 +21,7 @@ namespace VsoApi.Client.Tests.Git
 
             // Id for the platform repository 
             CollectionResponse<RepositoryResponse> result = client.PullRequestResources.Get(
-                new PullRequestListRequest("ba91c08c-cbcc-4d55-83fe-0da8e63bc9e1"));
+                new PullRequestListRequest("ba91c08c-cbcc-4d55-83fe-0da8e63bc9e1", PullRequestStatus.Completed));
 
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Value.Any());
