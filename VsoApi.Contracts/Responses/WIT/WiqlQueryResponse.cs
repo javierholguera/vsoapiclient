@@ -4,8 +4,15 @@ namespace VsoApi.Contracts.Responses.WIT
     using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
+    using VsoApi.Contracts.Models;
 
-    public class WiqlFlatQueryResponse
+    /// <summary>
+    /// Class that defines the information returned when running a query.
+    /// </summary>
+    /// <remarks>The fields depend on the type of query:
+    /// - Flat will return the WorkItems collection, but won't return WorkItemRelations info.
+    /// - OneHop and Tree will do the opposite.</remarks>
+    public class WiqlQueryResponse
     {
         [JsonProperty]
         public string QueryType { get; private set; }
@@ -20,7 +27,17 @@ namespace VsoApi.Contracts.Responses.WIT
         public IEnumerable<SortColumnEntry> SortColumns { get; private set; }
 
         [JsonProperty]
-        public IEnumerable<WorkItemEntry> WorkItems { get; private set; }
+        public IEnumerable<ElementIdentity> WorkItems { get; private set; }
+
+        [JsonProperty]
+        public IEnumerable<WorkItemRelation> WorkItemRelations { get; private set; }
+    }
+
+    public enum QueryResponseType
+    {
+        Flat,
+        OneHop,
+        Tree
     }
 
     public class SortColumnEntry
@@ -44,12 +61,15 @@ namespace VsoApi.Contracts.Responses.WIT
         public Uri Url { get; private set; }
     }
 
-    public class WorkItemEntry
+    public class WorkItemRelation
     {
         [JsonProperty]
-        public string Id { get; private set; }
+        public ElementIdentity Target { get; set; }
 
         [JsonProperty]
-        public Uri Url { get; private set; }
+        public ElementIdentity Source { get; set; }
+
+        [JsonProperty]
+        public string Rel { get; private set; }
     }
 }

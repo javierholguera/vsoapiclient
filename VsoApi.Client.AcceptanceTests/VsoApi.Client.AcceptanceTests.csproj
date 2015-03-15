@@ -59,19 +59,29 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workitems.feature.cs">
+    <Compile Include="WIT\GetWorkitem.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Workitems.feature</DependentUpon>
+      <DependentUpon>GetWorkitem.feature</DependentUpon>
     </Compile>
-    <Compile Include="WorkitemsSteps.cs" />
+    <Compile Include="WIT\GetWorkitems.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetWorkitems.feature</DependentUpon>
+    </Compile>
+    <Compile Include="WIT\GetWorkitemsSteps.cs" />
+    <Compile Include="WIT\GetWorkItemSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Workitems.feature">
+    <None Include="WIT\GetWorkitem.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Workitems.feature.cs</LastGenOutput>
+      <LastGenOutput>GetWorkitem.feature.cs</LastGenOutput>
+    </None>
+    <None Include="WIT\GetWorkitems.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetWorkitems.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +94,7 @@
       <Name>VsoApi.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -10,16 +10,28 @@
     {
         // Query string: [&ids={string}&Fields={string}&asof={datetime}&$expand={enum{relations}]
 
-        public WorkItemListRequest(ICollection<string> ids) :
+        public WorkItemListRequest(ICollection<uint> ids) :
             this(ids, null, Enumerable.Empty<string>().ToArray())
         {
         }
 
         public WorkItemListRequest(
-            ICollection<string> ids,
+            ICollection<uint> ids,
+            DateTime? asOf,
+            ICollection<string> fields)
+            : this(ids, asOf, fields, WorkItemExpandType.None) { }
+
+        public WorkItemListRequest(
+            ICollection<uint> ids,
+            DateTime? asOf,
+            WorkItemExpandType expand)
+            : this(ids, asOf, Enumerable.Empty<string>().ToArray(), expand) { }
+
+        private WorkItemListRequest(
+            ICollection<uint> ids,
             DateTime? asOf,
             ICollection<string> fields,
-            WorkItemExpandType expand = WorkItemExpandType.None)
+            WorkItemExpandType expand)
             : base(string.Empty)
         {
             if (ids == null)
@@ -37,7 +49,7 @@
             Expand = expand;
         }
 
-        private IEnumerable<string> Ids { get; set; }
+        private IEnumerable<uint> Ids { get; set; }
 
         private IEnumerable<string> Fields { get; set; }
         private DateTime? AsOf { get; set; }
@@ -59,8 +71,8 @@
                 restRequest.AddQueryParameter("Fields", string.Join(",", Fields));
             if (AsOf != null)
                 restRequest.AddQueryParameter("asof", AsOf.Value.ToString(CultureInfo.InvariantCulture));
-
-            restRequest.AddQueryParameter("$expand", Expand.ToString());
+            if (Fields.Any() == false && Expand != WorkItemExpandType.None)
+                restRequest.AddQueryParameter("$expand", Expand.ToString());
         }
     }
 }

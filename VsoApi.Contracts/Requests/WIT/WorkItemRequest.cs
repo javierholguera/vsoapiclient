@@ -1,26 +1,21 @@
 ﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
+    using System.Globalization;
     using RestSharp;
 
     public class WorkItemRequest : VsoRequest
     {
         // Query string: [/{Id}?$expand={enum{relations}]
 
-        public WorkItemRequest(string workItemId, WorkItemExpandType expand = WorkItemExpandType.None)
+        public WorkItemRequest(uint workItemId, WorkItemExpandType expand = WorkItemExpandType.None)
             : base(string.Empty)
         {
-            if (workItemId == null)
-                throw new ArgumentNullException("workItemId");
-
-            if (string.IsNullOrWhiteSpace(workItemId))
-                throw new ArgumentException("Work Item Id is mandatory to request a work item", "workItemId");
-
             WorkItemId = workItemId;
             Expand = expand;
         }
 
-        private string WorkItemId { get; set; }
+        private uint WorkItemId { get; set; }
         private WorkItemExpandType Expand { get; set; }
 
         protected override Method Method
@@ -35,7 +30,7 @@
 
             restRequest.Resource += "/{Id}";
 
-            restRequest.AddUrlSegment("Id", WorkItemId);
+            restRequest.AddUrlSegment("Id", WorkItemId.ToString(CultureInfo.InvariantCulture));
             restRequest.AddQueryParameter("$expand", Expand.ToString());
         }
     }

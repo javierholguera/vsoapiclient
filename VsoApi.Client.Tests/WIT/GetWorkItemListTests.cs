@@ -4,6 +4,7 @@
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using VsoApi.Contracts.Models;
+    using VsoApi.Contracts.Models.WorkItemFieldNames;
     using VsoApi.Contracts.Requests.WIT;
     using VsoApi.Contracts.Responses;
 
@@ -14,24 +15,30 @@
         public void GetWorkItemsByIdsOnly()
         {
             var client = new VsoClient();
-            var request = new WorkItemListRequest(new[] {"12", "13", "14"});
+            var request = new WorkItemListRequest(new uint[] { 89, 114, 115 });
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
         }
 
         [TestMethod]
-        public void GetWorkItemsAsOfMonthAgo()
+        public void GetWorkItemsAsOfMinuteAgo()
         {
             var client = new VsoClient();
             var request = new WorkItemListRequest(
-                new[] { "12", "13", "14" },
-                DateTime.Now.AddMonths(-1),
-                new[] { "System.Title", "System.CreatedDate", "System.State" });
+                new uint[] { 89, 114, 115 },
+                DateTime.Now.AddMinutes(-1),
+                new[] { WorkItemFields.System_Title, WorkItemFields.System_CreatedDate, WorkItemFields.System_State });
 
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);
             Assert.AreEqual(result.Count, 3);
             Assert.IsTrue(result.Value.Any());
+            result.Value.ToList().ForEach(workItem =>
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(workItem.Fields.SystemTitle));
+                Assert.AreNotEqual(DateTime.MinValue, workItem.Fields.SystemCreatedDate);
+                Assert.IsFalse(string.IsNullOrEmpty(workItem.Fields.SystemState));
+            });
         }
 
         [TestMethod]
@@ -39,9 +46,8 @@
         {
             var client = new VsoClient();
             var request = new WorkItemListRequest(
-                new[] { "12", "13", "14" },
+                new uint[] { 89, 114, 115 },
                 null,
-                Enumerable.Empty<string>().ToList(), 
                 WorkItemExpandType.All);
 
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);

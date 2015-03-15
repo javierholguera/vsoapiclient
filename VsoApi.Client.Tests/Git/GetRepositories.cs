@@ -12,13 +12,14 @@ namespace VsoApi.Client.Tests.Git
     [TestClass]
     public class GetRepositories
     {
+        [Ignore]
         [TestMethod]
         public void GetListOfRepositories()
         {
             var client = new VsoClient(
                 new Uri("https://marketinvoice.visualstudio.com/defaultCollection"),
                 "javiermi",
-                ""); // set this
+                ""); // set this -- typical password with almohadilla
 
             CollectionResponse<Repository> result = client.RepositoryResources.Get(new EmptyRequest());
 

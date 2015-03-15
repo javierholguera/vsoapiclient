@@ -3,7 +3,6 @@ namespace VsoApi.Client.Resources.WIT
     using System;
     using RestSharp;
     using VsoApi.Contracts.Requests.WIT;
-    using VsoApi.Contracts.Responses;
     using VsoApi.Contracts.Responses.WIT;
 
     public class WiqlResource : BaseResource, IWiqlResource
@@ -17,9 +16,14 @@ namespace VsoApi.Client.Resources.WIT
         {
         }
 
-        public WiqlFlatQueryResponse Post(WiqlFlatRequest request)
+        public WiqlQueryResponse Post(WiqlRequest request)
         {
-            return Call<WiqlFlatRequest, WiqlFlatQueryResponse>(request);
+            return Call<WiqlRequest, WiqlQueryResponse>(request);
+        }
+
+        public WiqlQueryResponse Post(StoredWiqlRequest request)
+        {
+            return Call<StoredWiqlRequest, WiqlQueryResponse>(request);
         }
     }
 }

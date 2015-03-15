@@ -5,6 +5,7 @@ namespace VsoApi.Contracts.Models
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Newtonsoft.Json;
+    using VsoApi.Contracts.Models.WorkItemFieldNames;
 
     public class WorkItem : VsoEntity
     {
@@ -14,7 +15,7 @@ namespace VsoApi.Contracts.Models
         }
 
         [JsonProperty]
-        public int Id { get; private set; }
+        public uint Id { get; private set; }
 
         [JsonProperty]
         public int Rev { get; private set; }

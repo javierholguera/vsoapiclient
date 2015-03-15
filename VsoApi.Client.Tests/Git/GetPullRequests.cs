@@ -11,13 +11,14 @@ namespace VsoApi.Client.Tests.Git
     [TestClass]
     public class GetPullRequests
     {
+        [Ignore]
         [TestMethod]
         public void GetListOfPullRequests()
         {
             var client = new VsoClient(
                 new Uri("https://marketinvoice.visualstudio.com/defaultCollection"),
                 "javiermi",
-                ""); // set this
+                ""); // set this -- typical password with almohadilla
 
             // Id for the platform repository 
             CollectionResponse<RepositoryResponse> result = client.PullRequestResources.Get(

@@ -15,16 +15,15 @@ namespace VsoApi.Client.Tests.WIT
         public void GetAllWorkItemTypes()
         {
             var client = new VsoClient();
-            CollectionResponse<WorkItemType> result = client.WorkItemTypeResources.GetAll(new EmptyRequest("TopReformas"));
+            CollectionResponse<WorkItemType> result = client.WorkItemTypeResources.GetAll(new EmptyRequest("Testing"));
             Assert.IsTrue(result.Count > 0);
         }
-
 
         [TestMethod]
         public void GetWorkItemType()
         {
             var client = new VsoClient();
-            WorkItemType result = client.WorkItemTypeResources.Get(new WorkItemTypeRequest("TopReformas", "Bug"));
+            WorkItemType result = client.WorkItemTypeResources.Get(new WorkItemTypeRequest("Testing", "Bug"));
             Assert.IsTrue(result != null);
             Assert.IsTrue(result.FieldInstances.Any());
             Assert.IsTrue(result.Transitions != null);

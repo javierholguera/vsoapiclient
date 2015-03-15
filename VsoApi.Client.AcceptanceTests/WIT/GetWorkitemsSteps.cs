@@ -1,7 +1,6 @@
-﻿namespace VsoApi.Client.AcceptanceTests
+﻿namespace VsoApi.Client.AcceptanceTests.WIT
 {
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using NUnit.Framework;
     using TechTalk.SpecFlow;
@@ -10,23 +9,22 @@
     using VsoApi.Contracts.Responses;
 
     [Binding]
-    public class WorkitemsSteps
+    public class GetWorkitemsSteps
     {
-        private ICollection<int> _workitemIds;
+        private ICollection<uint> _workitemIds;
         private CollectionResponse<WorkItem> _allWorkitems;
 
         [Given(@"There are work items with IDs (.*), (.*) and (.*)")]
-        public void GivenThereAreWorkItemsWithIDsAnd(int firstWorkItem, int secondWorkItem, int thirdWorkItem)
+        public void GivenThereAreWorkItemsWithIDs(uint firstWorkItem, uint secondWorkItem, uint thirdWorkItem)
         {
             _workitemIds = new[] { firstWorkItem, secondWorkItem, thirdWorkItem };
         }
 
-        [When(@"I get all available work items in the team project")]
+        [When(@"I get these work items from the team project")]
         public void WhenIGetAllAvailableWorkItemsInTheTeamProject()
         {
             var client = new VsoClient(Config.BaseUri, Config.Username, Config.Password);
-            _allWorkitems = client.WorkItemResources.GetAll(
-                new WorkItemListRequest(_workitemIds.Select(id => id.ToString(CultureInfo.InvariantCulture)).ToArray()));
+            _allWorkitems = client.WorkItemResources.GetAll(new WorkItemListRequest(_workitemIds.ToArray()));
         }
 
         [Then(@"the result contains (.*) work items")]

@@ -2,6 +2,8 @@
 namespace VsoApi.Client.Resources
 {
     using System;
+    using System.Net;
+    using System.Web;
     using Newtonsoft.Json;
     using RestSharp;
     using VsoApi.Contracts.Requests;
@@ -28,6 +30,9 @@ namespace VsoApi.Client.Resources
 
             IRestRequest restRequest = request.GetRestRequest(ResourceUri);
             IRestResponse restResponse = _client.Execute(restRequest);
+
+            if (restResponse.StatusCode >= HttpStatusCode.Ambiguous)
+                throw new HttpException((int)restResponse.StatusCode, restResponse.Content);
 
             return JsonConvert.DeserializeObject<TResponse>(restResponse.Content);
         }

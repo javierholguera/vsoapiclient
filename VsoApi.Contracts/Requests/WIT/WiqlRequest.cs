@@ -1,13 +1,19 @@
 ﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
+    using System.Globalization;
     using Newtonsoft.Json;
     using RestSharp;
 
-    public class WiqlFlatRequest : VsoRequest
+    public class WiqlRequest : VsoRequest
     {
-        public WiqlFlatRequest(string query)
-            : base(string.Empty)
+        public WiqlRequest(string query)
+            : this(string.Empty, query)
+        {
+        }
+
+        public WiqlRequest(string project, string query)
+            : base(project)
         {
             if (query == null)
                 throw new ArgumentNullException("query");
@@ -15,7 +21,7 @@
             if (string.IsNullOrWhiteSpace(query))
                 throw new ArgumentException("Query content is mandatory to request a flat WIQL", "query");
 
-            RequestBody = new QueryBody {Query = query};
+            RequestBody = new QueryBody { Query = query };
         }
 
         private QueryBody RequestBody { get; set; }
