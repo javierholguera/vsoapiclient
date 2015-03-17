@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Client.AcceptanceTests", "VsoApi.Client.AcceptanceTests\VsoApi.Client.AcceptanceTests.csproj", "{E9F609FA-D4B1-424C-B7F1-DAF6E6E499F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.MsAgile.Entities", "VsoApi.MsAgile.Entities\VsoApi.MsAgile.Entities.csproj", "{3371C9AD-B9B2-4079-A6CA-1777BD23017B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{E9F609FA-D4B1-424C-B7F1-DAF6E6E499F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9F609FA-D4B1-424C-B7F1-DAF6E6E499F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9F609FA-D4B1-424C-B7F1-DAF6E6E499F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3371C9AD-B9B2-4079-A6CA-1777BD23017B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3371C9AD-B9B2-4079-A6CA-1777BD23017B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3371C9AD-B9B2-4079-A6CA-1777BD23017B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3371C9AD-B9B2-4079-A6CA-1777BD23017B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

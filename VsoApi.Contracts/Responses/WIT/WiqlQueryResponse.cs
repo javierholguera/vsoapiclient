@@ -15,7 +15,10 @@ namespace VsoApi.Contracts.Responses.WIT
     public class WiqlQueryResponse
     {
         [JsonProperty]
-        public string QueryType { get; private set; }
+        public QueryType QueryType { get; private set; }
+
+        [JsonProperty]
+        public string QueryResultType { get; private set; }
 
         [JsonProperty]
         public DateTime AsOf { get; private set; }
@@ -33,7 +36,7 @@ namespace VsoApi.Contracts.Responses.WIT
         public IEnumerable<WorkItemRelation> WorkItemRelations { get; private set; }
     }
 
-    public enum QueryResponseType
+    public enum QueryType
     {
         Flat,
         OneHop,
