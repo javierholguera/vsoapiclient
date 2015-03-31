@@ -36,7 +36,12 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +52,10 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ITeamCollection.cs" />
+    <Compile Include="Linq\BaseEntityReader.cs" />
+    <Compile Include="Linq\QueryTranslator.cs" />
+    <Compile Include="Linq\WorkItemContext.cs" />
+    <Compile Include="Linq\WorkItemProvider.cs" />
     <Compile Include="Mappings\UserStoryMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />
@@ -54,6 +63,10 @@
     <Compile Include="WorkItemTypes.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IQToolkit\IQToolkit.csproj">
+      <Project>{0da62a7c-3b40-456f-a4b2-b3e19ed4080e}</Project>
+      <Name>IQToolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VsoApi.Client\VsoApi.Client.csproj">
       <Project>{F763A629-3981-4C88-A5ED-3900C34E0E7A}</Project>
       <Name>VsoApi.Client</Name>

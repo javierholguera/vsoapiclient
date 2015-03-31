@@ -36,7 +36,7 @@
         public string TeamProject { get; private set; }
         public string Title { get; private set; }
         public string Watermark { get; private set; }
-        public WorkItemTypes WorkItemType { get; set; }
+        public abstract WorkItemTypes WorkItemType { get; }
 
         /// 
         /// VSTS Fields

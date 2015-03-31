@@ -11,5 +11,10 @@ namespace VsoApi.MsAgile.Entities
         public decimal? StoryPoints { get; set; }
         public DateTime? FinishDate { get; set; }
         public DateTime? StartDate { get; set; }
+
+        public override WorkItemTypes WorkItemType
+        {
+            get { return WorkItemTypes.UserStory; }
+        }
     }
 }
