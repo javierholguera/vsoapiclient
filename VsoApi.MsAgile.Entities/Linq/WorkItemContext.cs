@@ -13,8 +13,10 @@
 
             WorkItemProvider provider = new WorkItemProvider(client);
             UserStories = new Query<UserStory>(provider);
+            Tasks = new Query<Task>(provider);
         }
 
         public Query<UserStory> UserStories { get; private set; }
+        public Query<Task> Tasks { get; private set; }
     }
 }
