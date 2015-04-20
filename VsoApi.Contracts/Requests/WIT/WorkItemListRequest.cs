@@ -20,12 +20,11 @@
             DateTime? asOf,
             ICollection<string> fields)
             : this(ids, asOf, fields, WorkItemExpandType.None) { }
-
+        
         public WorkItemListRequest(
             ICollection<uint> ids,
-            DateTime? asOf,
             WorkItemExpandType expand)
-            : this(ids, asOf, Enumerable.Empty<string>().ToArray(), expand) { }
+            : this(ids, null, Enumerable.Empty<string>().ToArray(), expand) { }
 
         private WorkItemListRequest(
             ICollection<uint> ids,

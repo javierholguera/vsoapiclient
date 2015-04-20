@@ -47,7 +47,6 @@
             var client = new VsoClient();
             var request = new WorkItemListRequest(
                 new uint[] { 89, 114, 115 },
-                null,
                 WorkItemExpandType.All);
 
             CollectionResponse<WorkItem> result = client.WorkItemResources.GetAll(request);

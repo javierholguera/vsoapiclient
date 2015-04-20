@@ -58,6 +58,45 @@
                 results.Count(t => t.State == "Closed"),
                 Is.EqualTo(4));
         }
+
+        [Test]
+        public void Get_All_Tasks_From_Personal_As_Of_Recent_Date()
+        {
+            List<Task> results = _context.Tasks
+                .Where(u => u.IterationPath == "Personal")
+                .AsOf(new DateTime(2015, 04, 20, 23, 14, 00))
+                .ToList();
+            Assert.That(results.Count, Is.EqualTo(26));
+            Assert.That(
+                results.Count(t => t.AssignedTo == "Javier Holguera <jholguerablanco@hotmail.com>"),
+                Is.EqualTo(3));
+            Assert.That(
+                results.Count(t => t.State == "Closed"),
+                Is.EqualTo(4));
+            Assert.That(
+                results.Single(r => r.Id == 90).Description,
+                Is.EqualTo("Enable style cop in the solution to make code more readable"));
+        }
+
+        [Test]
+        public void Get_All_Tasks_From_Personal_As_Of_Old_Date()
+        {
+            List<Task> results = _context.Tasks
+                .Where(u => u.IterationPath == "Personal")
+                .AsOf(new DateTime(2015, 03, 13))
+                .ToList();
+            Assert.That(results.Count, Is.EqualTo(24));
+            Assert.That(
+                results.Count(t => t.AssignedTo == "Javier Holguera <jholguerablanco@hotmail.com>"),
+                Is.EqualTo(3));
+            Assert.That(
+                results.Count(t => t.State == "Closed"),
+                Is.EqualTo(4));
+
+            // This description was changed on April, 20th. So if the AsOF operator works,
+            // we should get the previous values, which was null.
+            Assert.That(results.Single(r => r.Id == 90).Description, Is.Null);
+        }
     }
 
     internal static class Config

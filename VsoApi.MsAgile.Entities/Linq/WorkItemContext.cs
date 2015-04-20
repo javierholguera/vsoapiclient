@@ -1,7 +1,6 @@
 ﻿namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
-    using IQToolkit;
     using VsoApi.Client;
 
     public class WorkItemContext
@@ -12,11 +11,11 @@
                 throw new ArgumentNullException("client");
 
             WorkItemProvider provider = new WorkItemProvider(client);
-            UserStories = new Query<UserStory>(provider);
-            Tasks = new Query<Task>(provider);
+            UserStories = new BaseEntityQuery<UserStory>(provider);
+            Tasks = new BaseEntityQuery<Task>(provider);
         }
 
-        public Query<UserStory> UserStories { get; private set; }
-        public Query<Task> Tasks { get; private set; }
+        public BaseEntityQuery<UserStory> UserStories { get; private set; }
+        public BaseEntityQuery<Task> Tasks { get; private set; }
     }
 }

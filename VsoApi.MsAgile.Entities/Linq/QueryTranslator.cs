@@ -1,14 +1,11 @@
 ﻿namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Text;
-    using AutoMapper;
-    using AutoMapper.Impl;
-    using Newtonsoft.Json;
-    using VsoApi.Contracts.Models;
     using ExpressionVisitor = IQToolkit.ExpressionVisitor;
 
     public class QueryTranslator : ExpressionVisitor
@@ -32,13 +29,29 @@
 
         protected override Expression VisitMethodCall(MethodCallExpression m)
         {
-            if (m.Method.DeclaringType != typeof (Queryable) || m.Method.Name != "Where")
-                throw new NotSupportedException(string.Format("The method '{0}' is not supported", m.Method.Name));
+            if (m.Method.DeclaringType != typeof(Queryable) && m.Method.DeclaringType != typeof(BaseEntityQueryExtensions))
+                throw new NotSupportedException(string.Format("The method '{0}' is part of an unexpected type and is not supported", m.Method.Name));
+            
+            if (m.Method.Name != "Where" && m.Method.Name != "AsOf")
+                throw new NotSupportedException(string.Format("The method '{0}' is not recognized", m.Method.Name));
 
-            _builder.Append("SELECT * ");
-            Visit(m.Arguments[0]);
-            var lambda = (LambdaExpression) StripQuotes(m.Arguments[1]);
-            Visit(lambda.Body);
+            if (m.Method.Name == "Where") {
+                _builder.Append("SELECT * ");
+                Visit(m.Arguments[0]);
+                var lambda = (LambdaExpression)StripQuotes(m.Arguments[1]);
+                Visit(lambda.Body);
+            }
+
+            if (m.Method.Name == "AsOf") {
+                VisitMethodCall((MethodCallExpression)m.Arguments[0]);
+
+                var dateParameter = (ConstantExpression)m.Arguments[1];
+                _builder.AppendFormat(
+                    CultureInfo.InvariantCulture,
+                    " ASOF '{0}'",
+                    ((DateTime)dateParameter.Value).ToString("MM/dd/yy HH:mm", CultureInfo.InvariantCulture));
+            }
+            
             return m;
         }
 
@@ -136,6 +149,7 @@
                 case TypeCode.Boolean:
                     _builder.Append(((bool) c.Value) ? 1 : 0);
                     break;
+                case TypeCode.DateTime:
                 case TypeCode.String:
                     _builder.Append("'");
                     _builder.Append(c.Value);
@@ -156,18 +170,12 @@
             if (m.Expression == null || m.Expression.NodeType != ExpressionType.Parameter)
                 throw new NotSupportedException(string.Format("The member '{0}' is not supported", m.Member.Name));
 
-            TypeMap typeMapping = Mapper.FindTypeMapFor(typeof (WorkItem), m.Expression.Type);
-            if (typeMapping == null)
-                throw new NotSupportedException(string.Format(
-                    "Unable to find a mapping from {0} to {1}", 
-                    typeof(WorkItem).FullName,
-                    m.Expression.Type.FullName));
+            // Translation of the BaseEntity class (or subclass) property to a WorkItem property 
+            // (which is corresponding JsonProperty attribute which will contain the actual name of the field in VSO API)
 
-            PropertyMap propertyMapping = typeMapping.GetExistingPropertyMapFor(new PropertyAccessor((PropertyInfo) m.Member));
-            var memberInfo = ((MemberExpression) propertyMapping.CustomExpression.Body).Member;
-            var attribute = (JsonPropertyAttribute)memberInfo.GetCustomAttributes(typeof(JsonPropertyAttribute), true).Single();
-            
-            _builder.Append(attribute.PropertyName);
+
+            string fieldName = AutoMapperHelper.GetRemoteFieldName(m);
+            _builder.Append(fieldName);
             return m;
         }
     }

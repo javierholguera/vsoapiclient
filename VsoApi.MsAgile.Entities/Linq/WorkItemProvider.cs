@@ -1,6 +1,7 @@
 ﻿namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
@@ -50,10 +51,24 @@
             // TODO: Support queries that are hierarchical
             // 4. Get actual workitems information
             uint[] workItemIds = queryResults.WorkItems.Select(wi => wi.Id).ToArray();
-            CollectionResponse<WorkItem> workitems = _client.WorkItemResources.GetAll(new WorkItemListRequest(workItemIds));
+
+            Type elementType = TypeHelper.GetElementType(expression.Type);
+            CollectionResponse<WorkItem> workitems;
+            if (workItemIds.Any() == false) {
+                workitems = new CollectionResponse<WorkItem>();
+            } else {
+                if (query.IndexOf("ASOF", StringComparison.OrdinalIgnoreCase) != -1) {
+                    // We need to define all the fields that we want to retrieve.
+                    // We use automapper to get the list of all remote fields of the type we are mapping
+                    DateTime date = queryResults.AsOf;
+                    ICollection<string> fields = AutoMapperHelper.GetAllRemoteFields(elementType).ToArray();
+                    workitems = _client.WorkItemResources.GetAll(new WorkItemListRequest(workItemIds, date, fields));
+                } else {
+                    workitems = _client.WorkItemResources.GetAll(new WorkItemListRequest(workItemIds));
+                }
+            }
 
             // 5. Convert the workitem information into a entity reader that can be iterated
-            Type elementType = TypeHelper.GetElementType(expression.Type);
             return Activator.CreateInstance(
                 typeof(BaseEntityReader<>).MakeGenericType(elementType),
                 BindingFlags.Instance | BindingFlags.NonPublic,
