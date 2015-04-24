@@ -66,8 +66,11 @@
     <Compile Include="Requests\EmptyRequest.cs" />
     <Compile Include="Requests\Git\PullRequestListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
+    <Compile Include="Requests\WIT\ClassificationNodeListRequest.cs" />
+    <Compile Include="Requests\WIT\ClassificationNodeType.cs" />
     <Compile Include="Requests\WIT\FieldEntry.cs" />
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
+    <Compile Include="Requests\WIT\IterationRequest.cs" />
     <Compile Include="Requests\WIT\StoredWiqlRequest.cs" />
     <Compile Include="Requests\WIT\WiqlRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemCreateRequest.cs" />
@@ -83,6 +86,8 @@
     <Compile Include="Responses\Git\RepositoryResponse.cs" />
     <Compile Include="Responses\Git\User.cs" />
     <Compile Include="Responses\NotFoundErrorResponse.cs" />
+    <Compile Include="Responses\WIT\ClassificationNodeResponse.cs" />
+    <Compile Include="Responses\WIT\IterationNodeResponse.cs" />
     <Compile Include="Responses\WIT\Transition.cs" />
     <Compile Include="Responses\WIT\WiqlQueryResponse.cs" />
     <Compile Include="Responses\WIT\WorkItemField.cs" />

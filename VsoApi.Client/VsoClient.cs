@@ -31,6 +31,7 @@ namespace VsoApi.Client
             WorkItemTypeResources = new WorkItemTypeResource(client);
             WiqlResources = new WiqlResource(client);
             FieldResources = new FieldResource(client);
+            ClassificationNodeResources = new ClassificationNodeResource(client);
 
             PullRequestResources = new PullRequestResource(client);
             RepositoryResources = new RepositoryResource(client);
@@ -40,6 +41,7 @@ namespace VsoApi.Client
         public IWorkItemTypeResource WorkItemTypeResources { get; private set; }
         public IWiqlResource WiqlResources { get; private set; }
         public IFieldResource FieldResources { get; private set; }
+        public IClassificationNodeResource ClassificationNodeResources { get; private set; }
 
         public IPullRequestResource PullRequestResources { get; private set; }
         public IRepositoryResource RepositoryResources { get; private set; }

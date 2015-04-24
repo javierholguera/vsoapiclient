@@ -1,7 +1,6 @@
 ﻿namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
-    using System.Globalization;
     using Newtonsoft.Json;
     using RestSharp;
 
