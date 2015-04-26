@@ -152,12 +152,23 @@
                     _builder.Append(((bool) c.Value) ? 1 : 0);
                     break;
                 case TypeCode.DateTime:
+                    _builder.Append("'");
+                    _builder.Append(((DateTime)c.Value).ToString("yyy-MM-dd"));
+                    _builder.Append("'");
+                    break;
                 case TypeCode.String:
                     _builder.Append("'");
                     _builder.Append(c.Value);
                     _builder.Append("'");
                     break;
                 case TypeCode.Object:
+                    if (c.Value is DateTimeOffset) {
+                        _builder.Append("'");
+                        _builder.Append(((DateTimeOffset)c.Value).ToString("yyy-MM-dd"));
+                        _builder.Append("'");
+                        break;    
+                    }
+
                     throw new NotSupportedException(string.Format("The constant for '{0}' is not supported", c.Value));
                 default:
                     _builder.Append(c.Value);
