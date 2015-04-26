@@ -8,7 +8,7 @@
         internal static void Configure()
         {
             Mapper.CreateMap<WorkItem, Task>()
-                .IncludeBase<WorkItem, BaseEntity>()
+                .IncludeBase<WorkItem, BaseWorkItemEntity>()
                 .ForMember(task => task.Activity, option => option.MapFrom(workItem => workItem.Fields.VstsActivity))
                 .ForMember(task => task.Priority, option => option.MapFrom(workItem => workItem.Fields.VstsPriority))
                 .ForMember(task => task.CompletedWork, option => option.MapFrom(workItem => workItem.Fields.VstsCompletedWork))

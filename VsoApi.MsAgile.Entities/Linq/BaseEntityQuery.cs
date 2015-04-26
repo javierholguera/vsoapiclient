@@ -23,7 +23,7 @@
     
     public static class BaseEntityQueryExtensions
     {
-        public static IQueryable<TSource> AsOf<TSource>(this IQueryable<TSource> source, DateTime date) where TSource : BaseEntity
+        public static IQueryable<TSource> AsOf<TSource>(this IQueryable<TSource> source, DateTime date) where TSource : BaseWorkItemEntity
         {
             if (source == null)
                 throw new ArgumentNullException("source");

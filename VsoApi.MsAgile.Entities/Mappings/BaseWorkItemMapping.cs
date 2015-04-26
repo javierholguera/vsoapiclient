@@ -5,11 +5,11 @@ namespace VsoApi.MsAgile.Entities.Mappings
     using AutoMapper;
     using VsoApi.Contracts.Models;
 
-    internal static class BaseEntityMapping
+    internal static class BaseWorkItemMapping
     {
         internal static void Configure()
         {
-            Mapper.CreateMap<WorkItem, BaseEntity>()
+            Mapper.CreateMap<WorkItem, BaseWorkItemEntity>()
                 .ForMember(entity => entity.ActivatedBy, option => option.MapFrom(workitem => workitem.Fields.VstsActivatedBy))
                 .ForMember(entity => entity.ActivatedDate, option => option.MapFrom(workitem => workitem.Fields.VstsActivatedDate))
                 .ForMember(entity => entity.AreaId, option => option.MapFrom(workitem => workitem.Fields.SystemAreaId))

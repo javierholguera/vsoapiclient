@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Task : BaseEntity
+    public class Task : BaseWorkItemEntity
     {
         public string Activity { get; set; }
         public string Priority { get; set; }

@@ -105,6 +105,18 @@
             Assert.That(results.Count, Is.EqualTo(2));
             Assert.IsTrue(results.Any(b => b.AssignedTo == "Javier Holguera <jholguerablanco@hotmail.com>"));
         }
+
+        [Test]
+        public void Get_Iteration_Info()
+        {
+            List<Iteration> results = _context.Iterations.Where(u => u.Project == "Personal" && u.Name == "Iteration 1").ToList();
+            Assert.That(results.Count,Is.EqualTo(1));
+            Assert.That(results.Single().Name, Is.EqualTo("Iteration 1"));
+            Assert.AreEqual(
+                new DateTimeOffset(new DateTime(2015, 03, 30, 0, 0, 0, DateTimeKind.Utc)), results.Single().StartDate);
+            Assert.AreEqual(
+                new DateTimeOffset(new DateTime(2015, 04, 06, 0, 0, 0, DateTimeKind.Utc)), results.Single().FinishDate);
+        }
     }
 
     internal static class Config

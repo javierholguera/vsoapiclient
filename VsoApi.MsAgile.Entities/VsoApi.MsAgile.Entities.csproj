@@ -50,16 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntity.cs" />
+    <Compile Include="BaseWorkItemEntity.cs" />
     <Compile Include="Bug.cs" />
+    <Compile Include="Iteration.cs" />
     <Compile Include="Linq\AutoMapperHelper.cs" />
     <Compile Include="Linq\BaseEntityQuery.cs" />
     <Compile Include="Linq\BaseEntityReader.cs" />
+    <Compile Include="Linq\ClassificatioNodeTranslator.cs" />
+    <Compile Include="Linq\IterationProvider.cs" />
+    <Compile Include="Linq\IWorkItemContext.cs" />
     <Compile Include="Linq\QueryTranslator.cs" />
     <Compile Include="Linq\WorkItemContext.cs" />
     <Compile Include="Linq\WorkItemProvider.cs" />
-    <Compile Include="Mappings\BaseEntityMapping.cs" />
+    <Compile Include="Mappings\BaseWorkItemMapping.cs" />
     <Compile Include="Mappings\BugMapping.cs" />
+    <Compile Include="Mappings\IterationMapping.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Mappings\TaskMapping.cs" />
     <Compile Include="Mappings\UserStoryMappings.cs" />

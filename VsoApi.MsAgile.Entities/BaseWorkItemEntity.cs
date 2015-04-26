@@ -5,6 +5,12 @@
 
     public abstract class BaseEntity
     {
+        public uint Id { get; private set; }
+        public string Project { get; private set; }
+    }
+
+    public abstract class BaseWorkItemEntity : BaseEntity
+    {
         /// 
         /// System Fields
         /// 
@@ -23,7 +29,6 @@
         public string Description { get; private set; }
         public int ExternalLinkCount { get; private set; }
         public string History { get; private set; }
-        public uint Id { get; private set; }
         public string IterationId { get; private set; }
         public string IterationPath { get; private set; }
         public string NodeName { get; private set; }

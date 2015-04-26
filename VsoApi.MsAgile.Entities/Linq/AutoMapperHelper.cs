@@ -8,34 +8,33 @@ namespace VsoApi.MsAgile.Entities.Linq
     using AutoMapper;
     using AutoMapper.Impl;
     using Newtonsoft.Json;
-    using VsoApi.Contracts.Models;
 
     public static class AutoMapperHelper
     {
-        public static string GetRemoteFieldName(MemberExpression m)
+        public static string GetRemoteFieldName(Type fromType, MemberExpression m)
         {
-            TypeMap typeMapping = FindTypeMapping(m.Expression.Type);
+            TypeMap typeMapping = FindTypeMapping(fromType, m.Expression.Type);
             PropertyMap propertyMapping = typeMapping.GetExistingPropertyMapFor(new PropertyAccessor((PropertyInfo)m.Member));
             return GetPropertyRemoteFieldName(propertyMapping);
         }
 
-        public static IEnumerable<string> GetAllRemoteFields(Type type)
+        public static IEnumerable<string> GetAllRemoteFields(Type fromType, Type toType)
         {
-            TypeMap typeMapping = FindTypeMapping(type);
+            TypeMap typeMapping = FindTypeMapping(fromType, toType);
             return typeMapping.GetPropertyMaps()
                 .Select(GetPropertyRemoteFieldName)
                 .Where(f => string.IsNullOrEmpty(f) == false) // we dont want empty remote field names
                 .ToList();
         }
 
-        private static TypeMap FindTypeMapping(Type type)
+        private static TypeMap FindTypeMapping(Type fromType ,Type toType)
         {
-            TypeMap typeMapping = Mapper.FindTypeMapFor(typeof (WorkItem), type);
+            TypeMap typeMapping = Mapper.FindTypeMapFor(fromType, toType);
             if (typeMapping == null)
                 throw new NotSupportedException(string.Format(
                     "Unable to find a mapping from {0} to {1}",
-                    typeof (WorkItem).FullName,
-                    type.FullName));
+                    fromType.FullName,
+                    toType.FullName));
 
             return typeMapping;
         }

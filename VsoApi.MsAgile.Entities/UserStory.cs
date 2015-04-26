@@ -2,7 +2,7 @@ namespace VsoApi.MsAgile.Entities
 {
     using System;
 
-    public class UserStory : BaseEntity
+    public class UserStory : BaseWorkItemEntity
     {
         public string Risk { get; set; }
         public string ResolvedBy { get; set; }

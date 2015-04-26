@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class Bug : BaseEntity
+    public class Bug : BaseWorkItemEntity
     {
         public override WorkItemTypes WorkItemType
         {

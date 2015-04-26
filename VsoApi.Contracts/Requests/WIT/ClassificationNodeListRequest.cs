@@ -15,6 +15,9 @@
         public ClassificationNodeListRequest(
             string project, ClassificationNodeType nodeType, string nodePath, int depth) : base(project)
         {
+            if (string.IsNullOrEmpty(project))
+                throw new ArgumentNullException("project", "project cannot be null or empty for a classification node request");
+
             if (nodePath == null)
                 throw new ArgumentNullException("nodePath");
             if (depth < 1)

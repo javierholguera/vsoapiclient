@@ -5,19 +5,17 @@
     using System.Collections.Generic;
     using System.Linq;
     using AutoMapper;
-    using VsoApi.Contracts.Models;
-    using VsoApi.Contracts.Responses;
 
-    internal class BaseEntityReader<T> : IEnumerable<T> where T : BaseEntity, new()
+    internal class BaseEntityReader<TContract, TEntity> : IEnumerable<TEntity> where TContract : new()
     {
         private Enumerator _enumerator;
 
-        internal BaseEntityReader(CollectionResponse<WorkItem> reader)
+        internal BaseEntityReader(IEnumerable<TContract> reader)
         {
             _enumerator = new Enumerator(reader);
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<TEntity> GetEnumerator()
         {
             Enumerator e = _enumerator;
             if (e == null) {
@@ -33,18 +31,18 @@
             return GetEnumerator();
         }
 
-        private class Enumerator : IEnumerator<T>
+        private class Enumerator : IEnumerator<TEntity>
         {
-            private IList<WorkItem> _source;
+            private IList<TContract> _source;
             private int _index;
 
-            internal Enumerator(CollectionResponse<WorkItem> source)
+            internal Enumerator(IEnumerable<TContract> source)
             {
-                _source = source.Value.ToList();
+                _source = source.ToList();
                 _index = 0;
             }
 
-            public T Current { get; private set; }
+            public TEntity Current { get; private set; }
 
             object IEnumerator.Current
             {
@@ -56,7 +54,7 @@
                 if (_index >= _source.Count)
                     return false;
                 
-                Current = Mapper.Map<WorkItem, T>(_source[_index]);
+                Current = Mapper.Map<TContract, TEntity>(_source[_index]);
                 _index++;
                 return true;
             }

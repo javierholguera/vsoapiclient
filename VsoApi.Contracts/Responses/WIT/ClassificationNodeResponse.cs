@@ -2,14 +2,20 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using Newtonsoft.Json;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Requests.WIT;
 
     public class ClassificationNodeResponse
     {
+        public ClassificationNodeResponse()
+        {
+            Children = new Collection<ClassificationNodeResponse>();
+        }
+
         [JsonProperty]
-        public int Id { get; private set; }
+        public uint Id { get; private set; }
 
         [JsonProperty]
         public string Name { get; private set; }

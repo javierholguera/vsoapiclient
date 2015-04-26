@@ -38,6 +38,7 @@
                 throw new ArgumentNullException("expression");
 
             // TODO: Support queries with project name
+            // TODO: Check that expression type is for a IQueryable<T> where T : BaseWorkItemEntity
 
             // 1. Re-evaluates the expression to access closure variables
             expression = PartialEvaluator.Eval(expression);
@@ -61,7 +62,7 @@
                     // We need to define all the fields that we want to retrieve.
                     // We use automapper to get the list of all remote fields of the type we are mapping
                     DateTime date = queryResults.AsOf;
-                    ICollection<string> fields = AutoMapperHelper.GetAllRemoteFields(elementType).ToArray();
+                    ICollection<string> fields = AutoMapperHelper.GetAllRemoteFields(typeof(WorkItem), elementType).ToArray();
                     workitems = _client.WorkItemResources.GetAll(new WorkItemListRequest(workItemIds, date, fields));
                 } else {
                     workitems = _client.WorkItemResources.GetAll(new WorkItemListRequest(workItemIds));
@@ -70,10 +71,10 @@
 
             // 5. Convert the workitem information into a entity reader that can be iterated
             return Activator.CreateInstance(
-                typeof(BaseEntityReader<>).MakeGenericType(elementType),
+                typeof(BaseEntityReader<,>).MakeGenericType(typeof(WorkItem), elementType),
                 BindingFlags.Instance | BindingFlags.NonPublic,
                 null,
-                new object[] { workitems },
+                new object[] { workitems.Value },
                 null);
         }
 

@@ -8,7 +8,7 @@
         internal static void Configure()
         {
             Mapper.CreateMap<WorkItem, UserStory>()
-                .IncludeBase<WorkItem, BaseEntity>() // reuse mapping for base class
+                .IncludeBase<WorkItem, BaseWorkItemEntity>() // reuse mapping for base class
                 .ForMember(userStory => userStory.Risk, option => option.MapFrom(workItem => workItem.Fields.VstsRisk))
                 .ForMember(userStory => userStory.ResolvedBy, option => option.MapFrom(workItem => workItem.Fields.VstsResolvedBy))
                 .ForMember(userStory => userStory.ResolvedDate, option => option.MapFrom(workItem => workItem.Fields.VstsResolvedDate))

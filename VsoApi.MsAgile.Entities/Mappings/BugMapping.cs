@@ -3,12 +3,12 @@
     using AutoMapper;
     using VsoApi.Contracts.Models;
 
-    public static class BugMapping
+    internal static class BugMapping
     {
-        public static void Configure()
+        internal static void Configure()
         {
             Mapper.CreateMap<WorkItem, Bug>()
-                .IncludeBase<WorkItem, BaseEntity>() // reuse mapping for base class
+                .IncludeBase<WorkItem, BaseWorkItemEntity>() // reuse mapping for base class
                 .ForMember(bug => bug.FoundInBuild, option => option.MapFrom(workItem => workItem.Fields.VstsBuildFoundIn))
                 .ForMember(bug => bug.Severity, option => option.MapFrom(workItem => workItem.Fields.VstsSeverity))
                 .ForMember(bug => bug.ReproductionSteps, option => option.MapFrom(workItem => workItem.Fields.VstsReproSteps))

@@ -6,6 +6,8 @@
     using System.Linq.Expressions;
     using System.Reflection;
     using System.Text;
+    using VsoApi.Contracts.Models;
+    using VsoApi.Contracts.Responses.WIT;
     using ExpressionVisitor = IQToolkit.ExpressionVisitor;
 
     public class QueryTranslator : ExpressionVisitor
@@ -125,11 +127,11 @@
             if (q != null) {
                 // assume constant nodes w/ IQueryables are workitem type references
                 Type workItemType = q.ElementType;
-                if (typeof(BaseEntity).IsAssignableFrom(workItemType) == false)
+                if (typeof(BaseWorkItemEntity).IsAssignableFrom(workItemType) == false)
                     throw new NotSupportedException("Unable to execute a query over type: " + workItemType.FullName);
 
                 // todo: use an attribute?
-                BaseEntity workItem = (BaseEntity)Activator.CreateInstance(
+                BaseWorkItemEntity workItem = (BaseWorkItemEntity)Activator.CreateInstance(
                     workItemType, 
                     BindingFlags.Public | BindingFlags.Instance, 
                     null,
@@ -170,11 +172,9 @@
             if (m.Expression == null || m.Expression.NodeType != ExpressionType.Parameter)
                 throw new NotSupportedException(string.Format("The member '{0}' is not supported", m.Member.Name));
 
-            // Translation of the BaseEntity class (or subclass) property to a WorkItem property 
+            // Translation of the BaseWorkItemEntity class (or subclass) property to a WorkItem property 
             // (which is corresponding JsonProperty attribute which will contain the actual name of the field in VSO API)
-
-
-            string fieldName = AutoMapperHelper.GetRemoteFieldName(m);
+            string fieldName = AutoMapperHelper.GetRemoteFieldName(typeof(WorkItem), m);
             _builder.Append(fieldName);
             return m;
         }
