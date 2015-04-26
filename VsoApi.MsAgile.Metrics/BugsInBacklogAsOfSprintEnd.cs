@@ -1,4 +1,4 @@
-﻿namespace VsoApi.MsAgile.Metrics
+namespace VsoApi.MsAgile.Metrics
 {
     using System;
     using System.Collections.Generic;
@@ -7,15 +7,15 @@
     using VsoApi.MsAgile.Entities;
     using VsoApi.MsAgile.Entities.Linq;
 
-    public class BugsPerSprint
+    public class BugsInBacklogAsOfSprintEnd
     {
         private readonly IWorkItemContext _workItemContext;
 
-        public BugsPerSprint(IWorkItemContext workItemContext)
+        public BugsInBacklogAsOfSprintEnd(IWorkItemContext workItemContext)
         {
             _workItemContext = workItemContext;
         }
-        
+
         public int Calculate(string project, string iterationPath)
         {
             if (project == null)
@@ -37,16 +37,12 @@
 
             List<Bug> bugs = _workItemContext.Bugs
                 .Where(b =>
-                    b.CreatedDate > iteration.StartDate && 
                     b.CreatedDate < iteration.FinishDate &&
-                    b.State != "Removed")
+                    b.State == "Active")
+                .AsOf(iteration.FinishDate.DateTime)
                 .ToList();
-
-            // We don't want to count bugs that where resolved with a reason different to being fixed
-            int active = bugs.Count(b => b.State == "Active");
-            int @fixed = bugs.Count(b => b.State != "Active" && b.ResolvedReason == "Fixed");
-
-            return active + @fixed;
+            
+            return bugs.Count;
         }
     }
 }
