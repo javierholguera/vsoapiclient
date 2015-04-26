@@ -97,6 +97,14 @@
             // we should get the previous values, which was null.
             Assert.That(results.Single(r => r.Id == 90).Description, Is.Null);
         }
+
+        [Test]
+        public void Get_All_Bugs_From_Personal()
+        {
+            List<Bug> results = _context.Bugs.Where(u => u.IterationPath == "Personal").ToList();
+            Assert.That(results.Count, Is.EqualTo(2));
+            Assert.IsTrue(results.Any(b => b.AssignedTo == "Javier Holguera <jholguerablanco@hotmail.com>"));
+        }
     }
 
     internal static class Config
