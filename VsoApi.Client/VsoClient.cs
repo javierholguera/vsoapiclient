@@ -35,6 +35,10 @@ namespace VsoApi.Client
 
             PullRequestResources = new PullRequestResource(client);
             RepositoryResources = new RepositoryResource(client);
+
+            // TODO: Exception until Microsoft implements its own REST API endpoint for team capacity
+            var alternativeClient = new RestClient(new Uri("http://xxxx.cloudapp.net/"));
+            CapacityResources = new CapacityResource(alternativeClient);
         }
 
         public IWorkItemResource WorkItemResources { get; private set; }
@@ -42,6 +46,7 @@ namespace VsoApi.Client
         public IWiqlResource WiqlResources { get; private set; }
         public IFieldResource FieldResources { get; private set; }
         public IClassificationNodeResource ClassificationNodeResources { get; private set; }
+        public ICapacityResource CapacityResources { get; private set; }
 
         public IPullRequestResource PullRequestResources { get; private set; }
         public IRepositoryResource RepositoryResources { get; private set; }

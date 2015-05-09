@@ -59,8 +59,10 @@
     <Compile Include="Resources\Git\IRepositoryResource.cs" />
     <Compile Include="Resources\Git\PullRequestResource.cs" />
     <Compile Include="Resources\Git\RepositoryResource.cs" />
+    <Compile Include="Resources\WIT\CapacityResource.cs" />
     <Compile Include="Resources\WIT\ClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\FieldResource.cs" />
+    <Compile Include="Resources\WIT\ICapacityResource.cs" />
     <Compile Include="Resources\WIT\IClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\IFieldResource.cs" />
     <Compile Include="Resources\WIT\IWiqlResource.cs" />

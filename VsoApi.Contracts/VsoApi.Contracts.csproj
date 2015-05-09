@@ -71,6 +71,7 @@
     <Compile Include="Requests\WIT\FieldEntry.cs" />
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
     <Compile Include="Requests\WIT\IterationRequest.cs" />
+    <Compile Include="Requests\WIT\SprintCapacityRequest.cs" />
     <Compile Include="Requests\WIT\StoredWiqlRequest.cs" />
     <Compile Include="Requests\WIT\WiqlRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemCreateRequest.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Responses\NotFoundErrorResponse.cs" />
     <Compile Include="Responses\WIT\ClassificationNodeResponse.cs" />
     <Compile Include="Responses\WIT\IterationNodeResponse.cs" />
+    <Compile Include="Responses\WIT\SprintCapacityResponse.cs" />
     <Compile Include="Responses\WIT\Transition.cs" />
     <Compile Include="Responses\WIT\WiqlQueryResponse.cs" />
     <Compile Include="Responses\WIT\WorkItemField.cs" />
