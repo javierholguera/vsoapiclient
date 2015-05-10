@@ -6,5 +6,6 @@
     public interface ICapacityResource
     {
         SprintCapacityResponse Get(SprintCapacityRequest request);
+        SprintCapacityResponse Post(SetSprintCapacityRequest request);
     }
 }

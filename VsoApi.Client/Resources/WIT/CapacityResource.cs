@@ -20,5 +20,10 @@
         {
             return Call<SprintCapacityRequest, SprintCapacityResponse>(request);
         }
+
+        public SprintCapacityResponse Post(SetSprintCapacityRequest request)
+        {
+            return Call<SetSprintCapacityRequest, SprintCapacityResponse>(request);
+        }
     }
 }

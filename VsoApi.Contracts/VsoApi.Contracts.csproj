@@ -71,6 +71,7 @@
     <Compile Include="Requests\WIT\FieldEntry.cs" />
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
     <Compile Include="Requests\WIT\IterationRequest.cs" />
+    <Compile Include="Requests\WIT\SetSprintCapacityRequest.cs" />
     <Compile Include="Requests\WIT\SprintCapacityRequest.cs" />
     <Compile Include="Requests\WIT\StoredWiqlRequest.cs" />
     <Compile Include="Requests\WIT\WiqlRequest.cs" />

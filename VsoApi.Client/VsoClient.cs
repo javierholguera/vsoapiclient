@@ -37,7 +37,9 @@ namespace VsoApi.Client
             RepositoryResources = new RepositoryResource(client);
 
             // TODO: Exception until Microsoft implements its own REST API endpoint for team capacity
-            var alternativeClient = new RestClient(new Uri("http://xxxx.cloudapp.net/"));
+            var alternativeClient = new RestClient(new Uri("http://vsoclient.azurewebsites.net")) {
+                Authenticator = new HttpBasicAuthenticator(user, password)
+            };
             CapacityResources = new CapacityResource(alternativeClient);
         }
 
