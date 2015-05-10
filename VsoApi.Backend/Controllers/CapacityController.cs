@@ -1,6 +1,5 @@
 ﻿namespace VsoApi.Backend.Controllers
 {
-    using System;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -9,7 +8,7 @@
     using VsoApi.Backend.DataAccess;
     using VsoApi.Backend.DomainModel;
 
-    [RoutePrefix("api/capacity")]
+    [RoutePrefix("_apis/wit/capacity")]
     public class CapacityController : ApiController
     {
         private readonly IVsoApiContext _context;
@@ -42,7 +41,7 @@
         // POST Capacity/SprintName
         [Route("")]
         [HttpPost]
-        public void Post([FromBody] SprintInfo sprintInfo)
+        public HttpResponseMessage Post([FromBody] SprintInfo sprintInfo)
         {
             Sprint storedSprint = _context.Sprints.SingleOrDefault(s => s.Name == sprintInfo.Name);
             if (storedSprint == null) {
@@ -66,10 +65,16 @@
             }
 
             _context.Save();
-        }
-    }
 
-    public class IdentityBasicAuthenticationAttribute : Attribute
-    {
+            SprintInfo result = new SprintInfo {
+                Name = storedSprint.Name,
+                CapacityInfos = storedSprint.MemberCapacities.Select(m => new MemberCapacityInfo {
+                    TeamMemberName = m.TeamMember.Name,
+                    Capacity = m.Capacity
+                })
+            };
+
+            return Request.CreateResponse(HttpStatusCode.Accepted, result);
+        }
     }
 }
