@@ -7,7 +7,7 @@
     using VsoApi.MsAgile.Entities;
     using VsoApi.MsAgile.Entities.Linq;
 
-    public class BugsPerSprint
+    public class BugsPerSprint : IMetric<int>
     {
         private readonly IWorkItemContext _workItemContext;
 

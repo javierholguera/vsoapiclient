@@ -7,7 +7,7 @@ namespace VsoApi.MsAgile.Metrics
     using VsoApi.MsAgile.Entities;
     using VsoApi.MsAgile.Entities.Linq;
 
-    public class BugsInBacklogAsOfSprintEnd
+    public class BugsInBacklogAsOfSprintEnd : IMetric<int>
     {
         private readonly IWorkItemContext _workItemContext;
 

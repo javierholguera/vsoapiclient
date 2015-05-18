@@ -6,12 +6,7 @@ namespace VsoApi.Contracts.Requests.WIT
     public class SprintCapacityRequest : VsoRequest
     {
         public SprintCapacityRequest(string iterationPath)
-            : this(string.Empty, iterationPath)
-        {
-        }
-
-        public SprintCapacityRequest(string project, string iterationPath)
-            : base(project)
+            : base(string.Empty)
         {
             if (iterationPath == null)
                 throw new ArgumentNullException("iterationPath");

@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="BugsInBacklogAsOfSprintEnd.cs" />
     <Compile Include="BugsPerSprint.cs" />
+    <Compile Include="IMetric.cs" />
+    <Compile Include="NormalizedVelocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

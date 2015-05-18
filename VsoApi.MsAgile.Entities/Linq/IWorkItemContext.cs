@@ -6,6 +6,7 @@
         BaseEntityQuery<Bug> Bugs { get; }
         BaseEntityQuery<Task> Tasks { get; }
 
-        BaseEntityQuery<Iteration> Iterations { get; } 
+        BaseEntityQuery<Iteration> Iterations { get; }
+        BaseEntityQuery<Capacity> CapacityInfos { get; } 
     }
 }

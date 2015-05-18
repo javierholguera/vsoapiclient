@@ -16,11 +16,13 @@
             Bugs = new BaseEntityQuery<Bug>(provider);
 
             Iterations = new BaseEntityQuery<Iteration>(new IterationProvider(client));
+            CapacityInfos = new BaseEntityQuery<Capacity>(new CapacityProvider(client));
         }
 
         public BaseEntityQuery<UserStory> UserStories { get; private set; }
         public BaseEntityQuery<Bug> Bugs { get; private set; }
         public BaseEntityQuery<Task> Tasks { get; private set; }
-        public BaseEntityQuery<Iteration> Iterations { get; private set; } 
+        public BaseEntityQuery<Iteration> Iterations { get; private set; }
+        public BaseEntityQuery<Capacity> CapacityInfos { get; private set; }
     }
 }
