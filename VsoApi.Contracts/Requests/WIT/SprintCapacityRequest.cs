@@ -2,6 +2,7 @@ namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
     using RestSharp;
+    using RestSharp.Contrib;
 
     public class SprintCapacityRequest : VsoRequest
     {

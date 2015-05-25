@@ -10,11 +10,17 @@ namespace VsoApi.Client
     {
         public VsoClient() : this(
             new Uri("https://javierholguera.visualstudio.com/defaultCollection"),
+            "javierh", "1Vso#client1",
             "javierh", "1Vso#client1")
         {
         }
 
         public VsoClient(Uri url, string user, string password)
+            : this(url, user, password, user, password)
+        {
+        }
+
+        public VsoClient(Uri url, string user, string password, string capacityUser, string capacityPassword)
         {
             if (url == null)
                 throw new ArgumentNullException("url");
@@ -38,7 +44,7 @@ namespace VsoApi.Client
 
             // TODO: Exception until Microsoft implements its own REST API endpoint for team capacity
             var alternativeClient = new RestClient(new Uri("http://vsoclient.azurewebsites.net")) {
-                Authenticator = new HttpBasicAuthenticator(user, password)
+                Authenticator = new HttpBasicAuthenticator(capacityUser, capacityPassword)
             };
             CapacityResources = new CapacityResource(alternativeClient);
         }

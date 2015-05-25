@@ -12,6 +12,7 @@
 
         public int SprintId { get; set; }
         public string Name { get; set; }
+        public int SupportDays { get; set; }
 
         public virtual ICollection<MemberCapacity> MemberCapacities { get; set; } 
     }

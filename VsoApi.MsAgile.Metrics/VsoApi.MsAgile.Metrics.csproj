@@ -42,8 +42,10 @@
     <Compile Include="BugsInBacklogAsOfSprintEnd.cs" />
     <Compile Include="BugsPerSprint.cs" />
     <Compile Include="IMetric.cs" />
+    <Compile Include="IMetricResult.cs" />
     <Compile Include="NormalizedVelocity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilizationMetric.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IQToolkit\IQToolkit.csproj">

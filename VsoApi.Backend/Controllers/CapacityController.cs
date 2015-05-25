@@ -29,6 +29,7 @@
 
             SprintInfo info = new SprintInfo {
                 Name = sprint.Name,
+                SupportDays = sprint.SupportDays,
                 CapacityInfos = sprint.MemberCapacities.Select(m => new MemberCapacityInfo {
                     TeamMemberName = m.TeamMember.Name,
                     Capacity = m.Capacity

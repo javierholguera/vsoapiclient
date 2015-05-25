@@ -7,16 +7,26 @@ namespace VsoApi.MsAgile.Metrics
     using VsoApi.MsAgile.Entities;
     using VsoApi.MsAgile.Entities.Linq;
 
-    public class BugsInBacklogAsOfSprintEnd : IMetric<int>
+    public class BugsInBacklogAsOfSprintEndResult : IMetricResult<int>
+    {
+        public BugsInBacklogAsOfSprintEndResult(int value)
+        {
+            Value = value;
+        }
+
+        public int Value { get; private set; }
+    }
+
+    public class BugsInBacklogAsOfSprintEndMetric : IMetric<BugsInBacklogAsOfSprintEndResult, int>
     {
         private readonly IWorkItemContext _workItemContext;
 
-        public BugsInBacklogAsOfSprintEnd(IWorkItemContext workItemContext)
+        public BugsInBacklogAsOfSprintEndMetric(IWorkItemContext workItemContext)
         {
             _workItemContext = workItemContext;
         }
 
-        public int Calculate(string project, string iterationPath)
+        public BugsInBacklogAsOfSprintEndResult Calculate(string project, string iterationPath)
         {
             if (project == null)
                 throw new ArgumentNullException("project");
@@ -42,7 +52,7 @@ namespace VsoApi.MsAgile.Metrics
                 .AsOf(iteration.FinishDate.DateTime)
                 .ToList();
             
-            return bugs.Count;
+            return new BugsInBacklogAsOfSprintEndResult(bugs.Count);
         }
     }
 }

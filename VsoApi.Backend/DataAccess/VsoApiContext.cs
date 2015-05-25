@@ -2,8 +2,10 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Migrations;
     using System.Data.Entity.ModelConfiguration;
     using VsoApi.Backend.DomainModel;
+    using VsoApi.Backend.Migrations;
 
     public interface IVsoApiContext
     {
@@ -16,6 +18,16 @@
 
     public class VsoApiContext : DbContext, IVsoApiContext
     {
+        public VsoApiContext()
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VsoApiContext, Configuration>());
+        }
+
+        public VsoApiContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<VsoApiContext, Configuration>()); 
+        }
+
         public IDbSet<Sprint> Sprints { get; set; }
         public IDbSet<TeamMember> TeamMembers { get; set; }
         public IDbSet<MemberCapacity> MemberCapacities { get; set; }

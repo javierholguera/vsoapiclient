@@ -5,6 +5,7 @@
     public class SprintCapacityResponse
     {
         public string Name { get; set; }
+        public int SupportDays { get; set; }
         public IEnumerable<CapacityInfo> CapacityInfos { get; set; }
     }
 

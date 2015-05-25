@@ -38,7 +38,6 @@
         public DateTime? RevisedDate { get; private set; }
         public string State { get; private set; }
         public IEnumerable<string> Tags { get; set; }
-        public string TeamProject { get; private set; }
         public string Title { get; private set; }
         public string Watermark { get; private set; }
         public abstract WorkItemTypes WorkItemType { get; }

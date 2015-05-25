@@ -7,16 +7,30 @@
     using VsoApi.MsAgile.Entities;
     using VsoApi.MsAgile.Entities.Linq;
 
-    public class BugsPerSprint : IMetric<int>
+    public class BugsPerSprintResult : IMetricResult<int>
+    {
+        public BugsPerSprintResult(int active, int @fixed)
+        {
+            Active = active;
+            Fixed = @fixed;
+        }
+
+        public int Active { get; set; }
+        public int Fixed { get; set; }
+
+        public int Value { get { return Active + Fixed; }}
+    }
+
+    public class BugsPerSprintMetric : IMetric<BugsPerSprintResult, int>
     {
         private readonly IWorkItemContext _workItemContext;
 
-        public BugsPerSprint(IWorkItemContext workItemContext)
+        public BugsPerSprintMetric(IWorkItemContext workItemContext)
         {
             _workItemContext = workItemContext;
         }
-        
-        public int Calculate(string project, string iterationPath)
+
+        public BugsPerSprintResult Calculate(string project, string iterationPath)
         {
             if (project == null)
                 throw new ArgumentNullException("project");
@@ -46,7 +60,7 @@
             int active = bugs.Count(b => b.State == "Active");
             int @fixed = bugs.Count(b => b.State != "Active" && b.ResolvedReason == "Fixed");
 
-            return active + @fixed;
+            return new BugsPerSprintResult(active, @fixed);
         }
     }
 }

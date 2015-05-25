@@ -9,7 +9,12 @@ namespace VsoApi.MsAgile.Entities.Mappings
     {
         internal static void Configure()
         {
+            Mapper.CreateMap<WorkItem, BaseEntity>()
+                .ForMember(entity => entity.Id, option => option.MapFrom(workitem => workitem.Id))
+                .ForMember(entity => entity.Project, option => option.MapFrom(workitem => workitem.Fields.SystemTeamProject));
+
             Mapper.CreateMap<WorkItem, BaseWorkItemEntity>()
+                .IncludeBase<WorkItem, BaseEntity>() // reuse mapping for base class
                 .ForMember(entity => entity.ActivatedBy, option => option.MapFrom(workitem => workitem.Fields.VstsActivatedBy))
                 .ForMember(entity => entity.ActivatedDate, option => option.MapFrom(workitem => workitem.Fields.VstsActivatedDate))
                 .ForMember(entity => entity.AreaId, option => option.MapFrom(workitem => workitem.Fields.SystemAreaId))
@@ -31,7 +36,6 @@ namespace VsoApi.MsAgile.Entities.Mappings
                 .ForMember(entity => entity.ExternalLinkCount,
                     option => option.MapFrom(workitem => workitem.Fields.SystemExternalLinkCount))
                 .ForMember(entity => entity.History, option => option.MapFrom(workitem => workitem.Fields.SystemHistory))
-                .ForMember(entity => entity.Id, option => option.MapFrom(workitem => workitem.Id))
                 .ForMember(entity => entity.IntegrationBuild,
                     option => option.MapFrom(workitem => workitem.Fields.VstsIntegrationBuild))
                 .ForMember(entity => entity.IterationId, option => option.MapFrom(workitem => workitem.Fields.SystemIterationId))
@@ -47,7 +51,6 @@ namespace VsoApi.MsAgile.Entities.Mappings
                 .ForMember(entity => entity.State, option => option.MapFrom(workitem => workitem.Fields.SystemState))
                 .ForMember(entity => entity.StateChangeDate,
                     option => option.MapFrom(workitem => workitem.Fields.VstsStateChangeDate))
-                .ForMember(entity => entity.TeamProject, option => option.MapFrom(workitem => workitem.Fields.SystemTeamProject))
                 .ForMember(entity => entity.Title, option => option.MapFrom(workitem => workitem.Fields.SystemTitle))
                 .ForMember(entity => entity.Watermark, option => option.MapFrom(workitem => workitem.Fields.SystemWatermark))
                 .AfterMap((workItem, entity) => entity.Tags = workItem.Fields.SystemTags != null

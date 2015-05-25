@@ -5,6 +5,7 @@
     public class Capacity : BaseEntity
     {
         public string IterationName { get; set; }
+        public int SupportDays { get; set; }
         public IEnumerable<CapacityEntry> Entries { get; set; }
     }
 

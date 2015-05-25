@@ -1,7 +1,7 @@
 namespace VsoApi.MsAgile.Metrics
 {
-    public interface IMetric<out T>
+    public interface IMetric<out TResult, out TValue> where TResult : IMetricResult<TValue>
     {
-        T Calculate(string project, string iterationPath);
+        TResult Calculate(string project, string iterationPath);
     }
 }
