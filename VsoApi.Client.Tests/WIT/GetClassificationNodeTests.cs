@@ -20,7 +20,7 @@
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
             Assert.AreEqual(ClassificationNodeType.Iteration, result.StructureType);
-            Assert.AreEqual(null, result.Children);
+            Assert.AreEqual(0, result.Children.Count());
             Assert.IsTrue(result.Url != null);
         }
 
@@ -44,7 +44,7 @@
                 Assert.IsFalse(iteration.HasChildren);
                 Assert.AreEqual("Iteration " + (i + 1), iteration.Name);
                 Assert.AreEqual(ClassificationNodeType.Iteration, iteration.StructureType);
-                Assert.AreEqual(null, iteration.Children);
+                Assert.AreEqual(0, iteration.Children.Count());
                 Assert.IsTrue(iteration.Url != null);
             }
         }
@@ -59,7 +59,7 @@
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
             Assert.AreEqual(ClassificationNodeType.Area, result.StructureType);
-            Assert.AreEqual(null, result.Children);
+            Assert.AreEqual(0, result.Children.Count());
             Assert.IsTrue(result.Url != null);
         }
 
@@ -81,14 +81,14 @@
             var firstSubarea = children.Single(a => a.Name == "TopReformas");
             Assert.IsFalse(firstSubarea.HasChildren);
             Assert.AreEqual(ClassificationNodeType.Area, firstSubarea.StructureType);
-            Assert.AreEqual(null, firstSubarea.Children);
+            Assert.AreEqual(0, firstSubarea.Children.Count());
             Assert.IsTrue(firstSubarea.Url != null);
 
             var secondSubarea = children.Single(a => a.Name == "VsoClient");
             Assert.IsFalse(secondSubarea.HasChildren);
             Assert.AreEqual("VsoClient", secondSubarea.Name);
             Assert.AreEqual(ClassificationNodeType.Area, secondSubarea.StructureType);
-            Assert.AreEqual(null, secondSubarea.Children);
+            Assert.AreEqual(0, secondSubarea.Children.Count());
             Assert.IsTrue(secondSubarea.Url != null);
         }
 
@@ -102,7 +102,7 @@
             Assert.IsFalse(result.HasChildren);
             Assert.AreEqual("Iteration 1", result.Name);
             Assert.AreEqual(ClassificationNodeType.Iteration, result.StructureType);
-            Assert.AreEqual(null, result.Children);
+            Assert.AreEqual(0, result.Children.Count());
             Assert.IsTrue(result.Url != null);
             Assert.IsNotNull(result.Attributes);
             Assert.AreEqual(

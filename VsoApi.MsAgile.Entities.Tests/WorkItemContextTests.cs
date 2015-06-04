@@ -64,7 +64,7 @@
         {
             List<Task> results = _context.Tasks
                 .Where(u => u.IterationPath == "Personal")
-                .AsOf(new DateTime(2015, 04, 20, 23, 14, 00))
+                .AsOf(new DateTime(2015, 04, 25, 23, 14, 00))
                 .ToList();
             Assert.That(results.Count, Is.EqualTo(26));
             Assert.That(
@@ -88,7 +88,7 @@
             Assert.That(results.Count, Is.EqualTo(24));
             Assert.That(
                 results.Count(t => t.AssignedTo == "Javier Holguera <jholguerablanco@hotmail.com>"),
-                Is.EqualTo(3));
+                Is.EqualTo(1));
             Assert.That(
                 results.Count(t => t.State == "Closed"),
                 Is.EqualTo(4));
