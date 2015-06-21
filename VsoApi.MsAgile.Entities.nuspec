@@ -15,4 +15,14 @@
       <dependency id="AutoMapper" version="3.3.1" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="IQToolkit\bin\release\IQToolkit.pdb" target="lib\"/>
+    <file src="IQToolkit\bin\release\IQToolkit.dll" target="lib\"/>
+    <file src="VsoApi.Client\bin\release\VsoApi.Client.pdb" target="lib\"/>
+    <file src="VsoApi.Client\bin\release\VsoApi.Client.dll" target="lib\"/>
+    <file src="VsoApi.Contracts\bin\release\VsoApi.Contracts.pdb" target="lib\"/>
+    <file src="VsoApi.Contracts\bin\release\VsoApi.Contracts.dll" target="lib\"/>
+    <file src="VsoApi.MsAgile.Entities\bin\release\VsoApi.MsAgile.Entities.pdb" target="lib\"/>
+    <file src="VsoApi.MsAgile.Entities\bin\release\VsoApi.MsAgile.Entities.dll" target="lib\"/>
+  </files>
 </package>
