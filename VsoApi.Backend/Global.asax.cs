@@ -9,8 +9,7 @@
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            GlobalConfiguration.Configuration.EnsureInitialized();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
 }

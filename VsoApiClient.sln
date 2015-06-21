@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{77413B1D-7F1E-4A8F-A3DC-59A2CE5A1E20}"
 	ProjectSection(SolutionItems) = preProject
 		CustomDictionary.xml = CustomDictionary.xml
+		VsoApi.MsAgile.Entities.nuspec = VsoApi.MsAgile.Entities.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Client.AcceptanceTests", "VsoApi.Client.AcceptanceTests\VsoApi.Client.AcceptanceTests.csproj", "{E9F609FA-D4B1-424C-B7F1-DAF6E6E499F4}"
@@ -30,6 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VsoApi.Backend", "VsoApi.Ba
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{00133F9B-B817-4BE2-BDBA-223E9624E434}"
 	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
