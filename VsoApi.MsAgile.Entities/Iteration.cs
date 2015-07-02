@@ -7,8 +7,12 @@ namespace VsoApi.MsAgile.Entities
     public class Iteration : BaseEntity
     {
         public string Name { get; set; }
-        public DateTimeOffset StartDate { get; set; }
-        public DateTimeOffset FinishDate { get; set; }
+
+        public int Depth { get; set; }
+
+        // Root iterations don't have specific dates
+        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? FinishDate { get; set; }
 
         public IEnumerable<Iteration> Children { get; set; } 
     }

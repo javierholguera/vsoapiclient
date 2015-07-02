@@ -49,7 +49,7 @@ namespace VsoApi.MsAgile.Metrics
                 .Where(b =>
                     b.CreatedDate < iteration.FinishDate &&
                     b.State == "Active")
-                .AsOf(iteration.FinishDate.DateTime)
+                .AsOf(iteration.FinishDate.Value.DateTime)
                 .ToList();
             
             return new BugsInBacklogAsOfSprintEndResult(bugs.Count);

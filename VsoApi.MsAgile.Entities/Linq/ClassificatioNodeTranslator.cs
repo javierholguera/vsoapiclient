@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
@@ -32,13 +34,21 @@ namespace VsoApi.MsAgile.Entities.Linq
                 ? paramValues.Single(p => p.Param == "Name").Value
                 : string.Empty;
 
-            return new IterationRequest(project, name);
+            string depth = paramValues.Any(p => p.Param == "Depth")
+                ? paramValues.Single(p => p.Param == "Depth").Value
+                : "1"; // default depth
+
+            return new IterationRequest(project, name, int.Parse(depth, NumberStyles.Number, CultureInfo.InvariantCulture));
         }
 
         protected override Expression VisitConstant(ConstantExpression c)
         {
-            if (c.Type == typeof (string)) {
-                _paramValueQueue.Peek().Value = (string)c.Value;
+            if (c.Value is string)
+                _paramValueQueue.Peek().Value = (string) c.Value;
+
+            if (c.Value is IFormattable) {
+                var value = (IFormattable) c.Value;
+                _paramValueQueue.Peek().Value = value.ToString();
             }
 
             return c;
@@ -64,7 +74,7 @@ namespace VsoApi.MsAgile.Entities.Linq
             if (m.Expression == null || m.Expression.NodeType != ExpressionType.Parameter)
                 throw new NotSupportedException(string.Format("The member '{0}' is not supported", m.Member.Name));
 
-            if (m.Member.Name != "Name" && m.Member.Name != "Project")
+            if (m.Member.Name != "Name" && m.Member.Name != "Project" && m.Member.Name != "Depth")
                 throw new NotSupportedException(string.Format("The member '{0}' is not supported. Iterations can be queried only by Name and Project", m.Member.Name));
 
             _paramValueQueue.Push(new ParamValuePair { Param = m.Member.Name });

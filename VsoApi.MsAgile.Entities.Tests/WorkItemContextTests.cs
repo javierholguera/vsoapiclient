@@ -107,10 +107,11 @@
         }
 
         [Test]
-        public void Get_All_Platform_Iterations()
+        public void Get_All_Personal_Iterations_To_Two_Depth()
         {
-            List<Iteration> results = _context.Iterations.Where(u => u.Project == "Personal").ToList();
-            Assert.IsTrue(results.Any());
+            List<Iteration> results = _context.Iterations.Where(u => u.Project == "Personal" && u.Depth == 2).ToList();
+            Assert.That(results.Count, Is.EqualTo(1));
+            Assert.That(results.First().Children, Is.Not.Empty);
         }
 
         [Test]
