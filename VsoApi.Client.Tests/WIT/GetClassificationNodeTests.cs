@@ -14,8 +14,7 @@
         public void GetIterations_NoDepth()
         {
             var client = new VsoClient();
-            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(
-                new ClassificationNodeListRequest("Personal", ClassificationNodeType.Iteration));
+            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(new IterationRequest("Personal"));
 
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
@@ -28,8 +27,7 @@
         public void GetIterations_WithDepth()
         {
             var client = new VsoClient();
-            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(
-                new ClassificationNodeListRequest("Personal", ClassificationNodeType.Iteration, 2));
+            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(new IterationRequest("Personal", 2));
 
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
@@ -53,8 +51,7 @@
         public void GetAreas_NoDepth()
         {
             var client = new VsoClient();
-            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(
-                new ClassificationNodeListRequest("Personal", ClassificationNodeType.Area));
+            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(new AreaRequest("Personal"));
 
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
@@ -67,8 +64,7 @@
         public void GetAreas_WithDepth()
         {
             var client = new VsoClient();
-            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(
-                new ClassificationNodeListRequest("Personal", ClassificationNodeType.Area, 2));
+            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(new AreaRequest("Personal", 2));
 
             Assert.IsTrue(result.HasChildren);
             Assert.AreEqual("Personal", result.Name);
@@ -96,8 +92,7 @@
         public void GetSpecificIteration()
         {
             var client = new VsoClient();
-            IterationNodeResponse result = client.ClassificationNodeResources.Get(
-                new IterationRequest("Personal", "Iteration 1"));
+            ClassificationNodeResponse result = client.ClassificationNodeResources.Get(new IterationRequest("Personal", "Iteration 1"));
 
             Assert.IsFalse(result.HasChildren);
             Assert.AreEqual("Iteration 1", result.Name);
