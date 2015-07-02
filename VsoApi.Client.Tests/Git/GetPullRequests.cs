@@ -11,7 +11,7 @@ namespace VsoApi.Client.Tests.Git
     [TestClass]
     public class GetPullRequests
     {
-        //[Ignore]
+        [Ignore]
         [TestMethod]
         public void GetListOfPullRequests()
         {
