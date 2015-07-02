@@ -4,15 +4,15 @@
     using System.Globalization;
     using RestSharp;
 
-    public class ClassificationNodeListRequest : VsoRequest
+    public abstract class ClassificationNodeListRequest : VsoRequest
     {
-        public ClassificationNodeListRequest(string project, ClassificationNodeType nodeType)
+        protected ClassificationNodeListRequest(string project, ClassificationNodeType nodeType)
             : this(project, nodeType, string.Empty, 1) { }
 
-        public ClassificationNodeListRequest(string project, ClassificationNodeType nodeType, int depth)
+        protected ClassificationNodeListRequest(string project, ClassificationNodeType nodeType, int depth)
             : this(project, nodeType, string.Empty, depth) { }
 
-        public ClassificationNodeListRequest(
+        protected ClassificationNodeListRequest(
             string project, ClassificationNodeType nodeType, string nodePath, int depth) : base(project)
         {
             if (string.IsNullOrEmpty(project))

@@ -42,11 +42,11 @@ namespace VsoApi.MsAgile.Entities.Linq
             IterationRequest request = Translate(expression);
 
             // 3. Get results for the query
-            IterationNodeResponse iterationInformation = _client.ClassificationNodeResources.Get(request);
+            ClassificationNodeResponse iterationInformation = _client.ClassificationNodeResources.Get(request);
             
             // 4. Convert the iteration information into a entity reader that can be iterated
             return Activator.CreateInstance(
-                typeof(BaseEntityReader<IterationNodeResponse, Iteration>),
+                typeof(BaseEntityReader<ClassificationNodeResponse, Iteration>),
                 BindingFlags.Instance | BindingFlags.NonPublic,
                 null,
                 new object[] { new [] { iterationInformation } },

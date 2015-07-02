@@ -16,14 +16,14 @@
             get { return new Uri("/_apis/wit/classificationnodes/{nodetype}", UriKind.Relative); }
         }
 
-        public ClassificationNodeResponse Get(ClassificationNodeListRequest request)
+        public ClassificationNodeResponse Get(AreaRequest request)
         {
-            return Call<ClassificationNodeListRequest, ClassificationNodeResponse>(request);
+            return Call<AreaRequest, ClassificationNodeResponse>(request);
         }
 
-        public IterationNodeResponse Get(IterationRequest request)
+        public ClassificationNodeResponse Get(IterationRequest request)
         {
-            return Call<IterationRequest, IterationNodeResponse>(request);
+            return Call<IterationRequest, ClassificationNodeResponse>(request);
         }
     }
 }

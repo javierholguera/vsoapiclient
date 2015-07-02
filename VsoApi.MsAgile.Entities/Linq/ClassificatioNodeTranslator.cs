@@ -24,8 +24,14 @@ namespace VsoApi.MsAgile.Entities.Linq
             Visit(expression);
 
             ParamValuePair[] paramValues = _paramValueQueue.ToArray();
-            string name = paramValues.Single(p => p.Param == "Name").Value;
+
             string project = paramValues.Single(p => p.Param == "Project").Value;
+
+            // Name may or not be there.
+            string name = paramValues.Any(p => p.Param == "Name")
+                ? paramValues.Single(p => p.Param == "Name").Value
+                : string.Empty;
+
             return new IterationRequest(project, name);
         }
 

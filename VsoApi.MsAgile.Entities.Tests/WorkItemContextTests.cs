@@ -107,6 +107,13 @@
         }
 
         [Test]
+        public void Get_All_Platform_Iterations()
+        {
+            List<Iteration> results = _context.Iterations.Where(u => u.Project == "Personal").ToList();
+            Assert.IsTrue(results.Any());
+        }
+
+        [Test]
         public void Get_Iteration_Info()
         {
             List<Iteration> results = _context.Iterations.Where(u => u.Project == "Personal" && u.Name == "Iteration 1").ToList();

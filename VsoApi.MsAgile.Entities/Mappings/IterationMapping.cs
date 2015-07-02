@@ -7,7 +7,7 @@ namespace VsoApi.MsAgile.Entities.Mappings
     {
         internal static void Configure()
         {
-            Mapper.CreateMap<IterationNodeResponse, Iteration>()
+            Mapper.CreateMap<ClassificationNodeResponse, Iteration>()
                 .ForMember(entity => entity.Id, option => option.MapFrom(classificationNode => classificationNode.Id))
                 .ForMember(entity => entity.Name, option => option.MapFrom(classificationNode => classificationNode.Name))
                 .ForMember(entity => entity.StartDate, option => option.MapFrom(classificationNode => classificationNode.Attributes.StartDate))

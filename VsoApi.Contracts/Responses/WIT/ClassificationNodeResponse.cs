@@ -34,5 +34,17 @@
 
         [JsonProperty]
         public Uri Url { get; private set; }
+
+        [JsonProperty]
+        public ClassificationNodeResponseAttribute Attributes { get; private set; }
+    }
+    
+    public class ClassificationNodeResponseAttribute
+    {
+        [JsonProperty]
+        public DateTimeOffset StartDate { get; private set; }
+
+        [JsonProperty]
+        public DateTimeOffset FinishDate { get; private set; }
     }
 }

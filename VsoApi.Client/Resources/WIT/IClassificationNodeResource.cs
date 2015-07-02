@@ -5,7 +5,7 @@
 
     public interface IClassificationNodeResource
     {
-        ClassificationNodeResponse Get(ClassificationNodeListRequest request);
-        IterationNodeResponse Get(IterationRequest request);
+        ClassificationNodeResponse Get(AreaRequest request);
+        ClassificationNodeResponse Get(IterationRequest request);
     }
 }
