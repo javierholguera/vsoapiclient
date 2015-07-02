@@ -6,7 +6,27 @@ namespace VsoApi.MsAgile.Entities
 
     public class Iteration : BaseEntity
     {
+        public Iteration()
+        {
+        }
+
+        public Iteration(uint id)
+        {
+            Id = id;
+        }
+
         public string Name { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                if (Parent == null)
+                    return Name;
+
+                return Parent.FullName + "\\" + Name;
+            }
+        }
 
         public int Depth { get; set; }
 
@@ -14,6 +34,7 @@ namespace VsoApi.MsAgile.Entities
         public DateTimeOffset? StartDate { get; set; }
         public DateTimeOffset? FinishDate { get; set; }
 
+        public Iteration Parent { get; set; }
         public IEnumerable<Iteration> Children { get; set; } 
     }
 }

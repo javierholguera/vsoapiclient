@@ -5,8 +5,8 @@
 
     public abstract class BaseEntity
     {
-        public uint Id { get; private set; }
-        public string Project { get; private set; }
+        public uint Id { get; protected set; }
+        public string Project { get; protected set; }
     }
 
     public abstract class BaseWorkItemEntity : BaseEntity
