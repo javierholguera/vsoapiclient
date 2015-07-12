@@ -34,88 +34,93 @@
         public const string System_Watermark = "System.Watermark";
         public const string System_WorkItemType = "System.WorkItemType";
 
+        public WorkItemFields()
+        {
+            SystemCreatedDate = DateTime.Now;
+        }
+
         [JsonProperty(PropertyName = System_AreaId)]
-        public int SystemAreaId { get; private set; }
+        public int SystemAreaId { get; set; }
 
         [JsonProperty(PropertyName = System_AreaPath)]
-        public string SystemAreaPath { get; private set; }
+        public string SystemAreaPath { get; set; }
 
         [JsonProperty(PropertyName = System_AssignedTo)]
-        public string SystemAssignedTo { get; private set; }
+        public string SystemAssignedTo { get; set; }
 
         [JsonProperty(PropertyName = System_AttachedFileCount)]
-        public int SystemAttachedFileCount { get; private set; }
+        public int SystemAttachedFileCount { get; set; }
 
         [JsonProperty(PropertyName = System_AuthorizedAs)]
-        public string SystemAuthorizedAs { get; private set; }
+        public string SystemAuthorizedAs { get; set; }
 
         [JsonProperty(PropertyName = System_AuthorizedDate)]
-        public DateTime? SystemAuthorizedDate { get; private set; }
+        public DateTime? SystemAuthorizedDate { get; set; }
 
         [JsonProperty(PropertyName = System_BISLinks)]
-        public string SystemBisLinks { get; private set; }
+        public string SystemBisLinks { get; set; }
 
         [JsonProperty(PropertyName = System_ChangedBy)]
-        public string SystemChangedBy { get; private set; }
+        public string SystemChangedBy { get; set; }
 
         [JsonProperty(PropertyName = System_ChangedDate)]
-        public DateTime? SystemChangedDate { get; private set; }
+        public DateTime? SystemChangedDate { get; set; }
 
         [JsonProperty(PropertyName = System_CreatedBy)]
-        public string SystemCreatedBy { get; private set; }
+        public string SystemCreatedBy { get; set; }
 
         [JsonProperty(PropertyName = System_CreatedDate)]
-        public DateTime SystemCreatedDate { get; private set; }
+        public DateTime SystemCreatedDate { get; set; }
 
         [JsonProperty(PropertyName = System_Description)]
-        public string SystemDescription { get; private set; }
+        public string SystemDescription { get; set; }
 
         [JsonProperty(PropertyName = System_ExternalLinkCount)]
-        public int SystemExternalLinkCount { get; private set; }
+        public int SystemExternalLinkCount { get; set; }
 
         [JsonProperty(PropertyName = System_History)]
-        public string SystemHistory { get; private set; }
+        public string SystemHistory { get; set; }
 
         [JsonProperty(PropertyName = System_Id)]
-        public string SystemId { get; private set; }
+        public string SystemId { get; set; }
 
         [JsonProperty(PropertyName = System_IterationId)]
-        public string SystemIterationId { get; private set; }
+        public string SystemIterationId { get; set; }
 
         [JsonProperty(PropertyName = System_IterationPath)]
-        public string SystemIterationPath { get; private set; }
+        public string SystemIterationPath { get; set; }
 
         [JsonProperty(PropertyName = System_NodeName)]
-        public string SystemNodeName { get; private set; }
+        public string SystemNodeName { get; set; }
 
         [JsonProperty(PropertyName = System_Reason)]
-        public string SystemReason { get; private set; }
+        public string SystemReason { get; set; }
 
         [JsonProperty(PropertyName = System_RelatedLinkCount)]
-        public int SystemRelatedLinkCount { get; private set; }
+        public int SystemRelatedLinkCount { get; set; }
 
         [JsonProperty(PropertyName = System_Rev)]
-        public string SystemRev { get; private set; }
+        public string SystemRev { get; set; }
 
         [JsonProperty(PropertyName = System_RevisedDate)]
-        public DateTime? SystemRevisedDate { get; private set; }
+        public DateTime? SystemRevisedDate { get; set; }
 
         [JsonProperty(PropertyName = System_State)]
-        public string SystemState { get; private set; }
+        public string SystemState { get; set; }
 
         [JsonProperty(PropertyName = System_Tags)]
-        public string SystemTags { get; private set; }
+        public string SystemTags { get; set; }
 
         [JsonProperty(PropertyName = System_TeamProject)]
-        public string SystemTeamProject { get; private set; }
+        public string SystemTeamProject { get; set; }
 
         [JsonProperty(PropertyName = System_Title)]
-        public string SystemTitle { get; private set; }
+        public string SystemTitle { get; set; }
 
         [JsonProperty(PropertyName = System_Watermark)]
-        public string SystemWatermark { get; private set; }
+        public string SystemWatermark { get; set; }
 
         [JsonProperty(PropertyName = System_WorkItemType)]
-        public string SystemWorkItemType { get; private set; }
+        public string SystemWorkItemType { get; set; }
     }
 }

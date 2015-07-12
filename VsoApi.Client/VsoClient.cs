@@ -4,6 +4,7 @@ namespace VsoApi.Client
     using System;
     using RestSharp;
     using VsoApi.Client.Resources.Git;
+    using VsoApi.Client.Resources.Teams;
     using VsoApi.Client.Resources.WIT;
 
     public class VsoClient
@@ -42,6 +43,9 @@ namespace VsoApi.Client
             PullRequestResources = new PullRequestResource(client);
             RepositoryResources = new RepositoryResource(client);
 
+            TeamResources = new TeamResource(client);
+            MemberResources = new MemberResource(client);
+
             // TODO: Exception until Microsoft implements its own REST API endpoint for team capacity
             var alternativeClient = new RestClient(new Uri("http://vsoclient.azurewebsites.net")) {
                 Authenticator = new HttpBasicAuthenticator(capacityUser, capacityPassword)
@@ -58,5 +62,8 @@ namespace VsoApi.Client
 
         public IPullRequestResource PullRequestResources { get; private set; }
         public IRepositoryResource RepositoryResources { get; private set; }
+
+        public ITeamResource TeamResources { get; private set; }
+        public IMemberResource MemberResources { get; private set; }
     }
 }

@@ -14,24 +14,24 @@
         public const string Microsoft_Vsts_Common_StateChangeDate = "Microsoft.VSTS.Common.StateChangeDate";
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Build_IntegrationBuild)]
-        public string VstsIntegrationBuild { get; private set; }
+        public string VstsIntegrationBuild { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_ActivatedBy)]
-        public string VstsActivatedBy { get; private set; }
+        public string VstsActivatedBy { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_ActivatedDate)]
-        public DateTime? VstsActivatedDate { get; private set; }
+        public DateTime? VstsActivatedDate { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_ClosedBy)]
-        public string VstsClosedBy { get; private set; }
+        public string VstsClosedBy { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_ClosedDate)]
-        public DateTime? VstsClosedDate { get; private set; }
+        public DateTime? VstsClosedDate { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_StackRank)]
-        public string VstsStackRank { get; private set; }
+        public string VstsStackRank { get; set; }
 
         [JsonProperty(PropertyName = Microsoft_Vsts_Common_StateChangeDate)]
-        public DateTime VstsStateChangeDate { get; private set; }
+        public DateTime? VstsStateChangeDate { get; set; }
     }
 }

@@ -62,6 +62,10 @@
     <Compile Include="Resources\Git\IRepositoryResource.cs" />
     <Compile Include="Resources\Git\PullRequestResource.cs" />
     <Compile Include="Resources\Git\RepositoryResource.cs" />
+    <Compile Include="Resources\Teams\IMemberResource.cs" />
+    <Compile Include="Resources\Teams\ITeamResource.cs" />
+    <Compile Include="Resources\Teams\MemberResource.cs" />
+    <Compile Include="Resources\Teams\TeamResource.cs" />
     <Compile Include="Resources\WIT\CapacityResource.cs" />
     <Compile Include="Resources\WIT\ClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\FieldResource.cs" />

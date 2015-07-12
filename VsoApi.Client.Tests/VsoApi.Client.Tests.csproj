@@ -60,6 +60,8 @@
     <Compile Include="Git\GetRepositories.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Team\GetMembers.cs" />
+    <Compile Include="Team\GetTeams.cs" />
     <Compile Include="WIT\CreateWorkItemTests.cs" />
     <Compile Include="WIT\GetClassificationNodeTests.cs" />
     <Compile Include="WIT\GetFieldsTests.cs" />

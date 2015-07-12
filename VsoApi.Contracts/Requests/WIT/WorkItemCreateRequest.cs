@@ -3,13 +3,16 @@ namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Reflection;
     using Newtonsoft.Json;
     using RestSharp;
+    using VsoApi.Contracts.Models;
 
     public class WorkItemCreateRequest : VsoRequest
     {
-        public WorkItemCreateRequest(string project, string workItemTypeName, IEnumerable<FieldEntry> fieldEntries) : base(project)
+        public WorkItemCreateRequest(string project, string workItemTypeName, IEnumerable<FieldEntry> fieldEntries)
+            : base(project)
         {
             if (workItemTypeName == null)
                 throw new ArgumentNullException("workItemTypeName");
@@ -21,6 +24,50 @@ namespace VsoApi.Contracts.Requests.WIT
 
             WorkItemTypeName = workItemTypeName;
             FieldEntries = fieldEntries;
+        }
+
+        /// <summary>
+        /// Initializes a workitem create request from workitem instance that contains all
+        /// the data to be sent to the server.
+        /// </summary>
+        /// <param name="project">Project.</param>
+        /// <param name="workItem">Instance that contains all the necessary info.</param>
+        public WorkItemCreateRequest(string project, WorkItem workItem) : this(project, workItem, Enumerable.Empty<FieldEntry>())
+        {
+            if (workItem == null)
+                throw new ArgumentNullException("workItem");
+            if (workItem.Fields == null)
+                throw new ArgumentException("A workitem without fields cannot be created");
+            if (string.IsNullOrWhiteSpace(workItem.Fields.SystemWorkItemType))
+                throw new ArgumentException("The workItem has to define its type before been created (field SystemWorkItemType)");
+
+            WorkItemTypeName = workItem.Fields.SystemWorkItemType;
+            FieldEntries = workItem.Fields
+                .GetType()
+                .GetProperties()
+                .Select(prop => GetFieldEntry(prop, workItem))
+                .Where(field => field != null)
+                .ToList();
+        }
+
+        public WorkItemCreateRequest(string project, WorkItem workItem, IEnumerable<FieldEntry> relations)
+            : base(project)
+        {
+            if (workItem == null)
+                throw new ArgumentNullException("workItem");
+            if (workItem.Fields == null)
+                throw new ArgumentException("A workitem without fields cannot be created");
+            if (string.IsNullOrWhiteSpace(workItem.Fields.SystemWorkItemType))
+                throw new ArgumentException("The workItem has to define its type before been created (field SystemWorkItemType)");
+
+            WorkItemTypeName = workItem.Fields.SystemWorkItemType;
+            FieldEntries = workItem.Fields
+                .GetType()
+                .GetProperties()
+                .Select(prop => GetFieldEntry(prop, workItem))
+                .Where(field => field != null)
+                .Concat(relations)
+                .ToList();
         }
 
         private string WorkItemTypeName { get; set; }
@@ -43,6 +90,33 @@ namespace VsoApi.Contracts.Requests.WIT
             // http://stackoverflow.com/a/9436436/3086378
             restRequest.AddParameter(
                 "application/json-patch+json", JsonConvert.SerializeObject(FieldEntries), ParameterType.RequestBody);
+        }
+
+        private static FieldEntry GetFieldEntry(PropertyInfo propertyInfo, WorkItem workItem)
+        {
+            var attr = (JsonPropertyAttribute)propertyInfo
+                .GetCustomAttributes(typeof(JsonPropertyAttribute), true)
+                .FirstOrDefault();
+            if (attr == null)
+                return null;
+
+            object value = propertyInfo.GetValue(workItem.Fields);
+            if (value == null)
+                return null;
+
+            string formattedValue;
+            if (value is string)
+                formattedValue = (string)value;
+            else if (value is IFormattable)
+                formattedValue = value.ToString();
+            else
+                return null;
+
+            return new FieldEntry {
+                Op = "add",
+                Path = "/fields/" + attr.PropertyName,
+                Value = formattedValue
+            };
         }
     }
 }

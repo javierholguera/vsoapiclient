@@ -6,12 +6,12 @@
     public class WorkItemRelation
     {
         [JsonProperty]
-        public string Rel { get; private set; }
+        public string Rel { get; set; }
 
         [JsonProperty]
-        public Uri Url { get; private set; }
+        public Uri Url { get; set; }
 
         [JsonProperty]
-        public WorkItemRelationAttribute Attributes { get; private set; }
+        public WorkItemRelationAttribute Attributes { get; set; }
     }
 }

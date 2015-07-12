@@ -11,7 +11,9 @@ namespace VsoApi.Contracts.Models
     {
         public WorkItem()
         {
+            Fields = new WorkItemFields();
             Relations = new Collection<WorkItemRelation>();
+            Links = new Links();
         }
 
         [JsonProperty]
