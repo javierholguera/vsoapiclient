@@ -72,7 +72,7 @@
     <Compile Include="Requests\WIT\AreaRequest.cs" />
     <Compile Include="Requests\WIT\ClassificationNodeListRequest.cs" />
     <Compile Include="Requests\WIT\ClassificationNodeType.cs" />
-    <Compile Include="Requests\WIT\FieldEntry.cs" />
+    <Compile Include="Requests\WIT\WorkItemFieldEntry.cs" />
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
     <Compile Include="Requests\WIT\IterationListRequest.cs" />
     <Compile Include="Requests\WIT\IterationRequest.cs" />
