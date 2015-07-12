@@ -1,11 +1,9 @@
-﻿using System;
-
 namespace VsoApi.Contracts.Responses.Git
 {
+    using System;
     using Newtonsoft.Json;
-    using VsoApi.Contracts.Models;
 
-    public class Repository : VsoEntity
+    public class Project
     {
         [JsonProperty]
         public Guid Id { get; private set; }
@@ -17,9 +15,6 @@ namespace VsoApi.Contracts.Responses.Git
         public Uri Url { get; private set; }
 
         [JsonProperty]
-        public Project Project { get; private set; }
-
-        [JsonProperty]
-        public Uri RemoteUrl { get; private set; }
+        public string State { get; private set; }
     }
 }

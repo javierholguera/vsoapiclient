@@ -68,6 +68,8 @@
     <Compile Include="Models\VsoEntity.cs" />
     <Compile Include="Requests\EmptyRequest.cs" />
     <Compile Include="Requests\Git\PullRequestListRequest.cs" />
+    <Compile Include="Requests\Team\TeamMembersRequest.cs" />
+    <Compile Include="Requests\Team\TeamListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
     <Compile Include="Requests\WIT\AreaRequest.cs" />
     <Compile Include="Requests\WIT\ClassificationNodeListRequest.cs" />
@@ -87,12 +89,15 @@
     <Compile Include="Requests\WIT\WorkItemTypeRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemUpdateRequest.cs" />
     <Compile Include="Responses\CollectionResponse.cs" />
+    <Compile Include="Responses\Git\Project.cs" />
     <Compile Include="Responses\Git\Repository.cs" />
     <Compile Include="Responses\Git\RepositoryEntry.cs" />
     <Compile Include="Responses\Git\Commit.cs" />
     <Compile Include="Responses\Git\RepositoryResponse.cs" />
     <Compile Include="Responses\Git\User.cs" />
     <Compile Include="Responses\NotFoundErrorResponse.cs" />
+    <Compile Include="Responses\Team\Member.cs" />
+    <Compile Include="Responses\Team\Team.cs" />
     <Compile Include="Responses\WIT\ClassificationNodeResponse.cs" />
     <Compile Include="Responses\WIT\SprintCapacityResponse.cs" />
     <Compile Include="Responses\WIT\Transition.cs" />
