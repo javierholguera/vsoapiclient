@@ -1,4 +1,6 @@
 ﻿
+using VsoApi.Contracts.Models.WorkItemFieldNames;
+
 namespace VsoApi.Contracts.Requests.WIT
 {
     using System;
@@ -98,6 +100,8 @@ namespace VsoApi.Contracts.Requests.WIT
                 .GetCustomAttributes(typeof(JsonPropertyAttribute), true)
                 .FirstOrDefault();
             if (attr == null)
+                return null;
+            if (propertyInfo.Name == "SystemCreatedDate")
                 return null;
 
             object value = propertyInfo.GetValue(workItem.Fields);
