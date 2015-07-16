@@ -43,6 +43,10 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web" />
@@ -84,6 +88,7 @@
     <Compile Include="WIT\GetWorkitemTests.cs" />
     <Compile Include="WIT\GetWorkItemTypeTests.cs" />
     <Compile Include="WIT\UpdateWorkItemTests.cs" />
+    <Compile Include="WIT\WorkItemCreateRequestBuilderTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VsoApi.Client\VsoApi.Client.csproj">

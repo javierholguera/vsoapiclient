@@ -58,6 +58,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ElementIdentity.cs" />
     <Compile Include="Models\Links.cs" />
+    <Compile Include="Models\ReadOnlyAttribute.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Common.System.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Common.Vsts.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Others.cs" />
