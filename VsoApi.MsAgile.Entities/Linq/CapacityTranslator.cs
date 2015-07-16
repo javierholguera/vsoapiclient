@@ -1,10 +1,11 @@
+using VsoApi.Contracts.Requests.Work;
+
 namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using VsoApi.Contracts.Requests.WIT;
     using ExpressionVisitor = IQToolkit.ExpressionVisitor;
 
     public class CapacityTranslator : ExpressionVisitor
@@ -17,15 +18,19 @@ namespace VsoApi.MsAgile.Entities.Linq
 
         private Stack<ParamValuePair> _paramValueQueue;
 
-        public SprintCapacityRequest Translate(Expression expression)
+        public TeamCapacityRequest Translate(Expression expression)
         {
             _paramValueQueue = new Stack<ParamValuePair>();
 
             Visit(expression);
 
             ParamValuePair[] paramValues = _paramValueQueue.ToArray();
-            string iterationName = paramValues.Single(p => p.Param == "IterationName").Value;
-            return new SprintCapacityRequest(iterationName);
+
+            string project = paramValues.Single(p => p.Param == "Project").Value;
+            string teamName = paramValues.Single(p => p.Param == "TeamName").Value;
+            Guid iterationId = Guid.Parse(paramValues.Single(p => p.Param == "IterationId").Value);
+
+            return new TeamCapacityRequest(project, teamName, iterationId);
         }
 
         protected override Expression VisitConstant(ConstantExpression c)
@@ -57,8 +62,9 @@ namespace VsoApi.MsAgile.Entities.Linq
             if (m.Expression == null || m.Expression.NodeType != ExpressionType.Parameter)
                 throw new NotSupportedException(string.Format("The member '{0}' is not supported", m.Member.Name));
 
-            if (m.Member.Name != "IterationName")
-                throw new NotSupportedException(string.Format("The member '{0}' is not supported. Capacity can be queried only by Iteration Name", m.Member.Name));
+            if (m.Member.Name != "Project" || m.Member.Name != "TeamName" || m.Member.Name != "IterationName")
+                throw new NotSupportedException(
+                    string.Format("The member '{0}' is not supported. Capacity can be queried only by Project, TeamName or IterationName", m.Member.Name));
 
             _paramValueQueue.Push(new ParamValuePair { Param = m.Member.Name });
 

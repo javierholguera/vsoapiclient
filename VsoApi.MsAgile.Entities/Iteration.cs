@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace VsoApi.MsAgile.Entities
 {
@@ -12,7 +13,7 @@ namespace VsoApi.MsAgile.Entities
 
         public Iteration(uint id)
         {
-            Id = id;
+            Id = id.ToString(CultureInfo.InvariantCulture);
         }
 
         public string Name { get; set; }

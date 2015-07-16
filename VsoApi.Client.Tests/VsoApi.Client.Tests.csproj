@@ -89,6 +89,8 @@
     <Compile Include="WIT\GetWorkItemTypeTests.cs" />
     <Compile Include="WIT\UpdateWorkItemTests.cs" />
     <Compile Include="WIT\WorkItemCreateRequestBuilderTests.cs" />
+    <Compile Include="Work\GetTeamCapacityTests.cs" />
+    <Compile Include="Work\GetTeamDaysOffTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VsoApi.Client\VsoApi.Client.csproj">

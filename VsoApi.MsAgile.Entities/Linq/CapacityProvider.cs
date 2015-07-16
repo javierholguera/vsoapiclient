@@ -1,3 +1,7 @@
+using VsoApi.Contracts.Requests.Work;
+using VsoApi.Contracts.Responses;
+using VsoApi.Contracts.Responses.Work;
+
 namespace VsoApi.MsAgile.Entities.Linq
 {
     using System;
@@ -39,21 +43,21 @@ namespace VsoApi.MsAgile.Entities.Linq
             expression = PartialEvaluator.Eval(expression);
 
             // 2. Translate the expression tree to classification node request
-            SprintCapacityRequest request = Translate(expression);
+            TeamCapacityRequest request = Translate(expression);
 
             // 3. Get results for the query
-            SprintCapacityResponse capacityInformation = _client.CapacityResources.Get(request);
+            CollectionResponse<TeamMemberCapacity> capacityInformation = _client.CapacityResources.GetAll(request);
             
             // 4. Convert the iteration information into a entity reader that can be iterated
             return Activator.CreateInstance(
-                typeof(BaseEntityReader<SprintCapacityResponse, Capacity>),
+                typeof(BaseEntityReader<CollectionResponse<TeamMemberCapacity>, Capacity>),
                 BindingFlags.Instance | BindingFlags.NonPublic,
                 null,
                 new object[] { new [] { capacityInformation } },
                 null);
         }
 
-        private static SprintCapacityRequest Translate(Expression expression)
+        private static TeamCapacityRequest Translate(Expression expression)
         {
             return new CapacityTranslator().Translate(expression);
         }

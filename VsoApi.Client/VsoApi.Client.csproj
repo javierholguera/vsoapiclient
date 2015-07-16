@@ -67,10 +67,8 @@
     <Compile Include="Resources\Teams\ITeamResource.cs" />
     <Compile Include="Resources\Teams\MemberResource.cs" />
     <Compile Include="Resources\Teams\TeamResource.cs" />
-    <Compile Include="Resources\WIT\CapacityResource.cs" />
     <Compile Include="Resources\WIT\ClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\FieldResource.cs" />
-    <Compile Include="Resources\WIT\ICapacityResource.cs" />
     <Compile Include="Resources\WIT\IClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\IFieldResource.cs" />
     <Compile Include="Resources\WIT\IWiqlResource.cs" />
@@ -79,6 +77,10 @@
     <Compile Include="Resources\WIT\WiqlResource.cs" />
     <Compile Include="Resources\WIT\WorkItemResource.cs" />
     <Compile Include="Resources\WIT\WorkItemTypeResource.cs" />
+    <Compile Include="Resources\Work\CapacityResource.cs" />
+    <Compile Include="Resources\Work\ICapacityResource.cs" />
+    <Compile Include="Resources\Work\ITeamDaysOff.cs" />
+    <Compile Include="Resources\Work\TeamDaysOffResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>
   <ItemGroup>

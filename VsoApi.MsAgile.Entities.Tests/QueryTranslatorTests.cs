@@ -16,7 +16,7 @@ namespace VsoApi.MsAgile.Entities.Tests
             Mapping.Configure();
 
             QueryTranslator translator = new QueryTranslator();
-            Expression<Func<UserStory, bool>> expression = story => story.Id == 1;
+            Expression<Func<UserStory, bool>> expression = story => story.Id == "1";
             
             string result = translator.Translate(expression);
             Assert.That(result, Is.Not.Null);

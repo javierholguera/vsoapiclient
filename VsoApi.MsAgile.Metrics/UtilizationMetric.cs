@@ -75,8 +75,13 @@
             int index = iterationPath.LastIndexOf('\\');
             string sprintName = iterationPath.Substring(index + 1, iterationPath.Length - index - 1);
 
+            Iteration iteration = _workItemContext.Iterations
+                .Where(it => it.Name == sprintName)
+                .ToList()
+                .Single();
+
             Capacity capacityInfo = _workItemContext.CapacityInfos
-                .Where(u => u.IterationName == sprintName)
+                .Where(u => u.IterationId == Guid.Parse(iteration.Id))
                 .ToList()
                 .Single();
 

@@ -29,7 +29,7 @@
                 .Where(u => u.IterationPath == "Personal" && u.StoryPoints == 2m)
                 .ToList();
             Assert.That(results.Count, Is.EqualTo(1));
-            Assert.That(results.Single().Id, Is.EqualTo(121));
+            Assert.That(results.Single().Id, Is.EqualTo("121"));
             Assert.That(results.Single().AssignedTo, Is.EqualTo("Javier Holguera <jholguerablanco@hotmail.com>"));
         }
 
@@ -42,7 +42,7 @@
                 .Where(u => u.IterationPath == iterationPath && u.StoryPoints == 2m)
                 .ToList();
             Assert.That(results.Count, Is.EqualTo(1));
-            Assert.That(results.Single().Id, Is.EqualTo(121));
+            Assert.That(results.Single().Id, Is.EqualTo("121"));
             Assert.That(results.Single().AssignedTo, Is.EqualTo("Javier Holguera <jholguerablanco@hotmail.com>"));
         }
 
@@ -74,7 +74,7 @@
                 results.Count(t => t.State == "Closed"),
                 Is.EqualTo(4));
             Assert.That(
-                results.Single(r => r.Id == 90).Description,
+                results.Single(r => r.Id == "90").Description,
                 Is.EqualTo("Enable style cop in the solution to make code more readable"));
         }
 
@@ -95,7 +95,7 @@
 
             // This description was changed on April, 20th. So if the AsOF operator works,
             // we should get the previous values, which was null.
-            Assert.That(results.Single(r => r.Id == 90).Description, Is.Null);
+            Assert.That(results.Single(r => r.Id == "90").Description, Is.Null);
         }
 
         [Test]
