@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="BaseWorkItemEntity.cs" />
     <Compile Include="Bug.cs" />
-    <Compile Include="Capacity.cs" />
+    <Compile Include="TeamCapacity.cs" />
     <Compile Include="Iteration.cs" />
     <Compile Include="Linq\AutoMapperHelper.cs" />
     <Compile Include="Linq\BaseEntityQuery.cs" />

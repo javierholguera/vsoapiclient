@@ -73,19 +73,14 @@
                 .ToList()
                 .Single();
 
-            Capacity capacityInfo = _workItemContext.CapacityInfos
+            TeamCapacity capacityInfo = _workItemContext.CapacityInfos
                 .Where(u => u.IterationId == Guid.Parse(iteration.Id))
                 .ToList()
                 .Single();
 
             decimal actualHours = capacityInfo.Entries.Sum(e => e.AvailableHours);
-            int supportDays = capacityInfo.SupportDays;
-
-            // The more availability, the smaller the correction factor will be.
-            // Therefore less hours (bigger factor) will "pump up" the velocity once
-            // applied to the real velocity
-            decimal correctionFactor = actualHours / (_maxHours - 4 * supportDays);
-
+            int supportDays = 10 - capacityInfo.DaysOff;
+            
             List<UserStory> userStories = _workItemContext.UserStories
                 .Where(userStory =>
                     userStory.Project == project &&

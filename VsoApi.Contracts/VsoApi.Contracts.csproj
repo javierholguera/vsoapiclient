@@ -69,7 +69,7 @@
     <Compile Include="Models\VsoEntity.cs" />
     <Compile Include="Requests\EmptyRequest.cs" />
     <Compile Include="Requests\Git\PullRequestListRequest.cs" />
-    <Compile Include="Requests\Work\TeamDaysOffRequest.cs" />
+    <Compile Include="Requests\Work\CapacityInfoRequest.cs" />
     <Compile Include="Requests\Work\TeamMemberCapacityRequest.cs" />
     <Compile Include="Requests\Team\TeamMembersRequest.cs" />
     <Compile Include="Requests\Team\TeamListRequest.cs" />

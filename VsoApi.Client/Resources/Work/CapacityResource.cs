@@ -17,9 +17,9 @@ namespace VsoApi.Client.Resources.Work
             get { return new Uri("/{team}/_apis/work/teamsettings/iterations/{iterationid}/capacities", UriKind.Relative); }
         }
 
-        public CollectionResponse<TeamMemberCapacity> GetAll(TeamCapacityRequest request)
+        public CollectionResponse<TeamMemberCapacity> GetAll(CapacityInfoRequest request)
         {
-            return Call<TeamCapacityRequest, CollectionResponse<TeamMemberCapacity>>(request);
+            return Call<CapacityInfoRequest, CollectionResponse<TeamMemberCapacity>>(request);
         }
 
         public TeamMemberCapacity Get(TeamMemberCapacityRequest request)

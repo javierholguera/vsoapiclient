@@ -14,7 +14,7 @@ namespace VsoApi.Client.Tests.Work
         public void GetTeamDaysOff()
         {
             var client = new VsoClient();
-            TeamDaysOffResponse result = client.TeamDaysOffResources.Get(new TeamDaysOffRequest(
+            TeamDaysOffResponse result = client.TeamDaysOffResources.Get(new CapacityInfoRequest(
                 "Personal",
                 "Personal Team",
                 Guid.Parse("cebb79f1-dac5-4d09-9c7f-7e63cd412b6c"))); // corresponds to Iteration 1

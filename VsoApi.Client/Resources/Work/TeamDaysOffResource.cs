@@ -1,6 +1,5 @@
 ﻿using System;
 using RestSharp;
-using VsoApi.Contracts.Requests;
 using VsoApi.Contracts.Requests.Work;
 using VsoApi.Contracts.Responses.Work;
 
@@ -17,9 +16,9 @@ namespace VsoApi.Client.Resources.Work
             get { return new Uri("/{team}/_apis/work/teamsettings/iterations/{iterationid}/teamdaysoff", UriKind.Relative); }
         }
 
-        public TeamDaysOffResponse Get(TeamDaysOffRequest request)
+        public TeamDaysOffResponse Get(CapacityInfoRequest request)
         {
-            return Call<TeamDaysOffRequest, TeamDaysOffResponse>(request);
+            return Call<CapacityInfoRequest, TeamDaysOffResponse>(request);
         }
     }
 }

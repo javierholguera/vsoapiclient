@@ -1,6 +1,4 @@
-using VsoApi.Contracts.Requests.Work;
-using VsoApi.Contracts.Responses;
-using VsoApi.Contracts.Responses.Work;
+
 
 namespace VsoApi.MsAgile.Entities.Linq
 {
@@ -9,8 +7,9 @@ namespace VsoApi.MsAgile.Entities.Linq
     using System.Reflection;
     using IQToolkit;
     using VsoApi.Client;
-    using VsoApi.Contracts.Requests.WIT;
-    using VsoApi.Contracts.Responses.WIT;
+    using VsoApi.Contracts.Requests.Work;
+    using VsoApi.Contracts.Responses;
+    using VsoApi.Contracts.Responses.Work;
 
     public class CapacityProvider : QueryProvider
     {
@@ -43,23 +42,46 @@ namespace VsoApi.MsAgile.Entities.Linq
             expression = PartialEvaluator.Eval(expression);
 
             // 2. Translate the expression tree to classification node request
-            TeamCapacityRequest request = Translate(expression);
+            CapacityInfoRequest request = Translate(expression);
 
             // 3. Get results for the query
             CollectionResponse<TeamMemberCapacity> capacityInformation = _client.CapacityResources.GetAll(request);
-            
+            TeamDaysOffResponse teamDaysOffInformation = _client.TeamDaysOffResources.Get(request);
+            TeamCapacityResult result = new TeamCapacityResult(capacityInformation, teamDaysOffInformation);
+
             // 4. Convert the iteration information into a entity reader that can be iterated
             return Activator.CreateInstance(
-                typeof(BaseEntityReader<CollectionResponse<TeamMemberCapacity>, Capacity>),
+                typeof(BaseEntityReader<TeamCapacityResult, TeamCapacity>),
                 BindingFlags.Instance | BindingFlags.NonPublic,
                 null,
                 new object[] { new [] { capacityInformation } },
                 null);
         }
 
-        private static TeamCapacityRequest Translate(Expression expression)
+        private static CapacityInfoRequest Translate(Expression expression)
         {
             return new CapacityTranslator().Translate(expression);
         }
+    }
+
+    internal class TeamCapacityResult
+    {
+        public TeamCapacityResult()
+        {
+        }
+
+        public TeamCapacityResult(CollectionResponse<TeamMemberCapacity> memberCapacities, TeamDaysOffResponse daysOffInfo)
+        {
+            if (memberCapacities == null)
+                throw new ArgumentNullException("memberCapacities");
+            if (daysOffInfo == null)
+                throw new ArgumentNullException("DaysOffInfo");
+
+            MemberCapacities = memberCapacities;
+            DaysOffInfo = daysOffInfo;
+        }
+
+        public CollectionResponse<TeamMemberCapacity> MemberCapacities { get; private set; }
+        public TeamDaysOffResponse DaysOffInfo { get; private set; }
     }
 }

@@ -80,7 +80,7 @@
                 .ToList()
                 .Single();
 
-            Capacity capacityInfo = _workItemContext.CapacityInfos
+            TeamCapacity capacityInfo = _workItemContext.CapacityInfos
                 .Where(u => u.IterationId == Guid.Parse(iteration.Id))
                 .ToList()
                 .Single();

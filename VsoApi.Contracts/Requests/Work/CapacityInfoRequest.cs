@@ -3,7 +3,7 @@ using RestSharp;
 
 namespace VsoApi.Contracts.Requests.Work
 {
-    public abstract class CapacityInfoRequest : VsoRequest
+    public class CapacityInfoRequest : VsoRequest
     {
         public CapacityInfoRequest(string project, string team, Guid iterationId)
             : base(project)
@@ -35,22 +35,6 @@ namespace VsoApi.Contracts.Requests.Work
         {
             restRequest.AddUrlSegment("team", Team);
             restRequest.AddUrlSegment("iterationid", Iteration.ToString());
-        }
-    }
-
-    public class TeamDaysOffRequest : CapacityInfoRequest
-    {
-        public TeamDaysOffRequest(string project, string team, Guid iterationId)
-            : base(project, team, iterationId)
-        {
-        }
-    }
-
-    public class TeamCapacityRequest : CapacityInfoRequest
-    {
-        public TeamCapacityRequest(string project, string team, Guid iterationId)
-            : base(project, team, iterationId)
-        {
         }
     }
 }

@@ -6,7 +6,7 @@ namespace VsoApi.Client.Resources.Work
 {
     public interface ICapacityResource
     {
-        CollectionResponse<TeamMemberCapacity> GetAll(TeamCapacityRequest request);
+        CollectionResponse<TeamMemberCapacity> GetAll(CapacityInfoRequest request);
         TeamMemberCapacity Get(TeamMemberCapacityRequest request);
     }
 }

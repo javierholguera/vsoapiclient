@@ -18,7 +18,7 @@ namespace VsoApi.MsAgile.Entities.Linq
 
         private Stack<ParamValuePair> _paramValueQueue;
 
-        public TeamCapacityRequest Translate(Expression expression)
+        public CapacityInfoRequest Translate(Expression expression)
         {
             _paramValueQueue = new Stack<ParamValuePair>();
 
@@ -30,7 +30,7 @@ namespace VsoApi.MsAgile.Entities.Linq
             string teamName = paramValues.Single(p => p.Param == "TeamName").Value;
             Guid iterationId = Guid.Parse(paramValues.Single(p => p.Param == "IterationId").Value);
 
-            return new TeamCapacityRequest(project, teamName, iterationId);
+            return new CapacityInfoRequest(project, teamName, iterationId);
         }
 
         protected override Expression VisitConstant(ConstantExpression c)

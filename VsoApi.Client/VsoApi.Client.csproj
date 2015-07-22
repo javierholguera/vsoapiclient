@@ -79,7 +79,7 @@
     <Compile Include="Resources\WIT\WorkItemTypeResource.cs" />
     <Compile Include="Resources\Work\CapacityResource.cs" />
     <Compile Include="Resources\Work\ICapacityResource.cs" />
-    <Compile Include="Resources\Work\ITeamDaysOff.cs" />
+    <Compile Include="Resources\Work\ITeamDaysOffResource.cs" />
     <Compile Include="Resources\Work\TeamDaysOffResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>
