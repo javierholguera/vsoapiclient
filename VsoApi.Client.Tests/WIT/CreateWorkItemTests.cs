@@ -1,64 +1,65 @@
 ﻿
-
 namespace VsoApi.Client.Tests.WIT
 {
     using System.Collections.Generic;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using VsoApi.Client.Builders;
     using VsoApi.Contracts.Models;
     using VsoApi.Contracts.Models.WorkItemFieldNames;
     using VsoApi.Contracts.Requests.WIT;
+    using Xunit;
 
-    [TestClass]
     public class CreateWorkItemTests
     {
-        [TestMethod]
-        public void CreateWorkItemWithMinimumParameters()
+        [Fact]
+        public void CreateTaskWithPlainFieldEntries()
         {
             var client = new VsoClient();
             var request = new WorkItemCreateRequest(
                 "Testing",
                 "Task",
                 new List<FieldEntry> {
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_AreaPath, Value = "Testing" },
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_IterationPath, Value = "Testing" },
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_Title, Value = "Created from API Client" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_AreaPath, Value = "Testing" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_IterationPath, Value = "Testing" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_Title, Value = "Created from API Client" },
                 });
 
             WorkItem result = client.WorkItemResources.Patch(request);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Testing", result.Fields.SystemAreaPath);
-            Assert.AreEqual("Testing", result.Fields.SystemIterationPath);
-            Assert.AreEqual("Created from API Client", result.Fields.SystemTitle);
+            Assert.NotNull(result);
+            Assert.Equal("Testing", result.Fields.SystemAreaPath);
+            Assert.Equal("Testing", result.Fields.SystemIterationPath);
+            Assert.Equal("Created from API Client", result.Fields.SystemTitle);
         }
 
-        [TestMethod]
-        public void CreateBug()
+        [Fact]
+        public void CreateBugWithWorkItem()
         {
             var client = new VsoClient();
 
-            var newBug = new WorkItem();
-            newBug.Fields.SystemAreaId = 124636; // area id for testing
-            newBug.Fields.SystemAreaPath = "Personal\\Testing";
-            newBug.Fields.SystemAssignedTo = "Javier Holguera <jholguerablanco@hotmail.com>";
-            newBug.Fields.SystemDescription = "This is a bug description";
-            newBug.Fields.SystemIterationPath = "Personal\\Iteration 1";
-            newBug.Fields.SystemState = "New";
-            newBug.Fields.SystemTags = "tag1; tag2";
-            newBug.Fields.SystemTeamProject = "Personal";
-            newBug.Fields.SystemTitle = "This is the bug title";
-            newBug.Fields.SystemWorkItemType = "Bug";
-            newBug.Fields.VstsPriority = "1";
-            newBug.Fields.VstsSeverity = "4";
+            var newBug = new WorkItem {
+                Fields = {
+                    SystemAreaId = 124636,
+                    SystemAreaPath = "Personal\\Testing",
+                    SystemAssignedTo = "Javier Holguera <jholguerablanco@hotmail.com>",
+                    SystemDescription = "This is a bug description",
+                    SystemIterationPath = "Personal\\Iteration 1",
+                    SystemState = "New",
+                    SystemTags = "tag1; tag2",
+                    SystemTeamProject = "Personal",
+                    SystemTitle = "This is the bug title",
+                    SystemWorkItemType = "Bug",
+                    VstsPriority = "1",
+                    VstsSeverity = "1 - Critical",
+                    VstsReproSteps = "This is what happened!"
+                }
+            };
 
-            var request = new WorkItemCreateRequest(
-                "Testing",
-                newBug);
+            var request = new WorkItemCreateRequestBuilder(client).Create("Testing", newBug);
 
             WorkItem result = client.WorkItemResources.Patch(request);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Personal\\Testing", result.Fields.SystemAreaPath);
-            Assert.AreEqual("Personal\\Iteration 1", result.Fields.SystemIterationPath);
-            Assert.AreEqual("This is the bug title", result.Fields.SystemTitle);
+            Assert.NotNull(result);
+            Assert.Equal("Personal\\Testing", result.Fields.SystemAreaPath);
+            Assert.Equal("Personal\\Iteration 1", result.Fields.SystemIterationPath);
+            Assert.Equal("This is the bug title", result.Fields.SystemTitle);
         }
     }
 }

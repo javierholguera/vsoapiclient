@@ -20,9 +20,9 @@ namespace VsoApi.Client.Tests.WIT
                 "Testing",
                 "Task",
                 new List<FieldEntry> {
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_AreaPath, Value = "Testing" },
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_IterationPath, Value = "Testing" },
-                    new FieldEntry { Op = "add", Path = "/fields/" + WorkItemFields.System_Title, Value = "Created from API Client" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_AreaPath, Value = "Testing" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_IterationPath, Value = "Testing" },
+                    new FieldEntry { Op = "add", PropertyName = WorkItemFields.System_Title, Value = "Created from API Client" },
                 });
 
             WorkItem result = client.WorkItemResources.Patch(request);
@@ -38,7 +38,7 @@ namespace VsoApi.Client.Tests.WIT
                 new List<FieldEntry> {
                     new FieldEntry {
                         Op = "replace",
-                        Path = "/fields/" + WorkItemFields.System_Title,
+                        PropertyName = WorkItemFields.System_Title,
                         Value = "Updated title!"
                     }
                 });

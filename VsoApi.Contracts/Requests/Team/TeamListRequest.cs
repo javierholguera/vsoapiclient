@@ -3,6 +3,9 @@
     using System;
     using RestSharp;
     
+    /// <summary>
+    /// This is a exception to other requests, the project name is not placed after the collection name
+    /// </summary>
     public class TeamListRequest : VsoRequest
     {
         public TeamListRequest(string project) : base(string.Empty)
@@ -11,8 +14,7 @@
                 throw new ArgumentNullException("project");
             if (string.IsNullOrWhiteSpace(project))
                 throw new ArgumentException("The project cannot be empty");
-
-            // This is a exception to other requests, the project name is not placed after the collection name
+            
             Project = project;
         }
 

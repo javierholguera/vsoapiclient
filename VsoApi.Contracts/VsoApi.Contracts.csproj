@@ -58,6 +58,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ElementIdentity.cs" />
     <Compile Include="Models\Links.cs" />
+    <Compile Include="Models\ReadOnlyAttribute.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Common.System.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Common.Vsts.cs" />
     <Compile Include="Models\WorkItemFieldNames\WorkItemFields.Others.cs" />
@@ -68,6 +69,8 @@
     <Compile Include="Models\VsoEntity.cs" />
     <Compile Include="Requests\EmptyRequest.cs" />
     <Compile Include="Requests\Git\PullRequestListRequest.cs" />
+    <Compile Include="Requests\Work\CapacityInfoRequest.cs" />
+    <Compile Include="Requests\Work\TeamMemberCapacityRequest.cs" />
     <Compile Include="Requests\Team\TeamMembersRequest.cs" />
     <Compile Include="Requests\Team\TeamListRequest.cs" />
     <Compile Include="Requests\VsoRequest.cs" />
@@ -78,8 +81,6 @@
     <Compile Include="Requests\WIT\FieldListRequest.cs" />
     <Compile Include="Requests\WIT\IterationListRequest.cs" />
     <Compile Include="Requests\WIT\IterationRequest.cs" />
-    <Compile Include="Requests\WIT\SetSprintCapacityRequest.cs" />
-    <Compile Include="Requests\WIT\SprintCapacityRequest.cs" />
     <Compile Include="Requests\WIT\StoredWiqlRequest.cs" />
     <Compile Include="Requests\WIT\WiqlRequest.cs" />
     <Compile Include="Requests\WIT\WorkItemCreateRequest.cs" />
@@ -99,13 +100,14 @@
     <Compile Include="Responses\Team\Member.cs" />
     <Compile Include="Responses\Team\Team.cs" />
     <Compile Include="Responses\WIT\ClassificationNodeResponse.cs" />
-    <Compile Include="Responses\WIT\SprintCapacityResponse.cs" />
     <Compile Include="Responses\WIT\Transition.cs" />
     <Compile Include="Responses\WIT\WiqlQueryResponse.cs" />
     <Compile Include="Responses\WIT\WorkItemField.cs" />
     <Compile Include="Responses\WIT\WorkItemFieldInfo.cs" />
     <Compile Include="Responses\WIT\WorkItemType.cs" />
     <Compile Include="Responses\WIT\WorkItemWorkflow.cs" />
+    <Compile Include="Responses\Work\TeamDaysOffResponse.cs" />
+    <Compile Include="Responses\Work\TeamMemberCapacity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

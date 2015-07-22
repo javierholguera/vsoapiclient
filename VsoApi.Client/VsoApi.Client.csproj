@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builders\WorkItemCreateRequestBuilder.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\BaseResource.cs" />
@@ -66,10 +67,8 @@
     <Compile Include="Resources\Teams\ITeamResource.cs" />
     <Compile Include="Resources\Teams\MemberResource.cs" />
     <Compile Include="Resources\Teams\TeamResource.cs" />
-    <Compile Include="Resources\WIT\CapacityResource.cs" />
     <Compile Include="Resources\WIT\ClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\FieldResource.cs" />
-    <Compile Include="Resources\WIT\ICapacityResource.cs" />
     <Compile Include="Resources\WIT\IClassificationNodeResource.cs" />
     <Compile Include="Resources\WIT\IFieldResource.cs" />
     <Compile Include="Resources\WIT\IWiqlResource.cs" />
@@ -78,6 +77,10 @@
     <Compile Include="Resources\WIT\WiqlResource.cs" />
     <Compile Include="Resources\WIT\WorkItemResource.cs" />
     <Compile Include="Resources\WIT\WorkItemTypeResource.cs" />
+    <Compile Include="Resources\Work\CapacityResource.cs" />
+    <Compile Include="Resources\Work\ICapacityResource.cs" />
+    <Compile Include="Resources\Work\ITeamDaysOffResource.cs" />
+    <Compile Include="Resources\Work\TeamDaysOffResource.cs" />
     <Compile Include="VsoClient.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
 
     public abstract class BaseEntity
     {
-        public uint Id { get; protected set; }
+        public string Id { get; protected set; }
         public string Project { get; protected set; }
     }
 

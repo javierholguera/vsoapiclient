@@ -7,6 +7,6 @@
         BaseEntityQuery<Task> Tasks { get; }
 
         BaseEntityQuery<Iteration> Iterations { get; }
-        BaseEntityQuery<Capacity> CapacityInfos { get; } 
+        BaseEntityQuery<TeamCapacity> CapacityInfos { get; } 
     }
 }
